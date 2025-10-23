@@ -52,7 +52,7 @@ export const PROJECTS = [
         description: 'A beautiful weather dashboard with location-based forecasts...',
         technologies: ['React', 'Chart.js', 'Weather API', 'Geolocation API', 'CSS3'],
         features: ['Location Detection', '7-Day Forecast', 'Interactive Charts', 'Favorite Locations', 'Weather Alerts', 'Responsive Design'],
-        results: 'Served 10,000+ monthly active users with 99.9% uptime and received 4.8/5 user rating for interface design.',
+        results: 'Elegant weather intelligence powered by immersive data visualization.',
         live: 'https://example-weather.com',
         github: 'https://github.com/pubudutharanga/weather-dashboard',
         image: './pro1.jpg',
@@ -115,7 +115,7 @@ export const BLOG_POSTS = [
         category: 'Industry Insights',
         excerpt: 'Explore the revolutionary changes shaping web development in 2025 - from AI co-creators and sustainable design to WebAssembly and decentralized technologies.',
         readTime: '8 min read',
-        date: '2024-03-20',
+        date: '2025-10-24',
         featured: './blog1.jpg',
         tags: ['Web Development', 'AI', 'Trends', 'Technology', 'Sustainability'],
         content: `
