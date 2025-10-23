@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://pubudutharanga.github.io/my-portfolio",
+  "homepage": "https://pubudutharanga.github.io/pubudu-portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
