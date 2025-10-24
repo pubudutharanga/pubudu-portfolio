@@ -135,8 +135,9 @@ export default function About() {
                                 variants={itemVariants}
                             >
                                 <a
-                                    href={SITE.resume}
-                                    download
+                                    href="/pubudu-portfolio/pubudu_resume.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="btn-primary group flex items-center justify-center"
                                 >
                                     <FaDownload className="mr-2 group-hover:scale-110 transition-transform" />

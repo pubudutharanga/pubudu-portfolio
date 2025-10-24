@@ -72,8 +72,9 @@ export default function Hero({ site }) {
                             </button>
 
                             <a
-                                href={site.resume}
-                                download
+                                href="/pubudu-portfolio/pubudu_resume.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 flex items-center gap-2"
                             >
                                 <FaDownload />

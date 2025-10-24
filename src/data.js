@@ -8,7 +8,7 @@ export const SITE = {
     linkedin: "https://www.linkedin.com/in/pubudutharanga/",
     github: "https://github.com/pubudutharanga",
     facebook: "https://www.facebook.com/share/1ai3Wtn4jc/",
-    resume: "/resume.html"
+    resume: "/pubudu_resume.pdf"
 }
 
 export const SKILLS = {
