@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { PROJECTS } from '../data'
 import { FaGithub, FaExternalLinkAlt, FaCode, FaFilter, FaTimes, FaArrowRight, FaRegClock, FaCheck, FaSpinner } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
+import { HashLink } from 'react-router-hash-link';
 
 export default function Portfolio() {
     const [filter, setFilter] = useState('All')
@@ -324,13 +325,13 @@ export default function Portfolio() {
                             Let's discuss how we can bring your ideas to life.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a
-                                href="#contact"
+                            <HashLink
+                                smooth to="/#contact"
                                 className="btn-primary group"
                             >
                                 Start a Project
                                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                            </a>
+                            </HashLink>
                             <a
                                 href="mailto:pubudutharange@gmail.com"
                                 className="btn-secondary"
