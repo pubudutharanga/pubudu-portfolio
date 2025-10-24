@@ -3,6 +3,7 @@ import { BLOG_POSTS } from '../data'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCalendar, FaClock, FaTags, FaEye } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { HashLink } from 'react-router-hash-link';
 
 export default function BlogPreview() {
     const [hoveredPost, setHoveredPost] = useState(null)
@@ -284,12 +285,12 @@ export default function BlogPreview() {
                                     View All Articles
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
-                                <a
-                                    href="#contact"
+                                <HashLink
+                                    smooth to="/#contact"
                                     className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-colors duration-300 text-lg"
                                 >
                                     Get Updates
-                                </a>
+                                </HashLink>
                             </div>
                         </div>
 
