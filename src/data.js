@@ -275,7 +275,7 @@ const result = module.instance.exports.heavyComputation();</code></pre>
         excerpt: 'React 19 finally landed on December 5, 2024, bringing seriously cool upgrades that make development easier and apps faster. Learn about Actions, the React Compiler, Server Components and more.',
         readTime: '10 min read',
         date: '2025-10-30',
-        featured: './blog2.jpg',
+        featured: './blog2.png',
         tags: ['React', 'React 19', 'JavaScript', 'Frontend', 'Web Development'],
         content: `
         <div class="blog-content dark:bg-gray-900 dark:text-gray-100">
@@ -507,9 +507,9 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     title: 'The Rise of AI-Powered Coding Assistants: Will They Replace Developers?',
     category: 'Industry Insights',
     excerpt: 'AI coding assistants are transforming software development, but are they replacing developers? Explore the real story of partnership over replacement and what it means for the future of coding.',
-    readTime: '5 min read',
-    date: '2025-10-28',
-    featured: './blog3.jpg',
+    readTime: '6 min read',
+    date: '2025-10-30',
+    featured: './blog3.png',
     tags: ['AI', 'Development', 'Future of Work', 'Tools', 'Career'],
     content: `
         <div class="blog-content">
