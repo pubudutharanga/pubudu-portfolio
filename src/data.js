@@ -55,7 +55,7 @@ export const PROJECTS = [
         results: ' Lightning-fast, fully responsive portfolio that loads in under 2 seconds and works flawlessly across all devices to showcase my work with professional polish.',
         live: 'https://pubudutharanga.github.io/pubudu-portfolio/',
         github: 'https://github.com/pubudutharanga/pubudu-portfolio',
-        image: './pro1.jpg',
+        image: './pro1.png',
         status: 'completed' // Use: 'planned', 'in progress', or 'completed'
     },
 ]
