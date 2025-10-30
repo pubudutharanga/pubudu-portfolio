@@ -47,16 +47,16 @@ export const STATS = [
 export const PROJECTS = [
     {
         id: 'p1',
-        title: 'Weather Dashboard',
+        title: 'Portfolio With Blog',
         category: 'Frontend',
-        description: 'A beautiful weather dashboard with location-based forecasts...',
-        technologies: ['React', 'Chart.js', 'Weather API', 'Geolocation API', 'CSS3'],
-        features: ['Location Detection', '7-Day Forecast', 'Interactive Charts', 'Favorite Locations', 'Weather Alerts', 'Responsive Design'],
-        results: 'Elegant weather intelligence powered by immersive data visualization.',
-        live: 'https://example-weather.com',
-        github: 'https://github.com/pubudutharanga/weather-dashboard',
+        description: 'Modern and Professional Portfolio with a blog',
+        technologies: ['React 18', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Terser'],
+        features: ['Blog', 'Dark Mode','Glass-Morphism','Project filtering ','Responsive Design','Performance optimization'],
+        results: ' Lightning-fast, fully responsive portfolio that loads in under 2 seconds and works flawlessly across all devices to showcase my work with professional polish.',
+        live: 'https://pubudutharanga.github.io/pubudu-portfolio/',
+        github: 'https://github.com/pubudutharanga/pubudu-portfolio',
         image: './pro1.jpg',
-        status: 'planned' // Use: 'planned', 'in progress', or 'completed'
+        status: 'completed' // Use: 'planned', 'in progress', or 'completed'
     },
 ]
 
