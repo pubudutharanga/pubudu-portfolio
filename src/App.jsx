@@ -3,7 +3,6 @@ import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Chatbot from './components/Chatbot';
 import { SITE } from './data'
 
 // Lazy load pages for better performance
@@ -76,9 +75,7 @@ export default function App() {
             </main>
 
             {/* Footer */}
-
-            {/* AI Chatbot */}
-            <Chatbot />
+            <Footer site={SITE} />
         </div>
     )
 }
