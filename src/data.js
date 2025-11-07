@@ -65,7 +65,7 @@ export const PROJECTS = [
         category: 'Frontend',
         description: 'A web app to get details about the best places and trending destinations in Sri Lanka according to the month.',
         technologies: ['React 19', 'Vite', 'Tailwind CSS', 'Framer Motion'],
-        features: ['Map ', 'Videos','Photos','Responsive Design','Details about places','Trending Destinations'],
+        features: ['Map ', 'Videos','Photos','Details about places','Trending Destinations'],
         results: 'Tourists can get a idea about best places in Sri Lanka',
         live: 'https://pubudutharanga.github.io/Serendib-Explorer/',
         github: 'https://github.com/pubudutharanga/Serendib-Explorer',
