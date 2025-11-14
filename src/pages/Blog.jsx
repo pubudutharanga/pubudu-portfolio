@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BLOG_POSTS, BLOG_CATEGORIES } from '../data'
 import { Link } from 'react-router-dom'
-import { FaSearch, FaCalendar, FaClock, FaArrowRight, FaFilter, FaTags, FaUser, FaArrowLeft } from 'react-icons/fa'
+import { FaSearch, FaCalendar, FaClock, FaArrowRight, FaFilter, FaTags, FaUser, FaArrowLeft, FaShare } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Blog() {
@@ -9,6 +9,7 @@ export default function Blog() {
     const [category, setCategory] = useState('All')
     const [visible, setVisible] = useState(6)
     const [isSearchFocused, setIsSearchFocused] = useState(false)
+    const [showShareMenu, setShowShareMenu] = useState(null)
 
     // Filter posts based on search and category
     const filteredPosts = BLOG_POSTS
@@ -18,6 +19,69 @@ export default function Blog() {
             p.excerpt.toLowerCase().includes(query.toLowerCase()) ||
             p.tags?.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
         )
+
+    // Share functionality
+    const handleShare = async (post, platform = 'copy') => {
+        const postUrl = `${window.location.origin}/blog/${post.id}`
+        const shareText = `Check out this article: ${post.title}`
+        
+        try {
+            switch (platform) {
+                case 'x':
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank')
+                    break
+                case 'linkedin':
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank')
+                    break
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`, '_blank')
+                    break
+                case 'copy':
+                    await navigator.clipboard.writeText(postUrl)
+                    // You could add a toast notification here
+                    console.log('URL copied to clipboard!')
+                    break
+                case 'native':
+                    if (navigator.share) {
+                        await navigator.share({
+                            title: post.title,
+                            text: post.excerpt,
+                            url: postUrl,
+                        })
+                    } else {
+                        // Fallback to copy if Web Share API not supported
+                        await navigator.clipboard.writeText(postUrl)
+                    }
+                    break
+                default:
+                    break
+            }
+        } catch (error) {
+            console.error('Error sharing:', error)
+        }
+        
+        // Close share menu after action
+        setShowShareMenu(null)
+    }
+
+    // Close share menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (showShareMenu && !event.target.closest('.share-container')) {
+                setShowShareMenu(null)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [showShareMenu])
+
+    // Reset visible posts when filters change
+    useEffect(() => {
+        setVisible(6)
+    }, [query, category])
 
     // Animation variants
     const containerVariants = {
@@ -55,11 +119,6 @@ export default function Blog() {
             transition: { duration: 0.3 }
         }
     }
-
-    // Reset visible posts when filters change
-    useEffect(() => {
-        setVisible(6)
-    }, [query, category])
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 pt-20">
@@ -201,9 +260,9 @@ export default function Blog() {
 
                                             {/* Category Badge */}
                                             <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg">
-                          {post.category}
-                        </span>
+                                                <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg">
+                                                    {post.category}
+                                                </span>
                                             </div>
 
                                             {/* Overlay Gradient */}
@@ -258,13 +317,13 @@ export default function Blog() {
                                                             key={tag}
                                                             className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
                                                         >
-                              #{tag}
-                            </span>
+                                                            #{tag}
+                                                        </span>
                                                     ))}
                                                 </div>
                                             )}
 
-                                            {/* Author & Read More */}
+                                            {/* Author, Share & Read More */}
                                             <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
@@ -273,13 +332,101 @@ export default function Blog() {
                                                     <span className="text-sm text-gray-600 dark:text-gray-400">Pubudu Tharanga</span>
                                                 </div>
 
-                                                <Link
-                                                    to={`/blog/${post.id}`}
-                                                    className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
-                                                >
-                                                    Read More
-                                                    <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                                                </Link>
+                                                <div className="flex items-center gap-3">
+                                                    {/* Share Button */}
+                                                    <div className="relative share-container">
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.preventDefault()
+                                                                e.stopPropagation()
+                                                                setShowShareMenu(showShareMenu === post.id ? null : post.id)
+                                                            }}
+                                                            className="p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-300 group"
+                                                            aria-label="Share article"
+                                                        >
+                                                            <FaShare size={14} />
+                                                        </button>
+
+                                                        {/* Share Dropdown Menu */}
+                                                        <AnimatePresence>
+                                                            {showShareMenu === post.id && (
+                                                                <motion.div
+                                                                    initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                                                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                                                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                                                                    transition={{ duration: 0.2 }}
+                                                                    className="absolute bottom-full right-0 mb-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-10 overflow-hidden"
+                                                                >
+                                                                    <div className="p-2">
+                                                                        {/* Native Share (Mobile) */}
+                                                                        {navigator.share && (
+                                                                            <button
+                                                                                onClick={() => handleShare(post, 'native')}
+                                                                                className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
+                                                                            >
+                                                                                <FaShare size={12} />
+                                                                                Share via...
+                                                                            </button>
+                                                                        )}
+                                                                        
+                                                                        {/* X (Twitter) */}
+                                                                        <button
+                                                                            onClick={() => handleShare(post, 'x')}
+                                                                            className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
+                                                                        >
+                                                                            <svg className="w-4 h-4 text-gray-900 dark:text-gray-100" fill="currentColor" viewBox="0 0 24 24">
+                                                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                                                            </svg>
+                                                                            X (Twitter)
+                                                                        </button>
+                                                                        
+                                                                        {/* LinkedIn */}
+                                                                        <button
+                                                                            onClick={() => handleShare(post, 'linkedin')}
+                                                                            className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
+                                                                        >
+                                                                            <svg className="w-4 h-4 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
+                                                                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                                                            </svg>
+                                                                            LinkedIn
+                                                                        </button>
+                                                                        
+                                                                        {/* Facebook */}
+                                                                        <button
+                                                                            onClick={() => handleShare(post, 'facebook')}
+                                                                            className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
+                                                                        >
+                                                                            <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                                                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                                                            </svg>
+                                                                            Facebook
+                                                                        </button>
+                                                                        
+                                                                        {/* Copy Link */}
+                                                                        <button
+                                                                            onClick={() => handleShare(post, 'copy')}
+                                                                            className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
+                                                                        >
+                                                                            <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                                            </svg>
+                                                                            Copy Link
+                                                                        </button>
+                                                                    </div>
+                                                                </motion.div>
+                                                            )}
+                                                        </AnimatePresence>
+                                                    </div>
+
+                                                    {/* Read More Link */}
+                                                    <Link
+                                                        to={`/blog/${post.id}`}
+                                                        className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
+                                                    >
+                                                        Read More
+                                                        <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -342,43 +489,6 @@ export default function Blog() {
                             </p>
                         </motion.div>
                     )}
-
-                    {/* Newsletter CTA */}
-                    <motion.div
-                        className="mt-20"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-8 text-center text-white relative overflow-hidden">
-                            {/* Background Pattern */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer bg-[length:200%_100%]"></div>
-
-                            <div className="relative z-10">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                    Stay Updated with Latest Insights
-                                </h3>
-                                <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                                    Get the latest articles, tutorials, and industry insights delivered straight to your inbox.
-                                    No spam, just valuable content.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                                    <input
-                                        type="email"
-                                        placeholder="Enter your email address"
-                                        className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50"
-                                    />
-                                    <button className="px-6 py-3 bg-white text-blue-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
-                                        Subscribe
-                                    </button>
-                                </div>
-                                <p className="text-blue-200 text-sm mt-3">
-                                    Join 1,000+ developers and designers
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
                 </div>
             </section>
         </div>
