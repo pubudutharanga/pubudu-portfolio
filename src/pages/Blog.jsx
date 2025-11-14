@@ -22,13 +22,13 @@ export default function Blog() {
 
     // Share functionality
     const handleShare = async (post, platform = 'copy') => {
-        const postUrl = `${window.location.origin}/blog/${post.id}`
+        const postUrl = `${window.location.href}/${post.id}`
         const shareText = `Check out this article: ${post.title}`
         
         try {
             switch (platform) {
                 case 'x':
-                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank')
+                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank')
                     break
                 case 'linkedin':
                     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank')

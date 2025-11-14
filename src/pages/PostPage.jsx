@@ -60,7 +60,7 @@ export default function PostPage() {
         try {
             switch (platform) {
                 case 'x':
-                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank', 'noopener,noreferrer')
+                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank', 'noopener,noreferrer')
                     break
                 case 'linkedin':
                     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank', 'noopener,noreferrer')
