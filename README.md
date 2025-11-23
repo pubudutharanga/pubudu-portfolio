@@ -1,6 +1,6 @@
 # 🚀 Pubudu Tharanga - Portfolio
 
-![Portfolio Preview](https://pubudutharanga.github.io/pubudu-portfolio/og-image.jpg)
+![Portfolio Preview](https://pubudutharanga.github.io/pubudu-portfolio/og-image-2025.jpg)
 
 ## 👨‍💻 Full Stack Developer & Undergraduate
 
