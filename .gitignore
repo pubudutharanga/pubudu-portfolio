@@ -1,13 +1,4 @@
 dist/
-node_modules/.cache/
-dist/
 node_modules/
-node_modules/.cache/
-node_modules/.vite/
-node_modules/
-node_modules/.cache/
-dist/
-dist/
-node_modules/
-node_modules/.cache/
-node_modules/.vite/
+.cache/
+.vite/

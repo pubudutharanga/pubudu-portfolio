@@ -1,14 +1,17 @@
 export const SITE = {
-    name: "Pubudu Tharanga",
-    title: "Full Stack Developer & Undergraduate",
-    tagline: "Building digital experiences with modern technologies",
+       name: "Pubudu Tharanga",
+    title: "Full Stack Developer & Undergraduate | React & Node.js Specialist",
+    tagline: "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
     location: "Sri Lanka",
     email: "pubudutharange@gmail.com",
     phone: "+94 76 633 0916",
     linkedin: "https://www.linkedin.com/in/pubudutharanga/",
     github: "https://github.com/pubudutharanga",
     facebook: "https://www.facebook.com/share/1ai3Wtn4jc/",
-    resume: "/pubudu_resume.pdf"
+    resume: "/pubudu_resume.pdf",
+    // SEO enhancement
+    siteUrl: "https://pubudutharanga.github.io/pubudu-portfolio/",
+    keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js"
 }
 
 export const SKILLS = {
