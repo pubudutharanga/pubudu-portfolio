@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /#/
+Allow: /#/blog
+Allow: /#/blog/
 
 Sitemap: https://pubudutharanga.github.io/pubudu-portfolio/sitemap.xml

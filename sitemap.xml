@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <!-- Homepage - Highest Priority -->
     <url>
         <loc>https://pubudutharanga.github.io/pubudu-portfolio/</loc>
-        <lastmod>2024-01-15</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
+    
+    <!-- Blog Page -->
+    <url>
+        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Individual Blog Posts with 2025 Dates -->
+    <url>
+        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b1</loc>
+        <lastmod>2025-10-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b2</loc>
+        <lastmod>2025-10-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b3</loc>
+        <lastmod>2025-10-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b4</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b5</loc>
+        <lastmod>2025-11-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
 </urlset>
