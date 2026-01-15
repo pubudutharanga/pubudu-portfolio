@@ -48,7 +48,7 @@ export default function App() {
             <Header site={SITE} dark={dark} setDark={setDark} />
 
             {/* Main Content */}
-            <main className="pt-16 lg:pt-20">
+            <main id="main-content" className="pt-16 lg:pt-20" role="main">
                 <Suspense fallback={<LoadingSpinner />}>
                     <Routes>
                         <Route path="/" element={<Home site={SITE} />} />

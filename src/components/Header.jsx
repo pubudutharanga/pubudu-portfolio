@@ -97,11 +97,10 @@ export default function Header({ site, dark, setDark }) {
 
     return (
         <motion.header
-            className={`fixed w-full z-50 transition-all duration-500 ${
-                scrolled
+            className={`fixed w-full z-50 transition-all duration-500 ${scrolled
                     ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg shadow-black/5 border-b border-gray-200/50 dark:border-gray-700/50'
                     : 'bg-transparent'
-            }`}
+                }`}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -135,12 +134,13 @@ export default function Header({ site, dark, setDark }) {
                     </motion.div>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-8">
+                    <nav className="hidden lg:flex items-center gap-8" role="navigation" aria-label="Main navigation">
                         <motion.div
                             className="flex items-center gap-8"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
+                            role="menu"
                         >
                             {navItems.map((item, index) => (
                                 <motion.button
@@ -164,7 +164,9 @@ export default function Header({ site, dark, setDark }) {
                         {/* Theme Toggle */}
                         <motion.button
                             onClick={() => setDark(!dark)}
-                            aria-label="toggle theme"
+                            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+                            aria-pressed={dark}
+                            type="button"
                             className="p-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-200 dark:border-gray-700"
                             whileHover={{ scale: 1.05, rotate: 15 }}
                             whileTap={{ scale: 0.95 }}
@@ -207,7 +209,10 @@ export default function Header({ site, dark, setDark }) {
                         {/* Mobile Menu Button */}
                         <motion.button
                             onClick={() => setIsOpen(!isOpen)}
-                            aria-label="menu"
+                            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                            aria-expanded={isOpen}
+                            aria-controls="mobile-menu"
+                            type="button"
                             className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -221,6 +226,9 @@ export default function Header({ site, dark, setDark }) {
                 <AnimatePresence>
                     {isOpen && (
                         <motion.div
+                            id="mobile-menu"
+                            role="navigation"
+                            aria-label="Mobile navigation"
                             className="lg:hidden overflow-hidden"
                             variants={mobileMenuVariants}
                             initial="closed"

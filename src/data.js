@@ -1,5 +1,5 @@
 export const SITE = {
-       name: "Pubudu Tharanga",
+    name: "Pubudu Tharanga",
     title: "Full Stack Developer & Undergraduate | React & Node.js Specialist",
     tagline: "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
     location: "Sri Lanka",
@@ -54,7 +54,7 @@ export const PROJECTS = [
         category: 'Frontend',
         description: 'Modern and Professional Portfolio with a blog',
         technologies: ['React 18', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Terser'],
-        features: ['Blog', 'Dark Mode','Glass-Morphism','Project filtering ','Responsive Design','Performance optimization'],
+        features: ['Blog', 'Dark Mode', 'Glass-Morphism', 'Project filtering ', 'Responsive Design', 'Performance optimization'],
         results: ' Lightning-fast, fully responsive portfolio that loads in under 2 seconds and works flawlessly across all devices to showcase my work with professional polish.',
         live: 'https://pubudutharanga.github.io/pubudu-portfolio/',
         github: 'https://github.com/pubudutharanga/pubudu-portfolio',
@@ -68,7 +68,7 @@ export const PROJECTS = [
         category: 'Frontend',
         description: 'A web app to get details about the best places and trending destinations in Sri Lanka according to the month.',
         technologies: ['React 19', 'Vite', 'Tailwind CSS', 'Framer Motion'],
-        features: ['Map ', 'Videos','Photos','Details about places','Trending Destinations'],
+        features: ['Map ', 'Videos', 'Photos', 'Details about places', 'Trending Destinations'],
         results: 'Tourists can get a idea about best places in Sri Lanka',
         live: 'https://pubudutharanga.github.io/Serendib-Explorer/',
         github: 'https://github.com/pubudutharanga/Serendib-Explorer',
@@ -519,16 +519,16 @@ preinit('analytics.js', { as: 'script' });</code></pre>
         </div>
     `
     },
-{
-    id: 'b3',
-    title: 'The Rise of AI-Powered Coding Assistants: Will They Replace Developers?',
-    category: 'Industry Insights',
-    excerpt: 'AI coding assistants are transforming software development, but are they replacing developers? Explore the real story of partnership over replacement and what it means for the future of coding.',
-    readTime: '6 min read',
-    date: '2025-10-30',
-    featured: './blog3.png',
-    tags: ['AI', 'Development', 'Future of Work', 'Tools', 'Career'],
-    content: `
+    {
+        id: 'b3',
+        title: 'The Rise of AI-Powered Coding Assistants: Will They Replace Developers?',
+        category: 'Industry Insights',
+        excerpt: 'AI coding assistants are transforming software development, but are they replacing developers? Explore the real story of partnership over replacement and what it means for the future of coding.',
+        readTime: '6 min read',
+        date: '2025-10-30',
+        featured: './blog3.png',
+        tags: ['AI', 'Development', 'Future of Work', 'Tools', 'Career'],
+        content: `
         <div class="blog-content">
             <p class="lead">Picture this: You're sitting at your desk, stuck on a tricky piece of code. Instead of spending hours searching through documentation, you simply describe what you want to build, and within seconds, an AI assistant suggests working code. This isn't science fiction—it's happening right now in offices and home workspaces around the world.</p>
 
@@ -630,17 +630,17 @@ preinit('analytics.js', { as: 'script' });</code></pre>
             </div>
         </div>
     `
-},
-{
-    "id": "b4",
-    "title": "AI Unlocked: A Beginner's Roadmap to Mastering Artificial Intelligence",
-    "category": "Industry Insights",
-    "excerpt": "Remember when talking to your computer seemed crazy? In 2025, AI is everywhere. Discover an easy-to-follow guide for beginners to start learning AI, from first steps to career opportunities, and why now is the perfect time to dive in.",
-    "readTime": "8 min read",
-    "date": "2025-11-14",
-    "featured": "./blog4.png",
-    "tags": ["AI", "Beginners", "Learning", "Roadmap", "Career", "Technology"],
-    "content": `
+    },
+    {
+        "id": "b4",
+        "title": "AI Unlocked: A Beginner's Roadmap to Mastering Artificial Intelligence",
+        "category": "Industry Insights",
+        "excerpt": "Remember when talking to your computer seemed crazy? In 2025, AI is everywhere. Discover an easy-to-follow guide for beginners to start learning AI, from first steps to career opportunities, and why now is the perfect time to dive in.",
+        "readTime": "8 min read",
+        "date": "2025-11-14",
+        "featured": "./blog4.png",
+        "tags": ["AI", "Beginners", "Learning", "Roadmap", "Career", "Technology"],
+        "content": `
         <div class="blog-content">
             <p class="lead">Remember when talking to your computer sounded crazy? Well, it's 2025 now. One in five American adults use AI every day. Your phone might know you better than your friends do.</p>
 
@@ -787,17 +787,17 @@ preinit('analytics.js', { as: 'script' });</code></pre>
             </div>
         </div>
     `
-},
-{
-    "id": "b5",
-    "title": "Which AI Is Best for Developers? Gemini 3 vs GPT-5 vs Claude",
-    "category": "Technology Comparison",
-    "excerpt": "Choosing the right AI tool can make or break your development workflow. Let's compare the top three AI assistants in simple English.",
-    "readTime": "8 min read",
-    "date": "2025-11-22",
-    "featured": "./blog5.png",
-    "tags": ["AI", "Developers", "Comparison", "Gemini", "GPT-5", "Claude", "Coding"],
-    "content": `
+    },
+    {
+        "id": "b5",
+        "title": "Which AI Is Best for Developers? Gemini 3 vs GPT-5 vs Claude",
+        "category": "Technology Comparison",
+        "excerpt": "Choosing the right AI tool can make or break your development workflow. Let's compare the top three AI assistants in simple English.",
+        "readTime": "8 min read",
+        "date": "2025-11-22",
+        "featured": "./blog5.png",
+        "tags": ["AI", "Developers", "Comparison", "Gemini", "GPT-5", "Claude", "Coding"],
+        "content": `
         <div class="blog-content">
             <p class="lead">You're sitting at your computer, ready to code. You need an AI assistant to help you. But which one? Google Gemini 3? OpenAI's GPT-5? Or Anthropic's Claude?</p>
 
@@ -991,6 +991,100 @@ preinit('analytics.js', { as: 'script' });</code></pre>
             </blockquote>
         </div>
     `
-}
+    },
+    {
+        id: "b6",
+        title: "Google Code Wiki: Your Code's New Best Friend",
+        category: "AI & Development",
+        excerpt: "Imagine having a guide who never sleeps, never forgets, and always knows exactly what your computer code is doing. Google's new Code Wiki is revolutionizing how developers understand and navigate complex codebases with AI-powered documentation that updates itself.",
+        readTime: "9 min read",
+        date: "2025-11-15",
+        featured: "./blog6.png",
+        tags: ["Artificial Intelligence", "Software Development", "Google", "Developer Tools", "Code Documentation", "Machine Learning"],
+        content: `
+    <div class="blog-content">
+      <p class="lead-text">Imagine having a guide who never sleeps, never forgets, and always knows exactly what your computer code is doing. That guide is here, and its name is Code Wiki.</p>
 
+      <h2>The Problem We All Face</h2>
+      <p>Picture this: You start a new job as a software creator. On your first day, your manager shows you a mountain of code—thousands of lines written by people who left years ago. "Figure it out," they say with a reassuring smile. You stare at your screen, feeling lost in a maze with no map.</p>
+
+      <p>This is one of the biggest, most expensive challenges in software development—understanding code that already exists. Developers spend nearly a third of their time just trying to read and understand what someone else wrote. It's like trying to finish someone else's novel without knowing the beginning of the story.</p>
+
+      <h2>Enter Google Code Wiki: A Revolutionary Idea</h2>
+      <p>In November 2025, Google introduced something extraordinary: Code Wiki, a tool that automatically creates up-to-date guides for your code. Think of it as a living, breathing instruction manual that writes itself and never becomes outdated.</p>
+
+      <p>Here's the magic: instead of developers spending hours creating guides that nobody reads (or worse, that become wrong the moment someone changes the code), Code Wiki does it automatically. And it updates itself every single time the code changes.</p>
+
+      <h2>How Does This Wizardry Work?</h2>
+      <p>Imagine you have a huge library of books, but they're all written in a language you're still learning. Code Wiki is like having a brilliant librarian who:</p>
+
+      <ul>
+        <li><strong>Reads everything for you</strong> — It scans your entire collection of code files</li>
+        <li><strong>Creates a guidebook</strong> — It builds a structured guide explaining what everything does</li>
+        <li><strong>Keeps it fresh</strong> — When you change even a single line of code, the guide updates itself automatically</li>
+        <li><strong>Answers your questions</strong> — You can chat with it and ask, "What does this part do?" and get instant answers</li>
+        <li><strong>Shows you pictures</strong> — It draws maps and diagrams showing how different pieces connect</li>
+      </ul>
+
+      <p>The best part? Every explanation links directly to the actual code, so you can jump from "what it does" to "how it works" with a single click.</p>
+
+      <h2>Real-World Magic</h2>
+      <p>Let's say you're joining a team working on a shopping app. Instead of spending weeks reading code files and bothering your busy teammates with questions, you open Code Wiki and ask: "How does the checkout process work?"</p>
+
+      <p>Within seconds, you get a clear explanation with diagrams showing the journey from clicking "buy" to receiving a confirmation. You can see which files are involved, what each piece does, and even ask follow-up questions like, "What happens if payment fails?"</p>
+
+      <p>New team members can make their first meaningful contribution on their very first day, while experienced developers can understand unfamiliar parts of the code in minutes instead of days.</p>
+
+      <h2>The Secret Sauce</h2>
+      <p>Code Wiki uses Google's Gemini, an artificial intelligence that's specially trained to understand software code. But here's what makes it different from other AI helpers: it doesn't just guess or make things up. It uses your specific code repository as its knowledge base, so the answers are always about <em>your</em> actual project, not generic advice from the internet.</p>
+
+      <p>It's like having a teammate who has memorized every single line of your project and can explain it in plain English whenever you need help.</p>
+
+      <h2>What Can You Do With It?</h2>
+      <p>Right now, Code Wiki is free to use with any public project on GitHub (a popular place where people share code). Simply paste a link to any open-source project, and Code Wiki generates complete documentation for it.</p>
+
+      <p>You can:</p>
+      <ul>
+        <li>Explore how popular software works</li>
+        <li>Learn from other people's projects</li>
+        <li>Get unstuck when you're confused about a complex piece of code</li>
+        <li>See visual diagrams of how everything connects</li>
+        <li>Chat with an AI that truly understands that specific project</li>
+      </ul>
+
+      <h2>Coming Soon: Your Private Code, Too</h2>
+      <p>The exciting news? Google is developing a version that works with private company code, the kind that businesses keep secret. This means companies with complicated, years-old code that nobody fully understands anymore will finally have a guide that can help.</p>
+
+      <h2>Why This Matters</h2>
+      <p>Software development has always had a dirty secret: the guides are almost always wrong or missing. Developers are supposed to write them, but they're too busy actually building things. When they do write guides, those guides become outdated as soon as someone makes a change.</p>
+
+      <p>Code Wiki's solution is revolutionary: what if the code itself became the guide? What if you could have a conversation with your project and get instant, accurate answers?</p>
+
+      <p>That's not just convenient—it's transformative. It means:</p>
+      <ul>
+        <li>Less time wasted trying to understand confusing code</li>
+        <li>Faster onboarding for new team members</li>
+        <li>Better ability to maintain old projects</li>
+        <li>More time for actual creative work</li>
+      </ul>
+
+      <h2>A Word of Caution</h2>
+      <p>Like any AI tool, Code Wiki isn't perfect. It can make mistakes, so you should double-check important information. It's a brilliant assistant, not a replacement for understanding code yourself. Think of it as having a knowledgeable friend who sometimes gets details wrong—helpful, but not infallible.</p>
+
+      <h2>The Future of Understanding Code</h2>
+      <p>We're living through a fascinating moment. For decades, understanding existing code has been one of the hardest parts of being a developer. Now, artificial intelligence is changing that.</p>
+
+      <p>Code Wiki represents something bigger than just another tool. It's part of a shift toward what Google calls "instant understanding"—where developers spend less time deciphering and more time creating.</p>
+
+      <p>The era of manually written, constantly outdated guides is ending. The future is interactive, automatic, and always current.</p>
+
+      <h2>Try It Yourself</h2>
+      <p>Want to experience this for yourself? Visit <a href="https://codewiki.google" target="_blank" rel="noopener noreferrer">codewiki.google</a> and explore documentation for your favorite open-source projects. Ask questions, explore diagrams, and see how AI can help you understand code in a completely new way.</p>
+
+      <p>Welcome to the future of software development—where understanding code is no longer the bottleneck, but the starting point.</p>
+
+      <p class="conclusion-text"><em>Your next coding adventure just got a whole lot easier.</em></p>
+    </div>
+  `
+    }
 ]
