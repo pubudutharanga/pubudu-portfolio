@@ -52,23 +52,42 @@ export default function PostPage() {
         }
     }, [showShareMenu])
 
-    // Enhanced share functionality
-    const handleShare = async (platform = 'copy') => {
+    // Enhanced share functionality - Fixed to open window BEFORE closing menu
+    const handleShare = (e, platform = 'copy') => {
+        // Prevent event bubbling to avoid triggering click-outside handler
+        if (e) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+
         const postUrl = window.location.href
         const shareText = post ? `Check out this article: ${post.title}` : 'Check out this article'
 
-        try {
-            switch (platform) {
-                case 'x':
-                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank')
-                    break
-                case 'linkedin':
-                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank')
-                    break
-                case 'facebook':
-                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`, '_blank')
-                    break
-                case 'copy':
+        // Open window immediately (synchronously) before any async operations
+        let shareWindow = null
+
+        switch (platform) {
+            case 'x':
+                shareWindow = window.open(
+                    `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`,
+                    '_blank'
+                )
+                break
+            case 'linkedin':
+                shareWindow = window.open(
+                    `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`,
+                    '_blank'
+                )
+                break
+            case 'facebook':
+                shareWindow = window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`,
+                    '_blank'
+                )
+                break
+            case 'copy':
+                // Handle copy asynchronously
+                (async () => {
                     try {
                         if (navigator.clipboard && window.isSecureContext) {
                             await navigator.clipboard.writeText(postUrl)
@@ -76,40 +95,39 @@ export default function PostPage() {
                             // Fallback for older browsers
                             const textArea = document.createElement('textarea')
                             textArea.value = postUrl
+                            textArea.style.position = 'fixed'
+                            textArea.style.left = '-9999px'
                             document.body.appendChild(textArea)
                             textArea.focus()
                             textArea.select()
                             document.execCommand('copy')
                             document.body.removeChild(textArea)
                         }
-
                         setIsCopied(true)
                         setTimeout(() => setIsCopied(false), 2000)
-
                     } catch (error) {
                         console.error('Failed to copy: ', error)
-                        // Fallback: show URL in prompt
                         prompt('Copy this URL:', postUrl)
                     }
-                    break
-                case 'native':
-                    if (navigator.share) {
-                        await navigator.share({
-                            title: post.title,
-                            text: post.excerpt,
-                            url: postUrl,
-                        })
-                    } else {
-                        await handleShare('copy')
-                    }
-                    break
-                default:
-                    break
-            }
-        } catch (error) {
-            console.error('Error sharing:', error)
+                })()
+                break
+            case 'native':
+                if (navigator.share) {
+                    navigator.share({
+                        title: post?.title || 'Blog Post',
+                        text: post?.excerpt || '',
+                        url: postUrl,
+                    }).catch(err => console.error('Error sharing:', err))
+                } else {
+                    handleShare(e, 'copy')
+                    return // Don't close menu yet
+                }
+                break
+            default:
+                break
         }
 
+        // Close menu after action
         setShowShareMenu(false)
     }
 
@@ -188,14 +206,24 @@ export default function PostPage() {
         )
     }
 
-    // Share Button Component
-    const ShareButton = () => (
+    // Share option click handler - ensures proper event handling
+    const onShareOptionClick = (e, platform) => {
+        e.preventDefault()
+        e.stopPropagation()
+        handleShare(e, platform)
+    }
+
+    // Share Button Component - Inline to avoid recreation issues
+    const renderShareButton = () => (
         <div className="relative" ref={shareMenuRef}>
             <motion.button
-                onClick={() => setShowShareMenu(!showShareMenu)}
+                onClick={(e) => {
+                    e.stopPropagation()
+                    setShowShareMenu(!showShareMenu)
+                }}
                 className={`share-trigger p-3 rounded-xl transition-colors duration-300 flex items-center gap-2 ${isCopied
-                        ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400'
+                    ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400'
                     }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -216,72 +244,63 @@ export default function PostPage() {
                         animate="visible"
                         exit="exit"
                         className="absolute bottom-full left-0 mb-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-50 overflow-hidden"
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <div className="p-2">
                             {/* Native Share (Mobile) */}
-                            {navigator.share && (
-                                <motion.button
-                                    onClick={() => handleShare('native')}
+                            {typeof navigator !== 'undefined' && navigator.share && (
+                                <button
+                                    onClick={(e) => onShareOptionClick(e, 'native')}
                                     className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
-                                    whileHover={{ x: 4 }}
-                                    whileTap={{ scale: 0.98 }}
                                 >
                                     <FaShare size={12} />
                                     Share via...
-                                </motion.button>
+                                </button>
                             )}
 
                             {/* X (Twitter) */}
-                            <motion.button
-                                onClick={() => handleShare('x')}
+                            <button
+                                onClick={(e) => onShareOptionClick(e, 'x')}
                                 className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
-                                whileHover={{ x: 4 }}
-                                whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-gray-900 dark:text-gray-100" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                                 </svg>
                                 X (Twitter)
-                            </motion.button>
+                            </button>
 
                             {/* LinkedIn */}
-                            <motion.button
-                                onClick={() => handleShare('linkedin')}
+                            <button
+                                onClick={(e) => onShareOptionClick(e, 'linkedin')}
                                 className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
-                                whileHover={{ x: 4 }}
-                                whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                 </svg>
                                 LinkedIn
-                            </motion.button>
+                            </button>
 
                             {/* Facebook */}
-                            <motion.button
-                                onClick={() => handleShare('facebook')}
+                            <button
+                                onClick={(e) => onShareOptionClick(e, 'facebook')}
                                 className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
-                                whileHover={{ x: 4 }}
-                                whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                 </svg>
                                 Facebook
-                            </motion.button>
+                            </button>
 
                             {/* Copy Link */}
-                            <motion.button
-                                onClick={() => handleShare('copy')}
+                            <button
+                                onClick={(e) => onShareOptionClick(e, 'copy')}
                                 className="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-3"
-                                whileHover={{ x: 4 }}
-                                whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
                                 {isCopied ? 'Copied!' : 'Copy Link'}
-                            </motion.button>
+                            </button>
                         </div>
                     </motion.div>
                 )}
@@ -406,8 +425,8 @@ export default function PostPage() {
                             <motion.button
                                 onClick={() => setIsBookmarked(!isBookmarked)}
                                 className={`p-3 rounded-xl transition-colors duration-300 flex items-center gap-2 ${isBookmarked
-                                        ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
-                                        : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600'
+                                    ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
+                                    : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600'
                                     }`}
                                 variants={bookmarkVariants}
                                 initial="initial"
@@ -421,7 +440,7 @@ export default function PostPage() {
                             </motion.button>
 
                             {/* Share Button */}
-                            <ShareButton />
+                            {renderShareButton()}
                         </motion.div>
                     </motion.div>
                 </div>
@@ -460,7 +479,7 @@ export default function PostPage() {
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <ShareButton />
+                                        {renderShareButton()}
                                         <motion.button
                                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                             className="p-3 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-xl hover:bg-blue-100 hover:text-blue-600 transition-colors duration-300"
