@@ -19,15 +19,15 @@ export default function PostPage() {
         const onScroll = () => {
             const el = document.getElementById('post-content')
             if (!el) return
-            
+
             const windowHeight = window.innerHeight
             const documentHeight = document.documentElement.scrollHeight
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop
             const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100
-            
+
             setProgress(Math.max(0, Math.min(100, scrollPercent)))
         }
-        
+
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
@@ -35,8 +35,8 @@ export default function PostPage() {
     // Close share menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (showShareMenu && 
-                shareMenuRef.current && 
+            if (showShareMenu &&
+                shareMenuRef.current &&
                 !shareMenuRef.current.contains(event.target) &&
                 !event.target.closest('.share-trigger')) {
                 setShowShareMenu(false)
@@ -45,7 +45,7 @@ export default function PostPage() {
 
         document.addEventListener('mousedown', handleClickOutside)
         document.addEventListener('touchstart', handleClickOutside)
-        
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
             document.removeEventListener('touchstart', handleClickOutside)
@@ -55,18 +55,18 @@ export default function PostPage() {
     // Enhanced share functionality
     const handleShare = async (platform = 'copy') => {
         const postUrl = window.location.href
-        const shareText = `Check out this article: ${post.title}`
-        
+        const shareText = post ? `Check out this article: ${post.title}` : 'Check out this article'
+
         try {
             switch (platform) {
                 case 'x':
-                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank', 'noopener,noreferrer')
+                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`, '_blank')
                     break
                 case 'linkedin':
-                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank', 'noopener,noreferrer')
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank')
                     break
                 case 'facebook':
-                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`, '_blank', 'noopener,noreferrer')
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`, '_blank')
                     break
                 case 'copy':
                     try {
@@ -82,10 +82,10 @@ export default function PostPage() {
                             document.execCommand('copy')
                             document.body.removeChild(textArea)
                         }
-                        
+
                         setIsCopied(true)
                         setTimeout(() => setIsCopied(false), 2000)
-                        
+
                     } catch (error) {
                         console.error('Failed to copy: ', error)
                         // Fallback: show URL in prompt
@@ -109,7 +109,7 @@ export default function PostPage() {
         } catch (error) {
             console.error('Error sharing:', error)
         }
-        
+
         setShowShareMenu(false)
     }
 
@@ -169,15 +169,15 @@ export default function PostPage() {
     if (!post) {
         return (
             <div className="min-h-screen bg-white dark:bg-gray-900 pt-20 flex items-center justify-center px-4">
-                <motion.div 
+                <motion.div
                     className="text-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Post Not Found</h2>
-                    <Link 
-                        to="/blog" 
+                    <Link
+                        to="/blog"
                         className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
                     >
                         <FaArrowLeft size={14} />
@@ -193,11 +193,10 @@ export default function PostPage() {
         <div className="relative" ref={shareMenuRef}>
             <motion.button
                 onClick={() => setShowShareMenu(!showShareMenu)}
-                className={`share-trigger p-3 rounded-xl transition-colors duration-300 flex items-center gap-2 ${
-                    isCopied 
-                        ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' 
+                className={`share-trigger p-3 rounded-xl transition-colors duration-300 flex items-center gap-2 ${isCopied
+                        ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400'
-                }`}
+                    }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Share article"
@@ -231,7 +230,7 @@ export default function PostPage() {
                                     Share via...
                                 </motion.button>
                             )}
-                            
+
                             {/* X (Twitter) */}
                             <motion.button
                                 onClick={() => handleShare('x')}
@@ -240,11 +239,11 @@ export default function PostPage() {
                                 whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-gray-900 dark:text-gray-100" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                                 </svg>
                                 X (Twitter)
                             </motion.button>
-                            
+
                             {/* LinkedIn */}
                             <motion.button
                                 onClick={() => handleShare('linkedin')}
@@ -253,11 +252,11 @@ export default function PostPage() {
                                 whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                 </svg>
                                 LinkedIn
                             </motion.button>
-                            
+
                             {/* Facebook */}
                             <motion.button
                                 onClick={() => handleShare('facebook')}
@@ -266,11 +265,11 @@ export default function PostPage() {
                                 whileTap={{ scale: 0.98 }}
                             >
                                 <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                 </svg>
                                 Facebook
                             </motion.button>
-                            
+
                             {/* Copy Link */}
                             <motion.button
                                 onClick={() => handleShare('copy')}
@@ -323,7 +322,7 @@ export default function PostPage() {
                         </motion.button>
 
                         {/* Category */}
-                        <motion.span 
+                        <motion.span
                             className="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full mb-4"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -406,11 +405,10 @@ export default function PostPage() {
                         >
                             <motion.button
                                 onClick={() => setIsBookmarked(!isBookmarked)}
-                                className={`p-3 rounded-xl transition-colors duration-300 flex items-center gap-2 ${
-                                    isBookmarked
+                                className={`p-3 rounded-xl transition-colors duration-300 flex items-center gap-2 ${isBookmarked
                                         ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
                                         : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600'
-                                }`}
+                                    }`}
                                 variants={bookmarkVariants}
                                 initial="initial"
                                 animate={isBookmarked ? "bookmarked" : "initial"}
