@@ -1,142 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    
-    <!-- Homepage - Highest Priority -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="https://pubudutharanga.github.io/pubudu-portfolio/"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://pubudutharanga.github.io/pubudu-portfolio/"/>
-        <lastmod>2026-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/og-image-2025.jpg</image:loc>
-            <image:title>Pubudu Tharanga - Full Stack Developer Portfolio</image:title>
-            <image:caption>Full Stack Developer specializing in React and Node.js</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/PT.png</image:loc>
-            <image:title>Pubudu Tharanga Profile Photo</image:title>
-        </image:image>
-    </url>
-    
-    <!-- About Section -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#about</loc>
-        <lastmod>2026-01-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Portfolio Section -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#portfolio</loc>
-        <lastmod>2026-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/pro1.png</image:loc>
-            <image:title>Portfolio Project 1 - Portfolio With Blog</image:title>
-        </image:image>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/pro2.png</image:loc>
-            <image:title>Portfolio Project 2 - Serendib Explorer</image:title>
-        </image:image>
-    </url>
-    
-    <!-- Services Section -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#services</loc>
-        <lastmod>2026-01-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Contact Section -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#contact</loc>
-        <lastmod>2026-01-15</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Blog Page -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="https://pubudutharanga.github.io/pubudu-portfolio/#/blog"/>
-        <lastmod>2026-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Blog Post 1: Web Development Trends 2025 -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b1</loc>
-        <lastmod>2025-10-24</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/blog1.jpg</image:loc>
-            <image:title>The Future of Web Development: 2025 Trends and Predictions</image:title>
-            <image:caption>Explore the revolutionary changes shaping web development</image:caption>
-        </image:image>
-    </url>
-    
-    <!-- Blog Post 2: React 19 Features -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b2</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/blog2.png</image:loc>
-            <image:title>Getting Started with React 19 and Its New Features</image:title>
-            <image:caption>Learn about React 19 Actions, use() hook, and more</image:caption>
-        </image:image>
-    </url>
-    
-    <!-- Blog Post 3: AI Coding Assistants -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b3</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/blog3.png</image:loc>
-            <image:title>The Rise of AI-Powered Coding Assistants</image:title>
-            <image:caption>Will AI replace developers? The real story of partnership</image:caption>
-        </image:image>
-    </url>
-    
-    <!-- Blog Post 4: AI Learning Roadmap -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b4</loc>
-        <lastmod>2025-11-14</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/blog4.png</image:loc>
-            <image:title>AI Unlocked: A Beginner's Roadmap to Mastering AI</image:title>
-            <image:caption>Easy-to-follow guide for beginners to start learning AI</image:caption>
-        </image:image>
-    </url>
-    
-    <!-- Blog Post 5: AI Tools Comparison -->
-    <url>
-        <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog/b5</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://pubudutharanga.github.io/pubudu-portfolio/blog5.png</image:loc>
-            <image:title>Which AI Is Best for Developers? Gemini vs GPT-5 vs Claude</image:title>
-            <image:caption>Comparing the top AI assistants for developers</image:caption>
-        </image:image>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://pubudutharanga.github.io/pubudu-portfolio/</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/about</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/skills</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/projects</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/blog</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pubudutharanga.github.io/pubudu-portfolio/#/contact</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
