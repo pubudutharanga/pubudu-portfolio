@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { BLOG_POSTS } from '../data'
 import { FaCalendar, FaClock, FaArrowLeft, FaShare, FaUser, FaTag, FaBookmark, FaCheck, FaArrowRight } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
+import SeoMeta from '../components/SeoMeta'
 
 export default function PostPage() {
     const { id } = useParams()
@@ -310,6 +311,17 @@ export default function PostPage() {
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 pt-20">
+            {/* SEO Meta Tags for Blog Post */}
+            <SeoMeta
+                title={post.title}
+                description={post.excerpt}
+                keywords={`${post.tags?.join(', ') || ''}, Pubudu Tharanga, ${post.category}, blog`}
+                canonical={`https://pubudu-tharanga.vercel.app/blog/${post.id}`}
+                type="article"
+                openGraph={{
+                    image: post.featured
+                }}
+            />
             {/* Progress Bar */}
             <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-800 z-50">
                 <motion.div

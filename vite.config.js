@@ -9,7 +9,7 @@ export default defineConfig({
             jsxRuntime: 'automatic',
         })
     ],
-    base: '/pubudu-portfolio',
+    base: '/',
     build: {
         outDir: 'dist',
         sourcemap: false,

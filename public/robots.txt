@@ -1,3 +1,27 @@
 User-agent: *
 Allow: /
-Sitemap: https://pubudutharanga.github.io/pubudu-portfolio/sitemap.xml
+
+# Sitemap
+Sitemap: https://pubudu-tharanga.vercel.app/sitemap.xml
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# LLMs.txt for AI tools
+# See: https://pubudu-tharanga.vercel.app/llms.txt

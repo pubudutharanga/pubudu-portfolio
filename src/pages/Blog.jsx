@@ -3,6 +3,7 @@ import { BLOG_POSTS, BLOG_CATEGORIES } from '../data'
 import { Link } from 'react-router-dom'
 import { FaSearch, FaCalendar, FaClock, FaArrowRight, FaFilter, FaTags, FaUser, FaArrowLeft, FaShare } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
+import SeoMeta from '../components/SeoMeta'
 
 export default function Blog() {
     const [query, setQuery] = useState('')
@@ -28,7 +29,7 @@ export default function Blog() {
             e.stopPropagation()
         }
 
-        const postUrl = `${window.location.origin}${window.location.pathname}#/blog/${post.id}`
+        const postUrl = `${window.location.origin}/blog/${post.id}`
         const shareText = `Check out this article: ${post.title}`
 
         // Open window immediately (synchronously) before any async operations
@@ -153,6 +154,13 @@ export default function Blog() {
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 pt-20">
+            {/* SEO Meta Tags for Blog Listing */}
+            <SeoMeta
+                title="Blog - Articles & Tutorials"
+                description="Discover articles, tutorials, and industry insights about web development, AI, machine learning, and technology innovations by Pubudu Tharanga."
+                keywords="Pubudu Tharanga blog, web development tutorials, AI articles, machine learning, React tutorials, tech insights, Sri Lanka developer"
+                canonical="https://pubudu-tharanga.vercel.app/blog"
+            />
             {/* Hero Section for Blog */}
             <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
                 {/* Background Elements */}
