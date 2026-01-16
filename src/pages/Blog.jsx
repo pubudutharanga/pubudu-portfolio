@@ -115,26 +115,23 @@ export default function Blog() {
         setVisible(6)
     }, [query, category])
 
-    // Animation variants
+    // Animation variants - optimized for instant load more
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1
+                duration: 0.2
             }
         }
     }
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30, scale: 0.9 },
+        hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            y: 0,
-            scale: 1,
             transition: {
-                duration: 0.6,
-                ease: "easeOut"
+                duration: 0.15
             }
         }
     }
@@ -269,7 +266,7 @@ export default function Blog() {
                     </motion.div>
 
                     {/* Blog Posts Grid */}
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence>
                         {filteredPosts.length > 0 ? (
                             <motion.div
                                 key={`${query}-${category}`}
@@ -282,7 +279,10 @@ export default function Blog() {
                                 {filteredPosts.slice(0, visible).map((post, index) => (
                                     <motion.article
                                         key={post.id}
-                                        variants={itemVariants}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.15 }}
+                                        layout
                                         className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
                                         whileHover={{
                                             y: -8,

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Pages -->
   <url>
     <loc>https://pubudu-tharanga.vercel.app/</loc>
     <lastmod>2026-01-16</lastmod>
@@ -37,8 +36,6 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
-  
-  <!-- Blog Posts -->
   <url>
     <loc>https://pubudu-tharanga.vercel.app/blog/b1</loc>
     <lastmod>2025-10-24</lastmod>

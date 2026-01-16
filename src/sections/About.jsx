@@ -135,7 +135,7 @@ export default function About() {
                                 variants={itemVariants}
                             >
                                 <a
-                                    href="/pubudu-portfolio/pubudu_resume.pdf"
+                                    href="/pubudu_resume.pdf"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn-primary group flex items-center justify-center"
@@ -213,11 +213,10 @@ export default function About() {
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`flex items-center gap-2 flex-1 px-4 py-3 rounded-md text-sm font-medium transition-all duration-300 ${
-                                            activeTab === tab.id
+                                        className={`flex items-center gap-2 flex-1 px-4 py-3 rounded-md text-sm font-medium transition-all duration-300 ${activeTab === tab.id
                                                 ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
                                                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                                        }`}
+                                            }`}
                                     >
                                         <tab.icon />
                                         {tab.label}
