@@ -1,0 +1,21 @@
+/* TEAM */
+Developer: Pubudu Tharanga
+Title: AI Engineer & Full Stack Developer
+Site: https://pubudu-tharanga.vercel.app
+Email: pubudutharange@gmail.com
+Location: Sri Lanka
+LinkedIn: https://www.linkedin.com/in/pubudutharanga/
+GitHub: https://github.com/pubudutharanga
+
+/* SITE */
+Last update: 2026/01/16
+Language: English
+Standards: HTML5, CSS3, JavaScript ES6+
+Framework: React 19, Vite
+Styling: Tailwind CSS
+Deployment: Vercel
+
+/* THANKS */
+React Team - For the amazing frontend library
+Vercel - For seamless deployments
+Tailwind Labs - For the utility-first CSS framework
