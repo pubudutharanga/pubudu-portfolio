@@ -7,7 +7,7 @@
 Welcome to my professional portfolio built with **React 18**, **Vite**, and **Tailwind CSS**. 
 
 ### 🌐 Live Demo
-**[https://pubudutharanga.github.io/pubudu-portfolio/](https://pubudutharanga.github.io/pubudu-portfolio/)**
+**[https://pubudutharanga.github.io/pubudu-portfolio/](https://pubudu-tharanga.vercel.app/)**
 
 ### ✨ Features
 - ⚡ **Blazing Fast** - Built with Vite for optimal performance
