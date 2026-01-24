@@ -51,7 +51,7 @@ export default function App() {
             <main id="main-content" className="pt-16 lg:pt-20" role="main">
                 <Suspense fallback={<LoadingSpinner />}>
                     <Routes>
-                        <Route path="/" element={<Home site={SITE} />} />
+                        <Route path="/" element={<Home site={SITE} dark={dark} />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:id" element={<PostPage />} />
 

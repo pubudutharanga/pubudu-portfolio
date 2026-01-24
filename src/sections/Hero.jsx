@@ -2,7 +2,7 @@ import React from 'react'
 import { FaLinkedin, FaGithub, FaFacebook, FaArrowDown, FaDownload } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
-export default function Hero({ site }) {
+export default function Hero({ site, dark }) {
     const navigate = useNavigate()
 
     const scrollToSection = (id) => {
@@ -119,7 +119,7 @@ export default function Hero({ site }) {
                             {/* Main Image Container */}
                             <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-full p-8 shadow-2xl border-8 border-white dark:border-gray-700">
                                 <img
-                                    src="./PT.png"
+                                    src={dark ? "./PT_dark.webp" : "./PT_light.webp"}
                                     alt="Pubudu Tharanga - Full Stack Developer"
                                     className="w-full h-full object-cover rounded-full"
                                 />

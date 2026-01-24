@@ -3,7 +3,7 @@ import { SKILLS, SITE } from '../data'
 import { FaDownload, FaCode, FaTools, FaUsers, FaAward, FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
-export default function About() {
+export default function About({ dark }) {
     const [activeTab, setActiveTab] = useState('technical')
 
     // Animation variants
@@ -88,7 +88,7 @@ export default function About() {
                                     {/* Profile Image */}
                                     <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-full p-2 shadow-2xl border-4 border-white dark:border-gray-700">
                                         <img
-                                            src="./PT.png"
+                                            src={dark ? "./PT_dark.webp" : "./PT_light.webp"}
                                             alt="Pubudu Tharanga"
                                             className="w-full h-full object-cover rounded-full"
                                         />
@@ -214,8 +214,8 @@ export default function About() {
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`flex items-center gap-2 flex-1 px-4 py-3 rounded-md text-sm font-medium transition-all duration-300 ${activeTab === tab.id
-                                                ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
-                                                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                                            ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
+                                            : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                             }`}
                                     >
                                         <tab.icon />
