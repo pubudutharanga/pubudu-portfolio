@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "push": "bash deploy.sh",
+    "push:ps": "powershell -ExecutionPolicy Bypass -File deploy.ps1",
+    "ship": "bash deploy.sh"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
