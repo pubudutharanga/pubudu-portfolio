@@ -10,7 +10,7 @@ export const SITE = {
     facebook: "https://www.facebook.com/share/1ai3Wtn4jc/",
     resume: "/pubudu_resume.pdf",
     // SEO enhancement
-    siteUrl: "https://pubudutharanga.github.io/pubudu-portfolio/",
+    siteUrl: "https://pubudu-tharanga.vercel.app/",
     keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js"
 }
 

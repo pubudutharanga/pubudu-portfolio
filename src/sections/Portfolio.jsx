@@ -125,11 +125,10 @@ export default function Portfolio() {
                             key={category}
                             onClick={() => setFilter(category)}
                             variants={filterVariants}
-                            className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
-                                filter === category
+                            className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${filter === category
                                     ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/25'
                                     : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 shadow-sm hover:shadow-md'
-                            }`}
+                                }`}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -176,6 +175,9 @@ export default function Portfolio() {
                                         <img
                                             src={project.image}
                                             alt={project.title}
+                                            loading="lazy"
+                                            width="800"
+                                            height="600"
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
 

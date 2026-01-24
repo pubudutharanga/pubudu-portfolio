@@ -5,10 +5,12 @@ import Portfolio from '../sections/Portfolio'
 import Services from '../sections/Services'
 import Contact from '../sections/Contact'
 import BlogPreview from '../sections/BlogPreview'
+import SeoMeta from '../components/SeoMeta'
 
 export default function Home({ site, dark }) {
   return (
     <div id="top">
+      <SeoMeta />
       <section id="home" className="min-h-[70vh]">
         <Hero site={site} dark={dark} />
       </section>

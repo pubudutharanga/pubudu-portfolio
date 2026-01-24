@@ -150,13 +150,10 @@ export default function Blog() {
     }
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 pt-20">
-            {/* SEO Meta Tags for Blog Listing */}
+        <div className="pt-24 pb-16 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
             <SeoMeta
-                title="Blog - Articles & Tutorials"
-                description="Discover articles, tutorials, and industry insights about web development, AI, machine learning, and technology innovations by Pubudu Tharanga."
-                keywords="Pubudu Tharanga blog, web development tutorials, AI articles, machine learning, React tutorials, tech insights, Sri Lanka developer"
-                canonical="https://pubudu-tharanga.vercel.app/blog"
+                title="Blog"
+                description="Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering."
             />
             {/* Hero Section for Blog */}
             <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">

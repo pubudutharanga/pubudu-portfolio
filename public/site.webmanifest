@@ -2,8 +2,8 @@
   "name": "Pubudu Tharanga - Full Stack Developer Portfolio",
   "short_name": "Pubudu Dev",
   "description": "Full Stack Developer specializing in React, Node.js, and modern web technologies. Available for remote work worldwide.",
-  "start_url": "/pubudu-portfolio/",
-  "scope": "/pubudu-portfolio/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",
@@ -26,19 +26,19 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "/pubudu-portfolio/android-chrome-192x192.png",
+      "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pubudu-portfolio/android-chrome-512x512.png",
+      "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pubudu-portfolio/android-chrome-512x512.png",
+      "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -46,7 +46,7 @@
   ],
   "screenshots": [
     {
-      "src": "/pubudu-portfolio/og-image-2025.jpg",
+      "src": "/og-image-2025.jpg",
       "sizes": "1200x630",
       "type": "image/jpeg",
       "form_factor": "wide",
@@ -58,10 +58,10 @@
       "name": "Portfolio",
       "short_name": "Work",
       "description": "View my projects and work",
-      "url": "/pubudu-portfolio/#portfolio",
+      "url": "/#portfolio",
       "icons": [
         {
-          "src": "/pubudu-portfolio/android-chrome-192x192.png",
+          "src": "/android-chrome-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -70,10 +70,10 @@
       "name": "Blog",
       "short_name": "Blog",
       "description": "Read technical articles",
-      "url": "/pubudu-portfolio/#/blog",
+      "url": "/#/blog",
       "icons": [
         {
-          "src": "/pubudu-portfolio/android-chrome-192x192.png",
+          "src": "/android-chrome-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -82,10 +82,10 @@
       "name": "Contact",
       "short_name": "Contact",
       "description": "Get in touch with me",
-      "url": "/pubudu-portfolio/#contact",
+      "url": "/#contact",
       "icons": [
         {
-          "src": "/pubudu-portfolio/android-chrome-192x192.png",
+          "src": "/android-chrome-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -94,7 +94,7 @@
   "related_applications": [
     {
       "platform": "webapp",
-      "url": "https://pubudutharanga.github.io/pubudu-portfolio/site.webmanifest"
+      "url": "https://pubudu-tharanga.vercel.app/site.webmanifest"
     }
   ],
   "edge_side_panel": {

@@ -318,9 +318,7 @@ export default function PostPage() {
                 keywords={`${post.tags?.join(', ') || ''}, Pubudu Tharanga, ${post.category}, blog`}
                 canonical={`https://pubudu-tharanga.vercel.app/blog/${post.id}`}
                 type="article"
-                openGraph={{
-                    image: post.featured
-                }}
+                image={post.featured}
             />
             {/* Progress Bar */}
             <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-800 z-50">
