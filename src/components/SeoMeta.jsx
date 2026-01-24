@@ -20,7 +20,7 @@ const SeoMeta = ({
     const canonicalUrl = canonical || window.location.href;
     const ogImage = image
         ? (image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`)
-        : `${siteUrl}/og-image-2025.jpg`;
+        : `${siteUrl}/og-image-2026.jpg`;
 
     // Person Schema (The "Knowledge Graph" Power)
     const personSchema = {
