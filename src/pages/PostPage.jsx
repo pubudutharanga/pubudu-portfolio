@@ -5,6 +5,15 @@ import { FaCalendar, FaClock, FaArrowLeft, FaShare, FaUser, FaTag, FaBookmark, F
 import { motion, AnimatePresence } from 'framer-motion'
 import SeoMeta from '../components/SeoMeta'
 
+// Helper to safely strip HTML for SEO
+const stripHtml = (html) => {
+    if (typeof DOMParser !== 'undefined') {
+        const doc = new DOMParser().parseFromString(html, 'text/html')
+        return doc.body.textContent || ""
+    }
+    return html.replace(/<[^>]+>/g, "")
+}
+
 export default function PostPage() {
     const { id } = useParams()
     const navigate = useNavigate()
@@ -362,7 +371,7 @@ export default function PostPage() {
                             "@id": `https://pubudu-tharanga.vercel.app/blog/${post.id}`
                         },
                         "description": post.excerpt,
-                        "articleBody": post.content.replace(/<[^>]*>?/gm, "") // Simple strip HTML for body
+                        "articleBody": stripHtml(post.content)
                     }
                 ]}
             />
