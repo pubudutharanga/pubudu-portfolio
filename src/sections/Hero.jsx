@@ -26,10 +26,10 @@ export default function Hero({ site, dark }) {
             </div>
 
             {/* Floating Elements */}
-            <div className="absolute top-20 left-10 w-4 h-4 bg-primary-500 rounded-full animate-float opacity-60"></div>
-            <div className="absolute top-40 right-20 w-6 h-6 bg-blue-400 rounded-full animate-float opacity-40 animation-delay-2000"></div>
-            <div className="absolute bottom-40 left-20 w-3 h-3 bg-indigo-500 rounded-full animate-float opacity-70 animation-delay-1000"></div>
-            <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-pulse-slow"></div>
+            <div className="absolute top-20 left-10 w-4 h-4 bg-primary-500 rounded-full animate-float opacity-60 gpu-accelerated"></div>
+            <div className="absolute top-40 right-20 w-6 h-6 bg-blue-400 rounded-full animate-float opacity-40 animation-delay-2000 gpu-accelerated"></div>
+            <div className="absolute bottom-40 left-20 w-3 h-3 bg-indigo-500 rounded-full animate-float opacity-70 animation-delay-1000 gpu-accelerated"></div>
+            <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-pulse-slow gpu-accelerated"></div>
 
             <div className="relative max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center z-10">
                 {/* Content */}

@@ -11,7 +11,7 @@ export const SITE = {
     resume: "/pubudu_resume.pdf",
     // SEO enhancement
     siteUrl: "https://pubudu-tharanga.vercel.app/",
-    keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js",
+    keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js, MERN stack, software architect, freelance web developer, tailwind css, framer motion, python, dikwella, matara, southern province, remote developer, progressive web apps, pwa, modern web design, seo optimization, performance tuning, accessibility, wcag, single page application, spa, vite, api development, database design, ui/ux design, Pubudu Tharanga",
     address: "No.341/1 A, Abaya Niwasa, Dodampahala, Dikwella",
     city: "Matara",
     postalCode: "88100",

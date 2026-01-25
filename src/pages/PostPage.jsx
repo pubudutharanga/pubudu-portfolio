@@ -151,7 +151,8 @@ export default function PostPage() {
             transition: {
                 duration: 0.6,
                 ease: "easeOut"
-            }
+            },
+            willChange: "transform, opacity"
         }
     }
 

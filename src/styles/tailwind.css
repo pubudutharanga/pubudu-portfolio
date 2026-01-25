@@ -158,6 +158,14 @@
     .animation-delay-4000 {
         animation-delay: 4s;
     }
+
+    /* Force GPU Acceleration */
+    .gpu-accelerated {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+        will-change: transform, opacity;
+    }
 }
 
 /* Loading animations */
@@ -170,63 +178,7 @@
     @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
 }
 
-/* Add to your existing tailwind.css */
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
 
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Smooth scrolling for modal */
-.modal-open {
-    overflow: hidden;
-}
-
-/* Add these to your existing tailwind.css */
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.animation-delay-2000 {
-    animation-delay: 2s;
-}
-
-/* Add these to your existing tailwind.css */
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.animation-delay-2000 {
-    animation-delay: 2s;
-}
 
 /* Add to your tailwind.css */
 .blog-content {

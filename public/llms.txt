@@ -9,7 +9,7 @@ Pubudu Tharanga is an AI Engineer and Full Stack Developer from Sri Lanka, speci
 ## Professional Summary
 
 - **Name:** Pubudu Tharanga
-- **Title:** AI Engineer & Full Stack Developer
+- **Title:** Full Stack Developer
 - **Location:** Sri Lanka
 - **Website:** https://pubudu-tharanga.vercel.app
 - **Email:** pubudutharange@gmail.com
