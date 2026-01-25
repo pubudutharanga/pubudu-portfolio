@@ -11,7 +11,11 @@ export const SITE = {
     resume: "/pubudu_resume.pdf",
     // SEO enhancement
     siteUrl: "https://pubudu-tharanga.vercel.app/",
-    keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js"
+    keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js",
+    address: "No.341/1 A, Abaya Niwasa, Dodampahala, Dikwella",
+    city: "Matara",
+    postalCode: "88100",
+    country: "Sri Lanka"
 }
 
 export const SKILLS = {

@@ -319,6 +319,51 @@ export default function PostPage() {
                 canonical={`https://pubudu-tharanga.vercel.app/blog/${post.id}`}
                 type="article"
                 image={post.featured}
+                schema={[
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [{
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://pubudu-tharanga.vercel.app/"
+                        }, {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Blog",
+                            "item": "https://pubudu-tharanga.vercel.app/blog"
+                        }, {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": post.title,
+                            "item": `https://pubudu-tharanga.vercel.app/blog/${post.id}`
+                        }]
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": post.title,
+                        "image": [
+                            post.featured.startsWith('http')
+                                ? post.featured
+                                : `https://pubudu-tharanga.vercel.app${post.featured.startsWith('/') ? '' : '/'}${post.featured}`
+                        ],
+                        "datePublished": post.date,
+                        "dateModified": post.date, // Update this if you have modified date
+                        "author": [{
+                            "@type": "Person",
+                            "name": "Pubudu Tharanga",
+                            "url": "https://pubudu-tharanga.vercel.app/"
+                        }],
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": `https://pubudu-tharanga.vercel.app/blog/${post.id}`
+                        },
+                        "description": post.excerpt,
+                        "articleBody": post.content.replace(/<[^>]*>?/gm, "") // Simple strip HTML for body
+                    }
+                ]}
             />
             {/* Progress Bar */}
             <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-800 z-50">

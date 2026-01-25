@@ -154,6 +154,21 @@ export default function Blog() {
             <SeoMeta
                 title="Blog"
                 description="Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering."
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [{
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": window.location.origin
+                    }, {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Blog",
+                        "item": window.location.href
+                    }]
+                }}
             />
             {/* Hero Section for Blog */}
             <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">

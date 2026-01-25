@@ -8,7 +8,8 @@ const SeoMeta = ({
     keywords,
     canonical,
     image,
-    type = 'website'
+    type = 'website',
+    schema = null // Allow passing custom schema or specific schema type data
 }) => {
     // Single Source of Truth for Domain
     const siteUrl = SITE.siteUrl.replace(/\/$/, ''); // Remove trailing slash for consistency
@@ -22,13 +23,15 @@ const SeoMeta = ({
         ? (image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`)
         : `${siteUrl}/og-image-2026.jpg`;
 
-    // Person Schema (The "Knowledge Graph" Power)
+    // Base Person Schema (Identity) - valid for all pages as the "Author/Owner"
     const personSchema = {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": SITE.name,
-        "jobTitle": "AI Engineer & Full Stack Developer",
+        "jobTitle": "Full Stack Developer",
         "url": siteUrl,
+        "image": `${siteUrl}/PT.png`, // Replace with actual profile image if avail
+        "gender": "Male",
         "sameAs": [
             SITE.linkedin,
             SITE.github,
@@ -41,11 +44,26 @@ const SeoMeta = ({
         ],
         "description": SITE.tagline,
         "email": `mailto:${SITE.email}`,
+        "telephone": SITE.phone,
         "address": {
             "@type": "PostalAddress",
-            "addressCountry": "Sri Lanka"
+            "streetAddress": SITE.address,
+            "addressLocality": SITE.city,
+            "postalCode": SITE.postalCode,
+            "addressCountry": SITE.country
         }
     };
+
+    // Construct the final JSON-LD array
+    let jsonLd = [personSchema];
+
+    if (schema) {
+        if (Array.isArray(schema)) {
+            jsonLd = [...jsonLd, ...schema];
+        } else {
+            jsonLd = [...jsonLd, schema];
+        }
+    }
 
     return (
         <Helmet>
@@ -63,6 +81,7 @@ const SeoMeta = ({
             <meta property="og:description" content={description || SITE.tagline} />
             <meta property="og:image" content={ogImage} />
             <meta property="og:site_name" content={SITE.name} />
+            <meta property="og:locale" content="en_US" />
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
@@ -70,11 +89,10 @@ const SeoMeta = ({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description || SITE.tagline} />
             <meta name="twitter:image" content={ogImage} />
+            <meta name="twitter:creator" content="@pubudutharanga" />
 
             {/* Structured Data (JSON-LD) */}
-            <script type="application/ld+json">
-                {JSON.stringify(personSchema)}
-            </script>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </Helmet>
     );
 };

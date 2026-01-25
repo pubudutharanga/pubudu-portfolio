@@ -10,7 +10,22 @@ import SeoMeta from '../components/SeoMeta'
 export default function Home({ site, dark }) {
   return (
     <div id="top">
-      <SeoMeta />
+      <SeoMeta
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": site.name,
+          "url": site.siteUrl,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${site.siteUrl}blog?q={search_term_string}`
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }}
+      />
       <section id="home" className="min-h-[70vh]">
         <Hero site={site} dark={dark} />
       </section>
