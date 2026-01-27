@@ -1,6 +1,6 @@
-# 🚀 Pubudu Tharanga - Professional Portfolio
+# Pubudu Tharanga - Professional Portfolio
 
-![Portfolio Preview](./public/og-image-2026.jpg)
+![Portfolio Preview](public/og-image-2026.jpg)
 
 A high-performance, SEO-optimized personal portfolio and blog built with the latest modern web technologies. Designed to showcase projects, skills, and technical articles with a premium user experience.
 
@@ -23,19 +23,17 @@ A high-performance, SEO-optimized personal portfolio and blog built with the lat
 - **React 19**: Utilizing the latest concurrent features and compiler optimizations.
 - **Vite Powered**: Instant start, lightning-fast HMR, and optimized production builds.
 - **Lazy Loading**: Route-based code splitting and lazy-loaded images(`loading="lazy"`).
-- **Resource Hints**: DNS prefetching and asset preloading for critical fonts/styles.
+- **Analytics**: Integrated Vercel Analytics and Speed Insights for real-time performance monitoring.
 
 ### 🔍 Advanced SEO Strategy
 - **Single Source of Truth**: Centralized metadata management via `SeoMeta.jsx`.
 - **Structured Data (JSON-LD)**: Rich `Person` and `Article` schema for Google Knowledge Graph integration.
 - **Dynamic Metadata**: Unique meta tags, Open Graph, and Twitter Cards for every page and blog post.
-- **Canonical URLs**: Strict domain consolidation to prevent duplicate content penalties.
 - **Sitemap & Robots**: Automatically generated and optimized for crawlers.
 
 ### 📱 Progressive Web App (PWA)
 - **Installable**: Full manifest support allows valid PWA installation.
 - **Offline Ready**: Caching strategies for resilient user experience.
-- **Mobile Native Feel**: `theme-color` and touch icons configured.
 
 ---
 
@@ -47,8 +45,8 @@ A high-performance, SEO-optimized personal portfolio and blog built with the lat
 - **Routing**: React Router v7
 - **Animations**: Framer Motion
 - **SEO**: React Helmet Async
-- **Icons**: React Icons (Fa, Fi, Si packs)
-- **Deployment**: Vercel (CI/CD)
+- **Icons**: React Icons
+- **Analytics**: Vercel Analytics, Speed Insights
 
 ---
 
@@ -56,7 +54,7 @@ A high-performance, SEO-optimized personal portfolio and blog built with the lat
 
 ### Prerequisites
 - Node.js (v18 or higher recommended)
-- npm or yarn
+- npm
 
 ### Installation
 
@@ -75,7 +73,7 @@ A high-performance, SEO-optimized personal portfolio and blog built with the lat
    ```bash
    npm run dev
    ```
-   Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### Build for Production
 
@@ -90,7 +88,6 @@ This enables the type check, linting, and produces optimized static assets in th
 
 ```bash
 src/
-├── assets/          # Static assets imports
 ├── components/      # Reusable UI components (Header, Footer, SeoMeta...)
 ├── pages/           # Route components (Home, Blog, PostPage...)
 ├── sections/        # Homepage sections (Hero, About, Portfolio...)
@@ -103,35 +100,35 @@ public/              # Static files (images, standard favicon, robots.txt, sitem
 
 ---
 
-## 🚢 Deployment
+## 🚢 Deployment & CI/CD
 
-The project is configured for automated deployment via **Vercel**.
+The project is optimized for automated deployment via **Vercel**.
 
-### Manual Deployment
-You can also use the included scripts for manual updates:
+### Vercel (Recommended)
+- Connect your GitHub repository to Vercel.
+- Every push to `main` will trigger a production deployment.
+- Pull Requests will generate unique Preview URLs.
+
+### Manual / Custom Deployment
+For scenarios requiring manual control or custom status checks, use the included scripts:
 
 - **Bash (Linux/Mac/Git Bash)**:
   ```bash
-  npm run push
-  # or
   ./deploy.sh "Your commit message"
   ```
+  *Handles staging, committing, and pushing with status checks.*
 
 - **PowerShell (Windows)**:
   ```powershell
-  npm run push:ps
-  # or
   ./deploy.ps1
   ```
 
 ---
 
-## 📄 License
+## 📄 Copyright & License
 
-This project is open source and available under the [MIT License](LICENSE).
+**© 2026 Pubudu Tharanga. All Rights Reserved.**
 
----
-
-<p align="center">
-  Made with ❤️ by <a href="https://pubudu-tharanga.vercel.app/">Pubudu Tharanga</a>
-</p>
+This project is a personal portfolio and is intended for demonstration purposes only.
+- You **may not** use this code for commercial purposes.
+- You **may not** redistribute or modify this code without explicit permission.
