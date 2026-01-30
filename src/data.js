@@ -60,7 +60,7 @@ export const PROJECTS = [
         technologies: ['React 19', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Terser'],
         features: ['Blog', 'Dark Mode', 'Glass-Morphism', 'Project filtering ', 'Responsive Design', 'Performance optimization'],
         results: ' Lightning-fast, fully responsive portfolio that loads in under 2 seconds and works flawlessly across all devices to showcase my work with professional polish.',
-        live: 'https://pubudutharanga.github.io/pubudu-portfolio/',
+        live: 'https://pubudu-tharanga.vercel.app/',
         github: 'https://github.com/pubudutharanga/pubudu-portfolio',
         image: './pro1.png',
         status: 'completed' // Use: 'planned', 'in progress', or 'completed'

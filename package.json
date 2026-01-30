@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://pubudutharanga.github.io/pubudu-portfolio/",
+  "homepage": "https://pubudu-tharanga.vercel.app/",
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",

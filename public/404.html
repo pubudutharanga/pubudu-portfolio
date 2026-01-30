@@ -1,24 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title>Redirecting...</title>
-    <link rel="canonical" href="https://pubudutharanga.github.io/Portfolio/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found | Pubudu Tharanga</title>
+    <link rel="canonical" href="https://pubudu-tharanga.vercel.app/" />
+    <meta name="robots" content="noindex, follow">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #0ea5e9;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 12px 28px;
+            background: #0ea5e9;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        a:hover {
+            background: #0284c7;
+        }
+    </style>
     <script>
-        // Single Page Apps for GitHub Pages
-        var segmentCount = 0;
-        var l = window.location;
-        l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
-            l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
-            (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-            l.hash
-        );
+        // Redirect to home after 3 seconds
+        setTimeout(function () {
+            window.location.href = 'https://pubudu-tharanga.vercel.app/';
+        }, 3000);
     </script>
 </head>
+
 <body>
-<h1>Redirecting...</h1>
-<p>If you are not redirected automatically, <a href="/Portfolio/">click here</a>.</p>
+    <div class="container">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The page you're looking for doesn't exist or has been moved. You'll be redirected to the homepage in 3
+            seconds.</p>
+        <a href="https://pubudu-tharanga.vercel.app/">Go to Homepage</a>
+    </div>
 </body>
+
 </html>
