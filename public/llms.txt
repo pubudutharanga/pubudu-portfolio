@@ -1,10 +1,10 @@
-# Pubudu Tharanga - AI Engineer & Full Stack Developer
+# Pubudu Tharanga - Full Stack Developer
 
 > Personal portfolio and professional profile of Pubudu Tharanga
 
 ## Overview
 
-Pubudu Tharanga is an AI Engineer and Full Stack Developer from Sri Lanka, specializing in Artificial Intelligence, Machine Learning, and modern web technologies. Currently pursuing BSc Hons in Information Systems at Sabaragamuwa University of Sri Lanka.
+Pubudu Tharanga is a Full Stack Developer from Sri Lanka, specializing in modern web technologies and building scalable web applications. Currently pursuing BSc Hons in Information Systems at Sabaragamuwa University of Sri Lanka.
 
 ## Professional Summary
 
@@ -17,18 +17,16 @@ Pubudu Tharanga is an AI Engineer and Full Stack Developer from Sri Lanka, speci
 
 ## Technical Skills
 
-### Artificial Intelligence & Machine Learning
-- Deep Learning (TensorFlow, PyTorch)
-- Generative AI & Large Language Models (LLMs)
-- OpenAI API Integration
-- Computer Vision
-- Natural Language Processing
-
 ### Full Stack Development
 - **Frontend:** React, JavaScript, HTML5, CSS3, Tailwind CSS
 - **Backend:** Node.js, Express.js, Python
 - **Databases:** MongoDB, PostgreSQL, MySQL
 - **Tools:** Git, Docker, Vite
+
+### Currently Learning
+- Artificial Intelligence & Machine Learning
+- Deep Learning (TensorFlow, PyTorch)
+- Generative AI & Large Language Models (LLMs)
 
 ## Education
 
@@ -43,13 +41,13 @@ Pubudu Tharanga is an AI Engineer and Full Stack Developer from Sri Lanka, speci
 
 ## About This Portfolio
 
-This portfolio showcases Pubudu Tharanga's projects, skills, and professional experience in AI and software development. It includes:
+This portfolio showcases Pubudu Tharanga's projects, skills, and professional experience in software development. It includes:
 
-- **Projects:** Real-world applications demonstrating AI and full-stack development skills
-- **Blog:** Technical articles and insights on AI, machine learning, and web development
+- **Projects:** Real-world applications demonstrating full-stack development skills
+- **Blog:** Technical articles and insights on web development and technology trends
 - **Skills:** Comprehensive list of technical competencies
 - **Contact:** Professional contact information for collaboration opportunities
 
 ## Keywords
 
-Pubudu Tharanga, Pubudu, AI Engineer Sri Lanka, Full Stack Developer Sri Lanka, Machine Learning Engineer, React Developer, Node.js Developer, TensorFlow, PyTorch, Artificial Intelligence, Sri Lankan Developer, Software Engineer 2026
+Pubudu Tharanga, Pubudu, Full Stack Developer Sri Lanka, React Developer, Node.js Developer, JavaScript Developer, Web Developer, MERN Stack Developer, Frontend Developer, Backend Developer, Sri Lankan Developer, Software Engineer 2026

@@ -38,9 +38,10 @@ const SeoMeta = ({
             SITE.facebook
         ],
         "knowsAbout": [
-            "Artificial Intelligence", "Machine Learning", "Deep Learning",
-            "Generative AI", "LLMs", "TensorFlow", "PyTorch", "OpenAI API",
-            "React", "Node.js", "Python", "JavaScript", "Full Stack Development"
+            "React", "Node.js", "Python", "JavaScript", "Full Stack Development",
+            "Frontend Development", "Backend Development", "MERN Stack",
+            "MongoDB", "Express.js", "Tailwind CSS", "API Development",
+            "Database Design", "Responsive Web Design", "Git"
         ],
         "description": SITE.tagline,
         "email": `mailto:${SITE.email}`,

@@ -1,6 +1,6 @@
 /* TEAM */
 Developer: Pubudu Tharanga
-Title: AI Engineer & Full Stack Developer
+Title: Full Stack Developer
 Site: https://pubudu-tharanga.vercel.app
 Email: pubudutharange@gmail.com
 Location: Sri Lanka
