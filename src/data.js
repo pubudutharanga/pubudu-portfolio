@@ -57,7 +57,7 @@ export const PROJECTS = [
         title: 'Portfolio With Blog',
         category: 'Frontend',
         description: 'Modern and Professional Portfolio with a blog',
-        technologies: ['React 18', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Terser'],
+        technologies: ['React 19', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Terser'],
         features: ['Blog', 'Dark Mode', 'Glass-Morphism', 'Project filtering ', 'Responsive Design', 'Performance optimization'],
         results: ' Lightning-fast, fully responsive portfolio that loads in under 2 seconds and works flawlessly across all devices to showcase my work with professional polish.',
         live: 'https://pubudutharanga.github.io/pubudu-portfolio/',
@@ -78,6 +78,112 @@ export const PROJECTS = [
         github: 'https://github.com/pubudutharanga/Serendib-Explorer',
         image: './pro2.png',
         status: 'completed' // Use: 'planned', 'in progress', or 'completed'
+    },
+
+    {
+        // Basic Information
+        id: 'p3',
+        title: 'ShareBeats',
+        category: 'Full Stack',
+
+        // Description
+        description: 'A comprehensive music social media platform where users can upload, discover, share, and discuss music with real-time chat, live notifications, and collaborative playlists. Built as a Serverless Monolith combining Express.js backend with Next.js on Vercel.',
+
+        // Technical Stack
+        technologies: [
+            'Next.js 14',
+            'TypeScript',
+            'Express.js',
+            'PostgreSQL',
+            'Sequelize',
+            'Tailwind CSS',
+            'Shadcn UI',
+            'Zustand',
+            'React Query',
+            'Framer Motion',
+            'Pusher',
+            'Cloudinary',
+            'Passport.js',
+            'Vercel'
+        ],
+
+        // Key Features
+        features: [
+            'Music Streaming with persistent global player',
+            'Real-time Chat with typing indicators and read receipts',
+            'Smart cloud uploads with Cloudinary',
+            'Live Notifications for likes, messages, and follows',
+            'Admin Dashboard for content moderation',
+            'Secure JWT-based authentication with Google OAuth',
+            'Advanced search with filters',
+            'Playlist management (public/private)',
+            'Queue management with drag & drop',
+            'Dark mode responsive UI'
+        ],
+
+        // Impact/Results
+        results: 'A fully functional music social platform emphasizing social interaction with real-time features, enabling users to share and discover music while building a community.',
+
+        // Links
+        live: 'https://sharebeats.vercel.app/',
+        github: 'https://github.com/pubudutharanga/sharebeats',
+
+        // Media
+        image: './pro3.webp', // Update with your actual image path
+
+        // Project Status
+        status: 'completed' // Options: 'planned', 'in progress', 'completed'
+    },
+
+    {
+        // Basic Information
+        id: 'p4',
+        title: 'Sri Lankan NIC Decoder',
+        category: 'Frontend',
+
+        // Description
+        description: 'A free, privacy-first web application to extract birthday, gender, and age from Sri Lankan National Identity Card (NIC) numbers. Works 100% client-side with no data ever leaving your browser, supporting both old and new NIC formats.',
+
+        // Technical Stack
+        technologies: [
+            'Next.js 16',
+            'React 19',
+            'TypeScript 5',
+            'Tailwind CSS 4',
+            'Framer Motion',
+            'react-intl',
+            'Radix UI',
+            'Vercel'
+        ],
+
+        // Key Features
+        features: [
+            'Birthday extraction from NIC number',
+            'Gender detection from day-of-year encoding',
+            'Precise age calculation (years, months, days)',
+            'Multi-language support (English, Sinhala, Tamil)',
+            '100% client-side processing for privacy',
+            'Dark/Light mode with system preference detection',
+            'Social sharing (WhatsApp, Facebook, Twitter)',
+            'One-click copy to clipboard',
+            'Interactive calendar view for birthday',
+            'Responsive design for all devices',
+            '10 JSON-LD schemas for SEO',
+            'Complete Open Graph and Twitter Card support'
+        ],
+
+        // Impact/Results
+        results: 'Provides a secure, privacy-focused tool for Sri Lankans to quickly decode NIC information without compromising personal data. All processing happens locally with no server requests, ensuring complete privacy and data security.',
+
+        // Links
+        live: 'https://nicinfo.vercel.app/', // Update with actual URL
+        github: 'https://github.com/pubudutharanga/nic-information-finder', // Update with actual repo
+
+        // Media
+        image: './pro4.webp', // Update with your actual image path
+
+        // Project Status
+        status: 'completed' // Options: 'planned', 'in progress', 'completed'
     },
 ]
 
@@ -1183,15 +1289,15 @@ preinit('analytics.js', { as: 'script' });</code></pre>
   `
     },
     {
-  "id": "b8",
-  "title": "Google Antigravity: The Future of Software Development is Here",
-  "category": "AI & Development",
-  "excerpt": "The way we build software is changing. If you're a developer, you need to pay attention to what just happened on November 18, 2025.",
-  "readTime": "8 min read",
-  "date": "2026-01-25",
-  "featured": "./blog8.webp",
-  "tags": ["AI", "Software Development", "Google", "Developer Tools", "Automation"],
-  "content": `<p class="lead">The way we build software is changing. If you're a developer, you need to pay attention to what just happened on November 18, 2025.</p>
+        "id": "b8",
+        "title": "Google Antigravity: The Future of Software Development is Here",
+        "category": "AI & Development",
+        "excerpt": "The way we build software is changing. If you're a developer, you need to pay attention to what just happened on November 18, 2025.",
+        "readTime": "8 min read",
+        "date": "2026-01-25",
+        "featured": "./blog8.webp",
+        "tags": ["AI", "Software Development", "Google", "Developer Tools", "Automation"],
+        "content": `<p class="lead">The way we build software is changing. If you're a developer, you need to pay attention to what just happened on November 18, 2025.</p>
 
 <h2>🚀 What is Google Antigravity?</h2>
 <p>Google Antigravity is a modified version of Visual Studio Code that introduces something entirely new: agentic development. It's free during its public preview period and powered by Google's Gemini 3 AI models, Claude Opus 4.5 and Claude Sonet 4.5.</p>
@@ -1374,5 +1480,5 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     <p><strong>The developers who adapt to this shift won't just survive. They'll thrive in ways that weren't possible before.</strong></p>
     <p>The age of agentic development has arrived. Are you ready?</p>
 </div>`
-}
+    }
 ]
