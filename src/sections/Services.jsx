@@ -1,32 +1,40 @@
 import React, { useState } from 'react'
 import { SERVICES } from '../data'
 import { FaCode, FaPalette, FaRocket, FaCheck, FaArrowRight, FaStar, FaClock, FaUsers, FaAward } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 import { HashLink } from 'react-router-hash-link';
 
 export default function Services() {
     const [selectedService, setSelectedService] = useState(0)
     const [isHovered, setIsHovered] = useState(null)
 
-    // Animation variants
+    // Animation variants with blur-fade for premium feel
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
             }
         }
     }
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        hidden: {
+            opacity: 0,
+            y: 30,
+            scale: 0.97,
+            filter: 'blur(6px)',
+        },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
+            filter: 'blur(0px)',
             transition: {
-                duration: 0.7,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1]
             }
         }
     }
@@ -58,7 +66,13 @@ export default function Services() {
 
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
-                <div className="text-center mb-16">
+                <motion.div
+                    className="text-center mb-16"
+                    initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
+                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-4">
                         <FaRocket className="mr-2" />
                         What I Offer
@@ -70,7 +84,7 @@ export default function Services() {
                         Comprehensive solutions tailored to bring your digital vision to life.
                         From concept to deployment, I ensure exceptional quality and performance.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Services Grid */}
                 <div className="grid lg:grid-cols-3 gap-8 mb-16">
@@ -88,35 +102,31 @@ export default function Services() {
                                 onClick={() => setSelectedService(index)}
                             >
                                 {/* Main Service Card */}
-                                <div className={`relative overflow-hidden rounded-2xl p-8 h-full border-2 transition-all duration-500 ${
-                                    isSelected
-                                        ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-500 shadow-2xl shadow-blue-500/25'
-                                        : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl'
-                                }`}>
+                                <div className={`relative overflow-hidden rounded-2xl p-8 h-full border-2 transition-all duration-500 ${isSelected
+                                    ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-500 shadow-2xl shadow-blue-500/25'
+                                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl'
+                                    }`}>
 
                                     {/* Animated Border */}
-                                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                                        isSelected && 'opacity-100'
-                                    }`}></div>
+                                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isSelected && 'opacity-100'
+                                        }`}></div>
                                     <div className="absolute inset-[2px] rounded-2xl bg-white dark:bg-gray-800"></div>
 
                                     {/* Content */}
                                     <div className="relative z-10">
                                         {/* Icon */}
-                                        <div className={`inline-flex p-4 rounded-2xl mb-6 transition-colors duration-300 ${
-                                            isSelected
-                                                ? 'bg-blue-500 text-white'
-                                                : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                                        }`}>
+                                        <div className={`inline-flex p-4 rounded-2xl mb-6 transition-colors duration-300 ${isSelected
+                                            ? 'bg-blue-500 text-white'
+                                            : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                                            }`}>
                                             <IconComponent size={24} />
                                         </div>
 
                                         {/* Title */}
-                                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-300 ${
-                                            isSelected
-                                                ? 'text-blue-600 dark:text-blue-400'
-                                                : 'text-gray-900 dark:text-white'
-                                        }`}>
+                                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-300 ${isSelected
+                                            ? 'text-blue-600 dark:text-blue-400'
+                                            : 'text-gray-900 dark:text-white'
+                                            }`}>
                                             {service.title}
                                         </h3>
 
@@ -132,11 +142,10 @@ export default function Services() {
                                                     key={feature}
                                                     className="flex items-center gap-3 text-sm"
                                                 >
-                                                    <FaCheck className={`flex-shrink-0 ${
-                                                        isSelected
-                                                            ? 'text-blue-500'
-                                                            : 'text-green-500'
-                                                    }`} size={14} />
+                                                    <FaCheck className={`flex-shrink-0 ${isSelected
+                                                        ? 'text-blue-500'
+                                                        : 'text-green-500'
+                                                        }`} size={14} />
                                                     <span className="text-gray-600 dark:text-gray-300">{feature}</span>
                                                 </li>
                                             ))}
@@ -144,11 +153,10 @@ export default function Services() {
 
                                         {/* CTA Button */}
                                         <button
-                                            className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
-                                                isSelected
-                                                    ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/25'
-                                                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                                            }`}
+                                            className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 ${isSelected
+                                                ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/25'
+                                                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                                                }`}
                                         >
                                             Get Started
                                             <FaArrowRight size={14} />
@@ -157,11 +165,10 @@ export default function Services() {
                                 </div>
 
                                 {/* Glow Effect */}
-                                <div className={`absolute inset-0 rounded-2xl blur-xl transition-all duration-500 ${
-                                    isSelected
-                                        ? 'bg-blue-500/20 opacity-100'
-                                        : 'bg-blue-500/10 opacity-0 group-hover:opacity-50'
-                                }`}></div>
+                                <div className={`absolute inset-0 rounded-2xl blur-xl transition-all duration-500 ${isSelected
+                                    ? 'bg-blue-500/20 opacity-100'
+                                    : 'bg-blue-500/10 opacity-0 group-hover:opacity-50'
+                                    }`}></div>
                             </div>
                         )
                     })}
@@ -173,9 +180,9 @@ export default function Services() {
                         {/* Content */}
                         <div className="space-y-6">
                             <div>
-                <span className="text-blue-600 dark:text-blue-400 font-medium uppercase tracking-wide text-sm">
-                  Service Details
-                </span>
+                                <span className="text-blue-600 dark:text-blue-400 font-medium uppercase tracking-wide text-sm">
+                                    Service Details
+                                </span>
                                 <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-4">
                                     {SERVICES[selectedService].title}
                                 </h3>
@@ -260,10 +267,10 @@ export default function Services() {
                             </div>
 
                             {/* Stats Card */}
-                            <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-2xl border border-gray-100 dark:border-gray-700">
+                            <div className="absolute -bottom-6 -right-2 sm:-right-6 bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl border border-gray-100 dark:border-gray-700 max-w-[140px] sm:max-w-none">
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1">100%</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">Client Satisfaction</div>
+                                    <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1">100%</div>
+                                    <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Client Satisfaction</div>
                                 </div>
                             </div>
                         </div>
@@ -298,6 +305,6 @@ export default function Services() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

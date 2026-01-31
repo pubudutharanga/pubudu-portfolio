@@ -36,7 +36,7 @@ export default function Home({ site, dark }) {
         <div className="max-w-6xl mx-auto px-4"><Portfolio /></div>
       </section>
       <section id="services" className="max-w-6xl mx-auto py-16 px-4"><Services /></section>
-      <section id="blog" className="max-w-6xl mx-auto py-16 px-4"><BlogPreview /></section>
+      <section id="blog" className="max-w-6xl mx-auto py-16 px-4"><BlogPreview dark={dark} /></section>
       <section id="contact" className="max-w-6xl mx-auto py-16 px-4"><Contact /></section>
     </div>
   )

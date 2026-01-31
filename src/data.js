@@ -238,6 +238,11 @@ export const SERVICES = [
 export const BLOG_POSTS = [
     {
         id: 'b1',
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         title: 'The Future of Web Development: 2025 Trends and Predictions',
         category: 'Industry Insights',
         excerpt: 'Explore the revolutionary changes shaping web development in 2025 - from AI co-creators and sustainable design to WebAssembly and decentralized technologies.',
@@ -397,6 +402,11 @@ const result = module.instance.exports.heavyComputation();</code></pre>
     },
     {
         id: 'b2',
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         title: 'Getting Started with React 19 and Its New Features',
         category: 'Tutorials',
         excerpt: 'React 19 finally landed on December 5, 2024, bringing seriously cool upgrades that make development easier and apps faster. Learn about Actions, the React Compiler, Server Components and more.',
@@ -631,6 +641,11 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: 'b3',
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         title: 'The Rise of AI-Powered Coding Assistants: Will They Replace Developers?',
         category: 'Industry Insights',
         excerpt: 'AI coding assistants are transforming software development, but are they replacing developers? Explore the real story of partnership over replacement and what it means for the future of coding.',
@@ -742,7 +757,12 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     `
     },
     {
-        "id": "b4",
+        id: 'b4',
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         "title": "AI Unlocked: A Beginner's Roadmap to Mastering Artificial Intelligence",
         "category": "Industry Insights",
         "excerpt": "Remember when talking to your computer seemed crazy? In 2025, AI is everywhere. Discover an easy-to-follow guide for beginners to start learning AI, from first steps to career opportunities, and why now is the perfect time to dive in.",
@@ -900,6 +920,11 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         "id": "b5",
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         "title": "Which AI Is Best for Developers? Gemini 3 vs GPT-5 vs Claude",
         "category": "Technology Comparison",
         "excerpt": "Choosing the right AI tool can make or break your development workflow. Let's compare the top three AI assistants in simple English.",
@@ -1104,6 +1129,11 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: "b6",
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         title: "Google Code Wiki: Your Code's New Best Friend",
         category: "AI & Development",
         excerpt: "Imagine having a guide who never sleeps, never forgets, and always knows exactly what your computer code is doing. Google's new Code Wiki is revolutionizing how developers understand and navigate complex codebases with AI-powered documentation that updates itself.",
@@ -1199,6 +1229,11 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: "b7",
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         title: "GPT-5.2-Codex & GitHub Copilot: Your Gateway to AI-Powered Development",
         category: "AI Development",
         excerpt: "Students code for free with the same AI that builds browsers in a week. Enterprises ship 55% faster. Here's what you need to know about the most powerful coding AI yet.",
@@ -1290,6 +1325,11 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         "id": "b8",
+        author: {
+            name: "Pubudu Tharanga",
+            avatarLight: "/PT_light.webp",
+            avatarDark: "/PT.png"
+        },
         "title": "Google Antigravity: The Future of Software Development is Here",
         "category": "AI & Development",
         "excerpt": "The way we build software is changing. If you're a developer, you need to pay attention to what just happened on November 18, 2025.",

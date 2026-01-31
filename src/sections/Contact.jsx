@@ -90,25 +90,31 @@ export default function Contact() {
         }
     }
 
-    // ... rest of your component remains the same (animation variants, socialLinks, etc.)
+    // Animation variants with blur-fade for premium feel
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
             }
         }
     }
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: {
+            opacity: 0,
+            y: 25,
+            filter: 'blur(6px)',
+        },
         visible: {
             opacity: 1,
             y: 0,
+            filter: 'blur(0px)',
             transition: {
                 duration: 0.6,
-                ease: "easeOut"
+                ease: [0.22, 1, 0.36, 1]
             }
         }
     }
@@ -130,10 +136,10 @@ export default function Contact() {
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
+                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <motion.div
                         className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-4"
@@ -278,11 +284,10 @@ export default function Contact() {
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className={`p-4 rounded-xl flex items-center gap-3 ${
-                                        status.type === 'success'
-                                            ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800'
-                                            : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
-                                    }`}
+                                    className={`p-4 rounded-xl flex items-center gap-3 ${status.type === 'success'
+                                        ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800'
+                                        : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
+                                        }`}
                                 >
                                     {status.type === 'success' ? (
                                         <FaCheck className="text-green-500 flex-shrink-0" />

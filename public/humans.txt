@@ -8,7 +8,7 @@ LinkedIn: https://www.linkedin.com/in/pubudutharanga/
 GitHub: https://github.com/pubudutharanga
 
 /* SITE */
-Last update: 2026/01/16
+Last update: 2026/01/30
 Language: English
 Standards: HTML5, CSS3, JavaScript ES6+
 Framework: React 19, Vite

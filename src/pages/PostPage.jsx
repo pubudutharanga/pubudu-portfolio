@@ -455,8 +455,11 @@ export default function PostPage() {
                                 <span>{post.readTime}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <FaUser size={14} />
-                                <span>Pubudu Tharanga</span>
+                                <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
+                                    <img src={post.author?.avatarLight || "/PT_light.webp"} alt="" className="w-full h-full object-cover dark:hidden" />
+                                    <img src={post.author?.avatarDark || "/PT_dark.webp"} alt="" className="w-full h-full object-cover hidden dark:block" />
+                                </div>
+                                <span>{post.author?.name || "Pubudu Tharanga"}</span>
                             </div>
                         </motion.div>
 
@@ -535,8 +538,17 @@ export default function PostPage() {
                             >
                                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                                            PT
+                                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-md">
+                                            <img
+                                                src={post.author?.avatarLight || "/PT_light.webp"}
+                                                alt={post.author?.name || "Pubudu Tharanga"}
+                                                className="w-full h-full object-cover dark:hidden"
+                                            />
+                                            <img
+                                                src={post.author?.avatarDark || "/PT_dark.webp"}
+                                                alt={post.author?.name || "Pubudu Tharanga"}
+                                                className="w-full h-full object-cover hidden dark:block"
+                                            />
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-gray-900 dark:text-white">Pubudu Tharanga</h4>
@@ -569,8 +581,17 @@ export default function PostPage() {
                                 {/* Author Card */}
                                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
                                     <div className="text-center">
-                                        <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                            PT
+                                        <div className="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-lg relative">
+                                            <img
+                                                src={post.author?.avatarLight || "/PT_light.webp"}
+                                                alt={post.author?.name || "Pubudu Tharanga"}
+                                                className="w-full h-full object-cover dark:hidden"
+                                            />
+                                            <img
+                                                src={post.author?.avatarDark || "/PT_dark.webp"}
+                                                alt={post.author?.name || "Pubudu Tharanga"}
+                                                className="w-full h-full object-cover hidden dark:block"
+                                            />
                                         </div>
                                         <h4 className="font-bold text-gray-900 dark:text-white mb-2">Pubudu Tharanga</h4>
                                         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">

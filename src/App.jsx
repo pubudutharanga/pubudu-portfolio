@@ -6,6 +6,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { SITE } from './data'
+import { ClickSpark } from './components/reactbits'
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'))
@@ -23,15 +24,21 @@ const LoadingSpinner = () => (
 )
 
 export default function App() {
-    const [dark, setDark] = useState(false)
     const location = useLocation()
-
     // Initialize dark mode from system preference or localStorage
-    useEffect(() => {
-        const isDark = localStorage.getItem('dark') === 'true' ||
-            (!('dark' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        setDark(isDark)
-    }, [])
+    const [dark, setDark] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('dark')
+            if (saved !== null) {
+                return saved === 'true'
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches
+        }
+        return false
+    })
+
+    // Remove the redundant initial useEffect that was causing the overwrite logic
+
 
     // Update document class when dark mode changes
     useEffect(() => {
@@ -48,6 +55,18 @@ export default function App() {
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
             <SpeedInsights />
             <Analytics />
+
+            {/* Click Spark - Only in light mode */}
+            {!dark && (
+                <ClickSpark
+                    sparkColor="#0ea5e9"
+                    sparkSize={12}
+                    sparkRadius={20}
+                    sparkCount={8}
+                    duration={400}
+                />
+            )}
+
             {/* Header */}
             <Header site={SITE} dark={dark} setDark={setDark} />
 
@@ -56,7 +75,7 @@ export default function App() {
                 <Suspense fallback={<LoadingSpinner />}>
                     <Routes>
                         <Route path="/" element={<Home site={SITE} dark={dark} />} />
-                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog" element={<Blog dark={dark} />} />
                         <Route path="/blog/:id" element={<PostPage />} />
 
                         {/* 404 Fallback */}

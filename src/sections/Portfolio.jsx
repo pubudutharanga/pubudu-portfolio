@@ -36,37 +36,46 @@ export default function Portfolio() {
         }
     }
 
-    // Animation variants
+    // Animation variants with blur-fade for premium feel
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1
+                staggerChildren: 0.12,
+                delayChildren: 0.1,
             }
         }
     }
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30, scale: 0.9 },
+        hidden: {
+            opacity: 0,
+            y: 30,
+            scale: 0.97,
+            filter: 'blur(6px)',
+        },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
+            filter: 'blur(0px)',
             transition: {
                 duration: 0.6,
-                ease: "easeOut"
+                ease: [0.22, 1, 0.36, 1]
             }
         }
     }
 
     const filterVariants = {
-        hidden: { opacity: 0, x: -20 },
+        hidden: { opacity: 0, x: -15, filter: 'blur(3px)' },
         visible: {
             opacity: 1,
             x: 0,
+            filter: 'blur(0px)',
             transition: {
-                duration: 0.4
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1]
             }
         }
     }
@@ -94,10 +103,10 @@ export default function Portfolio() {
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
+                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
                         <FaCode className="mr-2" />
@@ -114,7 +123,7 @@ export default function Portfolio() {
 
                 {/* Filter Buttons */}
                 <motion.div
-                    className="flex flex-wrap justify-center gap-3 mb-12"
+                    className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -125,14 +134,14 @@ export default function Portfolio() {
                             key={category}
                             onClick={() => setFilter(category)}
                             variants={filterVariants}
-                            className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${filter === category
-                                    ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/25'
-                                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 shadow-sm hover:shadow-md'
+                            className={`group relative px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base transition-all duration-300 flex items-center gap-1.5 sm:gap-2 ${filter === category
+                                ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/25'
+                                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 shadow-sm hover:shadow-md'
                                 }`}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            {filter === category && <FaFilter className="text-sm" />}
+                            {filter === category && <FaFilter className="text-xs sm:text-sm" />}
                             {category}
                             {filter === category && (
                                 <motion.span

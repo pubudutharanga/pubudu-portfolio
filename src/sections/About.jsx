@@ -6,25 +6,31 @@ import { motion } from 'framer-motion'
 export default function About({ dark }) {
     const [activeTab, setActiveTab] = useState('technical')
 
-    // Animation variants
+    // Animation variants with blur-fade for premium feel
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1
+                staggerChildren: 0.12,
+                delayChildren: 0.1,
             }
         }
     }
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: {
+            opacity: 0,
+            y: 20,
+            filter: 'blur(6px)',
+        },
         visible: {
             opacity: 1,
             y: 0,
+            filter: 'blur(0px)',
             transition: {
                 duration: 0.6,
-                ease: "easeOut"
+                ease: [0.22, 1, 0.36, 1]
             }
         }
     }
@@ -50,10 +56,10 @@ export default function About({ dark }) {
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
+                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
                         <FaAward className="mr-2" />
@@ -88,7 +94,7 @@ export default function About({ dark }) {
                                     {/* Profile Image */}
                                     <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-full p-2 shadow-2xl border-4 border-white dark:border-gray-700">
                                         <img
-                                            src={dark ? "./PT_dark.webp" : "./PT_light.webp"}
+                                            src={dark ? "./PT.png" : "./PT_light.webp"}
                                             alt="Pubudu Tharanga"
                                             className="w-full h-full object-cover rounded-full"
                                         />

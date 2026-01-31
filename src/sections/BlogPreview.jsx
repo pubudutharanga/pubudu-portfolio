@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCalendar, FaClock, FaTags, FaEye } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { HashLink } from 'react-router-hash-link';
+import { ElectricBorder } from '../components/reactbits'
 
-export default function BlogPreview() {
+export default function BlogPreview({ dark }) {
     const [hoveredPost, setHoveredPost] = useState(null)
     const posts = BLOG_POSTS.slice(0, 3)
 
@@ -119,142 +120,171 @@ export default function BlogPreview() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
                 >
-                    {posts.map((post, index) => (
-                        <motion.article
-                            key={post.id}
-                            variants={itemVariants}
-                            className="group relative"
-                            onMouseEnter={() => setHoveredPost(post.id)}
-                            onMouseLeave={() => setHoveredPost(null)}
-                            whileHover="hover"
-                            initial="initial"
-                        >
-                            {/* Main Card */}
-                            <motion.div
-                                variants={cardHoverVariants}
-                                className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
-                            >
-                                {/* Image Container */}
-                                <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600">
-                                    <motion.img
-                                        src={post.featured}
-                                        alt={post.title}
-                                        className="w-full h-full object-cover"
-                                        variants={imageHoverVariants}
-                                    />
+                    {posts.map((post, index) => {
+                        const CardInner = (
+                            <>
+                                {/* Main Card */}
+                                <motion.div
+                                    variants={cardHoverVariants}
+                                    className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
+                                >
+                                    {/* Image Container */}
+                                    <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600">
+                                        <motion.img
+                                            src={post.featured}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover"
+                                            variants={imageHoverVariants}
+                                        />
 
-                                    {/* Category Badge */}
-                                    <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg backdrop-blur-sm">
-                      {post.category}
-                    </span>
-                                    </div>
+                                        {/* Category Badge */}
+                                        <div className="absolute top-4 left-4">
+                                            <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg backdrop-blur-sm">
+                                                {post.category}
+                                            </span>
+                                        </div>
 
-                                    {/* Gradient Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                        <div className="absolute bottom-4 left-4 right-4">
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                whileHover={{ opacity: 1, y: 0 }}
-                                                className="flex justify-center"
-                                            >
-                                                <Link
-                                                    to={`/blog/${post.id}`}
-                                                    className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors flex items-center gap-2"
+                                        {/* Gradient Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                            <div className="absolute bottom-4 left-4 right-4">
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    whileHover={{ opacity: 1, y: 0 }}
+                                                    className="flex justify-center"
                                                 >
-                                                    Read Article
-                                                    <FaArrowRight size={12} />
-                                                </Link>
-                                            </motion.div>
-                                        </div>
-                                    </div>
-
-                                    {/* View Indicator */}
-                                    <motion.div
-                                        className="absolute top-4 right-4 flex items-center gap-1 text-white/80 text-xs"
-                                        initial={{ opacity: 0, x: 20 }}
-                                        whileHover={{ opacity: 1, x: 0 }}
-                                    >
-                                        <FaEye size={10} />
-                                        <span>Read</span>
-                                    </motion.div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-6">
-                                    {/* Metadata */}
-                                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
-                                        <div className="flex items-center gap-1">
-                                            <FaCalendar size={12} />
-                                            <span>{new Date(post.date).toLocaleDateString()}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <FaClock size={12} />
-                                            <span>{post.readTime}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Title */}
-                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
-                                        {post.title}
-                                    </h3>
-
-                                    {/* Excerpt */}
-                                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 leading-relaxed">
-                                        {post.excerpt}
-                                    </p>
-
-                                    {/* Tags */}
-                                    {post.tags && (
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            {post.tags.slice(0, 2).map(tag => (
-                                                <span
-                                                    key={tag}
-                                                    className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
-                                                >
-                          #{tag}
-                        </span>
-                                            ))}
-                                            {post.tags.length > 2 && (
-                                                <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">
-                          +{post.tags.length - 2}
-                        </span>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {/* Read More Link */}
-                                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                                PT
+                                                    <Link
+                                                        to={`/blog/${post.id}`}
+                                                        className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors flex items-center gap-2"
+                                                    >
+                                                        Read Article
+                                                        <FaArrowRight size={12} />
+                                                    </Link>
+                                                </motion.div>
                                             </div>
-                                            <span className="text-sm text-gray-600 dark:text-gray-400">Pubudu Tharanga</span>
                                         </div>
 
-                                        <Link
-                                            to={`/blog/${post.id}`}
-                                            className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
+                                        {/* View Indicator */}
+                                        <motion.div
+                                            className="absolute top-4 right-4 flex items-center gap-1 text-white/80 text-xs"
+                                            initial={{ opacity: 0, x: 20 }}
+                                            whileHover={{ opacity: 1, x: 0 }}
                                         >
-                                            Read More
-                                            <motion.span
-                                                animate={{ x: hoveredPost === post.id ? 5 : 0 }}
-                                                transition={{ type: "spring", stiffness: 400 }}
-                                            >
-                                                <FaArrowRight size={14} />
-                                            </motion.span>
-                                        </Link>
+                                            <FaEye size={10} />
+                                            <span>Read</span>
+                                        </motion.div>
                                     </div>
-                                </div>
 
-                                {/* Hover Border Effect */}
-                                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/20 rounded-2xl transition-all duration-300 pointer-events-none"></div>
-                            </motion.div>
+                                    {/* Content */}
+                                    <div className="p-6">
+                                        {/* Metadata */}
+                                        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                            <div className="flex items-center gap-1">
+                                                <FaCalendar size={12} />
+                                                <span>{new Date(post.date).toLocaleDateString()}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <FaClock size={12} />
+                                                <span>{post.readTime}</span>
+                                            </div>
+                                        </div>
 
-                            {/* Glow Effect */}
-                            <div className="absolute inset-0 rounded-2xl bg-blue-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-                        </motion.article>
-                    ))}
+                                        {/* Title */}
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
+                                            {post.title}
+                                        </h3>
+
+                                        {/* Excerpt */}
+                                        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 leading-relaxed">
+                                            {post.excerpt}
+                                        </p>
+
+                                        {/* Tags */}
+                                        {post.tags && (
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                {post.tags.slice(0, 2).map(tag => (
+                                                    <span
+                                                        key={tag}
+                                                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
+                                                    >
+                                                        #{tag}
+                                                    </span>
+                                                ))}
+                                                {post.tags.length > 2 && (
+                                                    <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">
+                                                        +{post.tags.length - 2}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        )}
+
+                                        {/* Read More Link */}
+                                        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-blue-500 transition-colors duration-300">
+                                                    <img
+                                                        src={post.author?.avatarLight || "/PT_light.webp"}
+                                                        alt={post.author?.name || "Pubudu Tharanga"}
+                                                        className="w-full h-full object-cover dark:hidden"
+                                                    />
+                                                    <img
+                                                        src={post.author?.avatarDark || "/PT_dark.webp"}
+                                                        alt={post.author?.name || "Pubudu Tharanga"}
+                                                        className="w-full h-full object-cover hidden dark:block"
+                                                    />
+                                                </div>
+                                                <span className="text-sm text-gray-600 dark:text-gray-400">Pubudu Tharanga</span>
+                                            </div>
+
+                                            <Link
+                                                to={`/blog/${post.id}`}
+                                                className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
+                                            >
+                                                Read More
+                                                <motion.span
+                                                    animate={{ x: hoveredPost === post.id ? 5 : 0 }}
+                                                    transition={{ type: "spring", stiffness: 400 }}
+                                                >
+                                                    <FaArrowRight size={14} />
+                                                </motion.span>
+                                            </Link>
+                                        </div>
+                                    </div>
+
+                                    {/* Hover Border Effect */}
+                                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/20 rounded-2xl transition-all duration-300 pointer-events-none"></div>
+                                </motion.div>
+                            </>
+                        );
+
+                        return (
+                            <motion.article
+                                key={post.id}
+                                variants={itemVariants}
+                                className="group relative"
+                                onMouseEnter={() => setHoveredPost(post.id)}
+                                onMouseLeave={() => setHoveredPost(null)}
+                                whileHover="hover"
+                                initial="initial"
+                            >
+                                {dark ? (
+                                    <ElectricBorder
+                                        color="#0ea5e9"
+                                        speed={0.8}
+                                        chaos={0.08}
+                                        borderRadius={16}
+                                        style={{ borderRadius: 16 }}
+                                    >
+                                        {CardInner}
+                                    </ElectricBorder>
+                                ) : (
+                                    CardInner
+                                )}
+
+                                {/* Glow Effect */}
+                                <div className="absolute inset-0 rounded-2xl bg-blue-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                            </motion.article>
+                        );
+                    })}
                 </motion.div>
 
                 {/* CTA Section */}

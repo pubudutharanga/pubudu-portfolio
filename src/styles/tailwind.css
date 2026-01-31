@@ -104,13 +104,18 @@
 
 @layer components {
 
+    /* Section padding - responsive */
+    .section-padding {
+        @apply py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8;
+    }
+
     /* Modern button styles */
     .btn-primary {
-        @apply px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:from-primary-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+        @apply px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-primary-600 to-blue-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:from-primary-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 text-sm sm:text-base;
     }
 
     .btn-secondary {
-        @apply px-6 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-medium rounded-xl transition-all duration-300 hover:bg-primary-600 hover:text-white dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+        @apply px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-medium rounded-xl transition-all duration-300 hover:bg-primary-600 hover:text-white dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 text-sm sm:text-base;
     }
 
     /* Card components */
@@ -128,11 +133,11 @@
     }
 
     .section-title {
-        @apply text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4;
+        @apply text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4;
     }
 
     .section-subtitle {
-        @apply text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl;
+        @apply text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-2xl px-4 sm:px-0;
     }
 
     /* Navigation */
@@ -142,7 +147,7 @@
 
     /* Skill badges */
     .skill-badge {
-        @apply px-4 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:bg-primary-100 dark:hover:bg-primary-900/30;
+        @apply px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 hover:scale-105 hover:bg-primary-100 dark:hover:bg-primary-900/30;
     }
 }
 
