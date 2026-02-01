@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
@@ -9,6 +10,7 @@ export default defineConfig({
             // React 19 compatibility
             jsxRuntime: 'automatic',
         }),
+        tailwindcss(),
         VitePWA({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
@@ -69,7 +71,5 @@ export default defineConfig({
     optimizeDeps: {
         include: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
     },
-    css: {
-        postcss: './postcss.config.js',
-    },
+
 })

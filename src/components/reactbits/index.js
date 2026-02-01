@@ -8,3 +8,5 @@ export { default as ScrollReveal, ScrollRevealContainer, BlurFade, SplitText } f
 export { default as SplashCursor } from './SplashCursor'
 export { default as ClickSpark } from './ClickSpark'
 export { default as ElectricBorder } from './ElectricBorder'
+export { default as StarBorder } from './StarBorder'
+export { default as StaggeredMenu } from './StaggeredMenu'

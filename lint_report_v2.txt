@@ -1,0 +1,185 @@
+
+> pubudu-portfolio@1.0.0 lint
+> eslint . --report-unused-disable-directives --max-warnings 0
+
+
+D:\pubudu-portfolio\scripts\generate-sitemap.js
+  65:5  error  'process' is not defined  no-undef
+
+D:\pubudu-portfolio\src\components\EnhancedNav.jsx
+   5:39  error  'site' is missing in props validation        react/prop-types
+   5:45  error  'dark' is missing in props validation        react/prop-types
+   5:51  error  'setDark' is missing in props validation     react/prop-types
+  58:80  error  'site.name' is missing in props validation   react/prop-types
+  60:35  error  'site.title' is missing in props validation  react/prop-types
+
+D:\pubudu-portfolio\src\components\Footer.jsx
+    8:34  error  'site' is missing in props validation           react/prop-types
+   69:31  error  'site.name' is missing in props validation      react/prop-types
+  110:24  error  'site.linkedin' is missing in props validation  react/prop-types
+  117:24  error  'site.github' is missing in props validation    react/prop-types
+  124:24  error  'site.facebook' is missing in props validation  react/prop-types
+  132:41  error  'site.email' is missing in props validation     react/prop-types
+  132:69  error  'site.email' is missing in props validation     react/prop-types
+  133:38  error  'site.phone' is missing in props validation     react/prop-types
+  133:63  error  'site.phone' is missing in props validation     react/prop-types
+  134:45  error  'site.location' is missing in props validation  react/prop-types
+  186:43  error  'site.name' is missing in props validation      react/prop-types
+  188:95  error  'site.title' is missing in props validation     react/prop-types
+  336:66  error  'site.name' is missing in props validation      react/prop-types
+
+D:\pubudu-portfolio\src\components\Header.jsx
+    7:34  error  'site' is missing in props validation        react/prop-types
+    7:40  error  'dark' is missing in props validation        react/prop-types
+    7:46  error  'setDark' is missing in props validation     react/prop-types
+  128:39  error  'site.name' is missing in props validation   react/prop-types
+  131:39  error  'site.title' is missing in props validation  react/prop-types
+
+D:\pubudu-portfolio\src\components\SeoMeta.jsx
+   6:5   error  'title' is missing in props validation             react/prop-types
+   7:5   error  'description' is missing in props validation       react/prop-types
+   8:5   error  'keywords' is missing in props validation          react/prop-types
+   9:5   error  'canonical' is missing in props validation         react/prop-types
+  10:5   error  'image' is missing in props validation             react/prop-types
+  11:5   error  'type' is missing in props validation              react/prop-types
+  12:5   error  'schema' is missing in props validation            react/prop-types
+  23:18  error  'image.startsWith' is missing in props validation  react/prop-types
+  23:66  error  'image.startsWith' is missing in props validation  react/prop-types
+
+D:\pubudu-portfolio\src\components\reactbits\ClickSpark.jsx
+   9:5  error  'sparkColor' is missing in props validation   react/prop-types
+  10:5  error  'sparkSize' is missing in props validation    react/prop-types
+  11:5  error  'sparkRadius' is missing in props validation  react/prop-types
+  12:5  error  'sparkCount' is missing in props validation   react/prop-types
+  13:5  error  'duration' is missing in props validation     react/prop-types
+  14:5  error  'easing' is missing in props validation       react/prop-types
+  15:5  error  'extraScale' is missing in props validation   react/prop-types
+  16:5  error  'children' is missing in props validation     react/prop-types
+
+D:\pubudu-portfolio\src\components\reactbits\ElectricBorder.jsx
+  24:5  error  'children' is missing in props validation      react/prop-types
+  25:5  error  'color' is missing in props validation         react/prop-types
+  26:5  error  'speed' is missing in props validation         react/prop-types
+  27:5  error  'chaos' is missing in props validation         react/prop-types
+  28:5  error  'borderRadius' is missing in props validation  react/prop-types
+  29:5  error  'borderOffset' is missing in props validation  react/prop-types
+  30:5  error  'className' is missing in props validation     react/prop-types
+  31:5  error  'style' is missing in props validation         react/prop-types
+
+D:\pubudu-portfolio\src\components\reactbits\Particles.jsx
+  12:5  error  'particleCount' is missing in props validation       react/prop-types
+  13:5  error  'particleColors' is missing in props validation      react/prop-types
+  14:5  error  'lineColor' is missing in props validation           react/prop-types
+  15:5  error  'particleMinSize' is missing in props validation     react/prop-types
+  16:5  error  'particleMaxSize' is missing in props validation     react/prop-types
+  17:5  error  'speed' is missing in props validation               react/prop-types
+  18:5  error  'connectionDistance' is missing in props validation  react/prop-types
+  19:5  error  'mouseRadius' is missing in props validation         react/prop-types
+  20:5  error  'mouseForce' is missing in props validation          react/prop-types
+  21:5  error  'className' is missing in props validation           react/prop-types
+  22:5  error  'dark' is missing in props validation                react/prop-types
+
+D:\pubudu-portfolio\src\components\reactbits\ScrollReveal.jsx
+   14:5   error  'children' is missing in props validation            react/prop-types
+   15:5   error  'baseOpacity' is missing in props validation         react/prop-types
+   16:5   error  'enableBlur' is missing in props validation          react/prop-types
+   17:5   error  'blurStrength' is missing in props validation        react/prop-types
+   18:5   error  'duration' is missing in props validation            react/prop-types
+   19:5   error  'staggerDelay' is missing in props validation        react/prop-types
+   20:5   error  'y' is missing in props validation                   react/prop-types
+   21:5   error  'threshold' is missing in props validation           react/prop-types
+   22:5   error  'triggerOnce' is missing in props validation         react/prop-types
+   23:5   error  'textReveal' is missing in props validation          react/prop-types
+   24:5   error  'className' is missing in props validation           react/prop-types
+   25:5   error  'containerClassName' is missing in props validation  react/prop-types
+   40:32  error  'children.split' is missing in props validation      react/prop-types
+  100:5   error  'children' is missing in props validation            react/prop-types
+  101:5   error  'staggerDelay' is missing in props validation        react/prop-types
+  102:5   error  'threshold' is missing in props validation           react/prop-types
+  103:5   error  'triggerOnce' is missing in props validation         react/prop-types
+  104:5   error  'className' is missing in props validation           react/prop-types
+  165:5   error  'children' is missing in props validation            react/prop-types
+  166:5   error  'delay' is missing in props validation               react/prop-types
+  167:5   error  'duration' is missing in props validation            react/prop-types
+  168:5   error  'blurAmount' is missing in props validation          react/prop-types
+  169:5   error  'yOffset' is missing in props validation             react/prop-types
+  170:5   error  'threshold' is missing in props validation           react/prop-types
+  171:5   error  'triggerOnce' is missing in props validation         react/prop-types
+  172:5   error  'className' is missing in props validation           react/prop-types
+  213:5   error  'children' is missing in props validation            react/prop-types
+  214:5   error  'splitBy' is missing in props validation             react/prop-types
+  215:5   error  'staggerDelay' is missing in props validation        react/prop-types
+  216:5   error  'duration' is missing in props validation            react/prop-types
+  217:5   error  'threshold' is missing in props validation           react/prop-types
+  218:5   error  'triggerOnce' is missing in props validation         react/prop-types
+  219:5   error  'className' is missing in props validation           react/prop-types
+  220:5   error  'letterClassName' is missing in props validation     react/prop-types
+  233:20  error  'children.split' is missing in props validation      react/prop-types
+  234:20  error  'children.split' is missing in props validation      react/prop-types
+
+D:\pubudu-portfolio\src\components\reactbits\SplashCursor.jsx
+  13:5  error  'SIM_RESOLUTION' is missing in props validation        react/prop-types
+  14:5  error  'DYE_RESOLUTION' is missing in props validation        react/prop-types
+  15:5  error  'CAPTURE_RESOLUTION' is missing in props validation    react/prop-types
+  16:5  error  'DENSITY_DISSIPATION' is missing in props validation   react/prop-types
+  17:5  error  'VELOCITY_DISSIPATION' is missing in props validation  react/prop-types
+  18:5  error  'PRESSURE' is missing in props validation              react/prop-types
+  19:5  error  'PRESSURE_ITERATIONS' is missing in props validation   react/prop-types
+  20:5  error  'CURL' is missing in props validation                  react/prop-types
+  21:5  error  'SPLAT_RADIUS' is missing in props validation          react/prop-types
+  22:5  error  'SPLAT_FORCE' is missing in props validation           react/prop-types
+  23:5  error  'SHADING' is missing in props validation               react/prop-types
+  24:5  error  'COLOR_UPDATE_SPEED' is missing in props validation    react/prop-types
+  25:5  error  'BACK_COLOR' is missing in props validation            react/prop-types
+  26:5  error  'TRANSPARENT' is missing in props validation           react/prop-types
+
+D:\pubudu-portfolio\src\pages\Blog.jsx
+  9:32  error  'dark' is missing in props validation  react/prop-types
+
+D:\pubudu-portfolio\src\pages\Home.jsx
+  10:32  error  'site' is missing in props validation          react/prop-types
+  10:38  error  'dark' is missing in props validation          react/prop-types
+  17:24  error  'site.name' is missing in props validation     react/prop-types
+  18:23  error  'site.siteUrl' is missing in props validation  react/prop-types
+  23:38  error  'site.siteUrl' is missing in props validation  react/prop-types
+
+D:\pubudu-portfolio\src\sections\About.jsx
+    6:33  error  'dark' is missing in props validation                            react/prop-types
+  335:36  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  338:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  339:36  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+D:\pubudu-portfolio\src\sections\BlogPreview.jsx
+  9:39  error  'dark' is missing in props validation  react/prop-types
+
+D:\pubudu-portfolio\src\sections\Contact.jsx
+  162:28  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  172:63  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  173:26  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  404:77  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  428:36  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  428:87  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+D:\pubudu-portfolio\src\sections\Hero.jsx
+    8:32  error  'site' is missing in props validation                            react/prop-types
+    8:38  error  'dark' is missing in props validation                            react/prop-types
+   48:40  error  'site.linkedin' is missing in props validation                   react/prop-types
+   49:38  error  'site.github' is missing in props validation                     react/prop-types
+   50:40  error  'site.facebook' is missing in props validation                   react/prop-types
+  101:29  error  'text' is missing in props validation                            react/prop-types
+  101:35  error  'className' is missing in props validation                       react/prop-types
+  101:46  error  'isGradient' is missing in props validation                      react/prop-types
+  102:28  error  'text.split' is missing in props validation                      react/prop-types
+  191:33  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  191:42  error  'site.name' is missing in props validation                       react/prop-types
+
+D:\pubudu-portfolio\src\sections\Portfolio.jsx
+  335:30  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  336:32  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+D:\pubudu-portfolio\src\sections\Services.jsx
+  198:41  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  287:32  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+✖ 142 problems (142 errors, 0 warnings)
+

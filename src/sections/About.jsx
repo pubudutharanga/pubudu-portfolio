@@ -47,15 +47,16 @@ export default function About({ dark }) {
     }
 
     return (
-        <section id="about" className="section-padding relative overflow-hidden">
+
+        <section id="about" className="relative py-12 md:py-20 overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-72 h-72 bg-primary-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-10 animate-pulse animation-delay-2000"></div>
 
-            <div className="relative max-w-7xl mx-auto">
+            <div className="relative max-w-7xl mx-auto px-4">
                 {/* Section Header */}
                 <motion.div
-                    className="text-center mb-16"
+                    className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
                     whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
@@ -65,17 +66,19 @@ export default function About({ dark }) {
                         <FaAward className="mr-2" />
                         About Me
                     </div>
-                    <h2 className="section-title">
-                        Crafting Digital <span className="gradient-text">Experiences</span>
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                        Crafting Digital <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Experiences</span>
                     </h2>
-                    <p className="section-subtitle">
+                    <p className="section-subtitle max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                        Bridging the gap between <strong>complex backend logic</strong> and <strong>intuitive frontend design</strong>.
+                        I build scalable, accessible, and performance-driven web applications using the latest standards in the MERN stack.
                     </p>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
                     {/* Profile Image & Personal Info */}
                     <motion.div
-                        className="space-y-8"
+                        className="space-y-6 md:space-y-8"
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
@@ -83,11 +86,11 @@ export default function About({ dark }) {
                     >
                         {/* Profile Card */}
                         <motion.div
-                            className="card p-8 text-center"
+                            className="card p-5 md:p-8 text-center"
                             variants={itemVariants}
                         >
                             <div className="relative mb-6">
-                                <div className="w-48 h-48 mx-auto relative">
+                                <div className="w-32 h-32 md:w-48 md:h-48 mx-auto relative">
                                     {/* Background Glow */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-blue-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
 
@@ -95,13 +98,16 @@ export default function About({ dark }) {
                                     <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-full p-2 shadow-2xl border-4 border-white dark:border-gray-700">
                                         <img
                                             src={dark ? "./PT.png" : "./PT_light.webp"}
-                                            alt="Pubudu Tharanga"
+                                            alt="Pubudu Tharanga - Full Stack Developer"
                                             className="w-full h-full object-cover rounded-full"
+                                            width="192"
+                                            height="192"
+                                            loading="lazy"
                                         />
                                     </div>
 
                                     {/* Status Indicator */}
-                                    <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white dark:border-gray-800 animate-pulse"></div>
+                                    <div className="absolute bottom-2 right-2 w-5 h-5 md:w-6 md:h-6 bg-green-500 rounded-full border-4 border-white dark:border-gray-800 animate-pulse"></div>
                                 </div>
                             </div>
 
@@ -128,7 +134,7 @@ export default function About({ dark }) {
                             </motion.div>
 
                             <motion.p
-                                className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed"
+                                className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-sm md:text-base"
                                 variants={itemVariants}
                             >
                                 I am an undergraduate student at Sabaragamuwa University Of Sri Lanka,
@@ -144,14 +150,14 @@ export default function About({ dark }) {
                                     href="/pubudu_resume.pdf"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="btn-primary group flex items-center justify-center"
+                                    className="btn-primary group flex items-center justify-center w-full sm:w-auto"
                                 >
                                     <FaDownload className="mr-2 group-hover:scale-110 transition-transform" />
                                     Download Resume
                                 </a>
                                 <a
                                     href={`mailto:${SITE.email}`}
-                                    className="btn-secondary flex items-center justify-center"
+                                    className="btn-secondary flex items-center justify-center w-full sm:w-auto"
                                 >
                                     Contact Me
                                 </a>
@@ -160,44 +166,44 @@ export default function About({ dark }) {
 
                         {/* Quick Stats */}
                         <motion.div
-                            className="grid grid-cols-3 gap-4"
+                            className="grid grid-cols-3 gap-2 md:gap-4"
                             variants={containerVariants}
                         >
                             <motion.div
-                                className="card p-4 text-center"
+                                className="card p-3 md:p-4 text-center"
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
-                                <div className="text-2xl font-bold gradient-text mb-1">1+</div>
-                                <div className="text-sm text-gray-500 dark:text-gray-400">Years Experience</div>
+                                <div className="text-xl md:text-2xl font-bold gradient-text mb-1">1+</div>
+                                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Years Experience</div>
                             </motion.div>
 
                             <motion.div
-                                className="card p-4 text-center"
+                                className="card p-3 md:p-4 text-center"
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
-                                <div className="text-2xl font-bold gradient-text mb-1">3+</div>
-                                <div className="text-sm text-gray-500 dark:text-gray-400">Projects</div>
+                                <div className="text-xl md:text-2xl font-bold gradient-text mb-1">3+</div>
+                                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Projects</div>
                             </motion.div>
 
                             <motion.div
-                                className="card p-4 text-center"
+                                className="card p-3 md:p-4 text-center"
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
-                                <FaGraduationCap className="text-2xl text-primary-500 mx-auto mb-1" />
-                                <div className="text-sm text-gray-500 dark:text-gray-400">Undergraduate</div>
+                                <FaGraduationCap className="text-xl md:text-2xl text-primary-500 mx-auto mb-1" />
+                                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Undergraduate</div>
                             </motion.div>
                         </motion.div>
                     </motion.div>
 
                     {/* Skills & Details */}
                     <motion.div
-                        className="space-y-8"
+                        className="space-y-6 md:space-y-8"
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -210,7 +216,7 @@ export default function About({ dark }) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                            <div className="flex flex-wrap sm:flex-nowrap gap-1 sm:space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
                                 {[
                                     { id: 'technical', label: 'Technical', icon: FaCode },
                                     { id: 'tools', label: 'Tools', icon: FaTools },
@@ -219,7 +225,7 @@ export default function About({ dark }) {
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`flex items-center gap-2 flex-1 px-4 py-3 rounded-md text-sm font-medium transition-all duration-300 ${activeTab === tab.id
+                                        className={`flex items-center justify-center gap-2 flex-auto sm:flex-1 px-3 py-2 md:px-4 md:py-3 rounded-md text-xs md:text-sm font-medium transition-all duration-300 ${activeTab === tab.id
                                             ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
                                             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                             }`}

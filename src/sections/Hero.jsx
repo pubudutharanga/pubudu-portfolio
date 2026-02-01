@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FaLinkedin, FaGithub, FaFacebook, FaArrowDown, FaDownload } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { Particles, SplashCursor, ClickSpark } from '../components/reactbits'
+import { Particles, SplashCursor, ClickSpark, StarBorder } from '../components/reactbits'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -13,6 +13,7 @@ export default function Hero({ site, dark }) {
         threshold: 0.5, // 50% of Hero must be visible
         triggerOnce: false,
     })
+
 
     // Responsive particle count based on screen size
     const [particleCount, setParticleCount] = useState(dark ? 90 : 30)
@@ -45,9 +46,9 @@ export default function Hero({ site, dark }) {
     }
 
     const socialLinks = [
-        { icon: FaLinkedin, href: site.linkedin, label: 'LinkedIn', color: 'hover:text-blue-600' },
-        { icon: FaGithub, href: site.github, label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
-        { icon: FaFacebook, href: site.facebook, label: 'Facebook', color: 'hover:text-blue-500' },
+        { icon: FaLinkedin, href: site.linkedin, label: 'LinkedIn', color: 'hover:text-blue-600', starColor: '#0077B5' },
+        { icon: FaGithub, href: site.github, label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white', starColor: '#6e5494' },
+        { icon: FaFacebook, href: site.facebook, label: 'Facebook', color: 'hover:text-blue-500', starColor: '#1877F2' },
     ]
 
     // Premium staggered animation variants
@@ -142,7 +143,7 @@ export default function Hero({ site, dark }) {
 
             {/* Floating Elements - Enhanced */}
             <motion.div
-                className="absolute top-20 left-10 w-4 h-4 bg-primary-500/80 rounded-full blur-[1px]"
+                className="hidden sm:block absolute top-20 left-10 w-4 h-4 bg-primary-500/80 rounded-full blur-[1px]"
                 animate={{
                     y: [-5, 5, -5],
                     scale: [1, 1.1, 1],
@@ -150,7 +151,7 @@ export default function Hero({ site, dark }) {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
-                className="absolute top-40 right-20 w-6 h-6 bg-blue-400/60 rounded-full blur-[1px]"
+                className="hidden sm:block absolute top-40 right-20 w-6 h-6 bg-blue-400/60 rounded-full blur-[1px]"
                 animate={{
                     y: [5, -5, 5],
                     x: [-3, 3, -3],
@@ -158,7 +159,7 @@ export default function Hero({ site, dark }) {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             />
             <motion.div
-                className="absolute bottom-40 left-20 w-3 h-3 bg-indigo-500/70 rounded-full blur-[1px]"
+                className="hidden sm:block absolute bottom-40 left-20 w-3 h-3 bg-indigo-500/70 rounded-full blur-[1px]"
                 animate={{
                     y: [-8, 8, -8],
                     rotate: [0, 180, 360],
@@ -166,7 +167,7 @@ export default function Hero({ site, dark }) {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             />
             <motion.div
-                className="absolute top-1/3 right-1/4 w-2 h-2 bg-purple-400/80 rounded-full"
+                className="hidden sm:block absolute top-1/3 right-1/4 w-2 h-2 bg-purple-400/80 rounded-full"
                 animate={{
                     scale: [1, 1.5, 1],
                     opacity: [0.8, 1, 0.8],
@@ -182,19 +183,25 @@ export default function Hero({ site, dark }) {
             >
                 {/* Content */}
                 <div>
-                    {/* Badge */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="inline-flex items-center px-4 py-2 bg-primary-100/80 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-6 shadow-sm backdrop-blur-sm border border-primary-200/50 dark:border-primary-700/30"
-                    >
-                        <span className="w-2 h-2 bg-primary-500 rounded-full mr-2 animate-pulse"></span>
-                        Hello, I'm {site.name} 👋
+                    {/* Badge with StarBorder */}
+                    <motion.div variants={itemVariants}>
+                        <StarBorder
+                            as="div"
+                            color="#0ea5e9"
+                            speed="5s"
+                            className="mb-4 sm:mb-6"
+                        >
+                            <div className="flex items-center px-4 py-2 text-primary-700 dark:text-primary-300 text-sm font-medium">
+                                <span className="w-2 h-2 bg-primary-500 rounded-full mr-2 animate-pulse"></span>
+                                Hello, I'm {site.name} 👋
+                            </div>
+                        </StarBorder>
                     </motion.div>
 
                     {/* Main Heading - Premium Split Text Animation */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+                        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
                     >
                         <AnimatedText text="Full Stack" isGradient={true} />
                         <AnimatedText text="Developer" className="text-gray-900 dark:text-white block" />
@@ -231,40 +238,48 @@ export default function Hero({ site, dark }) {
                                 Get In Touch
                             </motion.button>
 
-                            <motion.a
+                            <StarBorder
+                                as="a"
                                 href="/pubudu_resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-4 sm:px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 flex-1 sm:flex-initial whitespace-nowrap"
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.98 }}
+                                color="#a855f7"
+                                speed="4s"
+                                className="flex-1 sm:flex-initial"
                             >
-                                <FaDownload />
-                                <span className="hidden xs:inline">Resume</span>
-                                <span className="xs:hidden">CV</span>
-                            </motion.a>
+                                <div className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                                    <FaDownload />
+                                    <span className="hidden xs:inline">Resume</span>
+                                    <span className="xs:hidden">CV</span>
+                                </div>
+                            </StarBorder>
                         </div>
                     </motion.div>
 
                     {/* Social Links & Status */}
                     <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 sm:gap-6">
                         <div className="flex gap-3">
-                            {socialLinks.map(({ icon: Icon, href, label, color }, index) => (
-                                <motion.a
+                            {socialLinks.map(({ icon: Icon, href, label, color, starColor }, index) => (
+                                <motion.div
                                     key={label}
-                                    href={href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`p-2.5 sm:p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-gray-600 dark:text-gray-400 ${color}`}
-                                    aria-label={label}
-                                    whileHover={{ scale: 1.15, rotate: 5 }}
-                                    whileTap={{ scale: 0.95 }}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.8 + index * 0.1 }}
                                 >
-                                    <Icon size={18} className="sm:w-5 sm:h-5" />
-                                </motion.a>
+                                    <StarBorder
+                                        as="a"
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        color={starColor}
+                                        speed="5s"
+                                        aria-label={label}
+                                    >
+                                        <div className={`p-2.5 sm:p-3 text-gray-600 dark:text-gray-400 ${color} transition-colors duration-300`}>
+                                            <Icon size={18} className="sm:w-5 sm:h-5" />
+                                        </div>
+                                    </StarBorder>
+                                </motion.div>
                             ))}
                         </div>
 
@@ -281,6 +296,8 @@ export default function Hero({ site, dark }) {
                             <span className="xs:hidden">Available</span>
                         </motion.div>
                     </motion.div>
+
+
                 </div>
 
                 {/* Profile Image */}

@@ -126,7 +126,7 @@ export default function Contact() {
     ]
 
     return (
-        <section id="contact" className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+        <section id="contact" className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-15 animate-pulse animation-delay-2000"></div>
@@ -153,7 +153,7 @@ export default function Contact() {
                     </motion.div>
 
                     <motion.h2
-                        className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
+                        className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -177,7 +177,7 @@ export default function Contact() {
                 <div className="grid lg:grid-cols-2 gap-12">
                     {/* Contact Form */}
                     <motion.div
-                        className="card p-8"
+                        className="card p-5 md:p-8"
                         variants={itemVariants}
                         initial="hidden"
                         whileInView="visible"
@@ -372,7 +372,7 @@ export default function Contact() {
                         <motion.div variants={itemVariants} className="card p-6">
                             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Follow Me</h3>
 
-                            <div className="flex gap-4">
+                            <div className="flex flex-wrap gap-4">
                                 {socialLinks.map(({ icon: Icon, href, label, color }) => (
                                     <motion.a
                                         key={label}

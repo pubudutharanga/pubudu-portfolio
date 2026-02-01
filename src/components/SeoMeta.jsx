@@ -28,7 +28,7 @@ const SeoMeta = ({
         "@context": "https://schema.org",
         "@type": "Person",
         "name": SITE.name,
-        "jobTitle": "Full Stack Developer",
+        "jobTitle": "Full Stack Developer & Undergraduate",
         "url": siteUrl,
         "image": `${siteUrl}/PT.png`, // Replace with actual profile image if avail
         "gender": "Male",

@@ -1,0 +1,13 @@
+
+> pubudu-portfolio@1.0.0 build
+> npm run sitemap && vite build
+
+
+> pubudu-portfolio@1.0.0 sitemap
+> node scripts/generate-sitemap.js
+
+🚀 Generating sitemap...
+✅ Sitemap generated successfully at D:\pubudu-portfolio\public\sitemap.xml
+   Total URLs: 10
+'vite' is not recognized as an internal or external command,
+operable program or batch file.

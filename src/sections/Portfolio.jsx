@@ -3,6 +3,7 @@ import { PROJECTS } from '../data'
 import { FaGithub, FaExternalLinkAlt, FaCode, FaFilter, FaTimes, FaArrowRight, FaRegClock, FaCheck, FaSpinner } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HashLink } from 'react-router-hash-link';
+import { Helmet } from 'react-helmet-async';
 
 export default function Portfolio() {
     const [filter, setFilter] = useState('All')
@@ -16,6 +17,20 @@ export default function Portfolio() {
     const filteredProjects = PROJECTS.filter(p =>
         filter === 'All' ? true : p.category === filter
     )
+
+    // Schema for Projects
+    const projectsSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": PROJECTS.map((project, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "url": project.live || project.github,
+            "name": project.title,
+            "description": project.description,
+            "image": project.image.startsWith('http') ? project.image : `${window.location.origin}${project.image.replace(/^\./, '')}`
+        }))
+    }
 
     // Status configuration with icons and colors
     const statusConfig = {
@@ -94,6 +109,9 @@ export default function Portfolio() {
 
     return (
         <section id="portfolio" className="section-padding relative overflow-hidden bg-gray-50 dark:bg-gray-900/50">
+            <Helmet>
+                <script type="application/ld+json">{JSON.stringify(projectsSchema)}</script>
+            </Helmet>
             {/* Background Elements */}
             <div className="absolute top-10 left-10 w-64 h-64 bg-primary-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-200 rounded-full blur-3xl opacity-10 animate-pulse animation-delay-2000"></div>
@@ -115,7 +133,7 @@ export default function Portfolio() {
                     <h2 className="section-title">
                         Featured <span className="gradient-text">Projects</span>
                     </h2>
-                    <p className="section-subtitle">
+                    <p className="section-subtitle max-w-2xl mx-auto">
                         A collection of projects that showcase my skills in full-stack development,
                         problem-solving, and creating exceptional user experiences.
                     </p>

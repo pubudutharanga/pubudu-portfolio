@@ -151,25 +151,43 @@ export default function Blog({ dark }) {
     }
 
     return (
-        <div className="pt-24 pb-16 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
             <SeoMeta
                 title="Blog"
                 description="Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering."
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    "itemListElement": [{
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Home",
-                        "item": window.location.origin
-                    }, {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "Blog",
-                        "item": window.location.href
-                    }]
-                }}
+                schema={[
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [{
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": window.location.origin
+                        }, {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Blog",
+                            "item": window.location.href
+                        }]
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "CollectionPage",
+                        "name": "Blog - Pubudu Tharanga",
+                        "description": "Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering.",
+                        "url": window.location.href,
+                        "mainEntity": {
+                            "@type": "ItemList",
+                            "itemListElement": BLOG_POSTS.map((post, index) => ({
+                                "@type": "ListItem",
+                                "position": index + 1,
+                                "url": `${window.location.origin}/blog/${post.id}`,
+                                "name": post.title
+                            }))
+                        }
+                    }
+                ]}
             />
             {/* Hero Section for Blog */}
             <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
@@ -510,6 +528,7 @@ export default function Blog({ dark }) {
                                             speed={0.8}
                                             chaos={0.08}
                                             borderRadius={16}
+                                            borderOffset={24}
                                             style={{ borderRadius: 16 }}
                                         >
                                             {CardContent}

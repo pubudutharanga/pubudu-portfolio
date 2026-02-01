@@ -26,6 +26,7 @@ const ElectricBorder = ({
     speed = 1,
     chaos = 0.12,
     borderRadius = 24,
+    borderOffset = 60,
     className,
     style
 }) => {
@@ -161,8 +162,6 @@ const ElectricBorder = ({
         const frequency = 10;
         const baseFlatness = 0;
         const displacement = 60;
-        const borderOffset = 60;
-
         const updateSize = () => {
             const rect = container.getBoundingClientRect();
             const width = rect.width + borderOffset * 2;
@@ -269,7 +268,7 @@ const ElectricBorder = ({
             }
             resizeObserver.disconnect();
         };
-    }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
+    }, [color, speed, chaos, borderRadius, borderOffset, octavedNoise, getRoundedRectPoint]);
 
     return (
         <div

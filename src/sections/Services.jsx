@@ -59,7 +59,8 @@ export default function Services() {
     }
 
     return (
-        <section id="services" className="py-20 px-4 bg-white dark:bg-gray-900 relative overflow-hidden">
+
+        <section id="services" className="py-12 md:py-20 px-4 bg-white dark:bg-gray-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-200 rounded-full blur-3xl opacity-15 animate-pulse"></div>
@@ -67,7 +68,7 @@ export default function Services() {
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
                 <motion.div
-                    className="text-center mb-16"
+                    className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
                     whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
@@ -77,7 +78,7 @@ export default function Services() {
                         <FaRocket className="mr-2" />
                         What I Offer
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
                         Professional <span className="text-blue-600">Services</span>
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
@@ -87,106 +88,105 @@ export default function Services() {
                 </motion.div>
 
                 {/* Services Grid */}
-                <div className="grid lg:grid-cols-3 gap-8 mb-16">
+                <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
                     {SERVICES.map((service, index) => {
                         const IconComponent = serviceIcons[service.title] || FaCode
                         const isSelected = selectedService === index
                         const isHoveredCard = isHovered === index
 
-                        return (
-                            <div
-                                key={service.title}
-                                className="relative group cursor-pointer"
-                                onMouseEnter={() => setIsHovered(index)}
-                                onMouseLeave={() => setIsHovered(null)}
-                                onClick={() => setSelectedService(index)}
-                            >
-                                {/* Main Service Card */}
-                                <div className={`relative overflow-hidden rounded-2xl p-8 h-full border-2 transition-all duration-500 ${isSelected
-                                    ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-500 shadow-2xl shadow-blue-500/25'
-                                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl'
-                                    }`}>
+                        return (<div
+                            key={service.title}
+                            className="relative group cursor-pointer"
+                            onMouseEnter={() => setIsHovered(index)}
+                            onMouseLeave={() => setIsHovered(null)}
+                            onClick={() => setSelectedService(index)}
+                        >
+                            {/* Main Service Card */}
+                            <div className={`relative overflow-hidden rounded-2xl p-5 md:p-8 h-full border-2 transition-all duration-500 ${isSelected
+                                ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-500 shadow-2xl shadow-blue-500/25'
+                                : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl'
+                                }`}>
 
-                                    {/* Animated Border */}
-                                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isSelected && 'opacity-100'
-                                        }`}></div>
-                                    <div className="absolute inset-[2px] rounded-2xl bg-white dark:bg-gray-800"></div>
-
-                                    {/* Content */}
-                                    <div className="relative z-10">
-                                        {/* Icon */}
-                                        <div className={`inline-flex p-4 rounded-2xl mb-6 transition-colors duration-300 ${isSelected
-                                            ? 'bg-blue-500 text-white'
-                                            : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                                            }`}>
-                                            <IconComponent size={24} />
-                                        </div>
-
-                                        {/* Title */}
-                                        <h3 className={`text-2xl font-bold mb-4 transition-colors duration-300 ${isSelected
-                                            ? 'text-blue-600 dark:text-blue-400'
-                                            : 'text-gray-900 dark:text-white'
-                                            }`}>
-                                            {service.title}
-                                        </h3>
-
-                                        {/* Description */}
-                                        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                                            {service.description}
-                                        </p>
-
-                                        {/* Features */}
-                                        <ul className="space-y-3 mb-8">
-                                            {service.features.slice(0, 3).map((feature, i) => (
-                                                <li
-                                                    key={feature}
-                                                    className="flex items-center gap-3 text-sm"
-                                                >
-                                                    <FaCheck className={`flex-shrink-0 ${isSelected
-                                                        ? 'text-blue-500'
-                                                        : 'text-green-500'
-                                                        }`} size={14} />
-                                                    <span className="text-gray-600 dark:text-gray-300">{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-
-                                        {/* CTA Button */}
-                                        <button
-                                            className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 ${isSelected
-                                                ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/25'
-                                                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                                                }`}
-                                        >
-                                            Get Started
-                                            <FaArrowRight size={14} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Glow Effect */}
-                                <div className={`absolute inset-0 rounded-2xl blur-xl transition-all duration-500 ${isSelected
-                                    ? 'bg-blue-500/20 opacity-100'
-                                    : 'bg-blue-500/10 opacity-0 group-hover:opacity-50'
+                                {/* Animated Border */}
+                                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isSelected && 'opacity-100'
                                     }`}></div>
+                                <div className="absolute inset-[2px] rounded-2xl bg-white dark:bg-gray-800"></div>
+
+                                {/* Content */}
+                                <div className="relative z-10">
+                                    {/* Icon */}
+                                    <div className={`inline-flex p-4 rounded-2xl mb-6 transition-colors duration-300 ${isSelected
+                                        ? 'bg-blue-500 text-white'
+                                        : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                                        }`}>
+                                        <IconComponent size={24} />
+                                    </div>
+
+                                    {/* Title */}
+                                    <h3 className={`text-xl md:text-2xl font-bold mb-4 transition-colors duration-300 ${isSelected
+                                        ? 'text-blue-600 dark:text-blue-400'
+                                        : 'text-gray-900 dark:text-white'
+                                        }`}>
+                                        {service.title}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-sm md:text-base">
+                                        {service.description}
+                                    </p>
+
+                                    {/* Features */}
+                                    <ul className="space-y-3 mb-8">
+                                        {service.features.slice(0, 3).map((feature, i) => (
+                                            <li
+                                                key={feature}
+                                                className="flex items-center gap-3 text-sm"
+                                            >
+                                                <FaCheck className={`flex-shrink-0 ${isSelected
+                                                    ? 'text-blue-500'
+                                                    : 'text-green-500'
+                                                    }`} size={14} />
+                                                <span className="text-gray-600 dark:text-gray-300">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {/* CTA Button */}
+                                    <button
+                                        className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 ${isSelected
+                                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/25'
+                                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                                            }`}
+                                    >
+                                        Get Started
+                                        <FaArrowRight size={14} />
+                                    </button>
+                                </div>
                             </div>
+
+                            {/* Glow Effect */}
+                            <div className={`absolute inset-0 rounded-2xl blur-xl transition-all duration-500 ${isSelected
+                                ? 'bg-blue-500/20 opacity-100'
+                                : 'bg-blue-500/10 opacity-0 group-hover:opacity-50'
+                                }`}></div>
+                        </div>
                         )
                     })}
                 </div>
 
                 {/* Detailed Service View */}
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 md:p-8 shadow-lg">
+                    <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
                         {/* Content */}
                         <div className="space-y-6">
                             <div>
                                 <span className="text-blue-600 dark:text-blue-400 font-medium uppercase tracking-wide text-sm">
                                     Service Details
                                 </span>
-                                <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-4">
+                                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-4">
                                     {SERVICES[selectedService].title}
                                 </h3>
-                                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {SERVICES[selectedService].description}
                                 </p>
                             </div>
@@ -204,7 +204,7 @@ export default function Services() {
                                             className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50"
                                         >
                                             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                            <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                                            <span className="text-gray-700 dark:text-gray-300 text-sm md:text-base">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -234,14 +234,14 @@ export default function Services() {
                             <div className="flex flex-col sm:flex-row gap-4 pt-6">
                                 <HashLink
                                     smooth to="/#contact"
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center gap-2"
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center gap-2"
                                 >
                                     Start Your Project
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </HashLink>
                                 <a
                                     href="mailto:pubudutharange@gmail.com"
-                                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center"
+                                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center"
                                 >
                                     Schedule Consultation
                                 </a>
@@ -267,7 +267,7 @@ export default function Services() {
                             </div>
 
                             {/* Stats Card */}
-                            <div className="absolute -bottom-6 -right-2 sm:-right-6 bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl border border-gray-100 dark:border-gray-700 max-w-[140px] sm:max-w-none">
+                            <div className="absolute -bottom-6 right-0 sm:-right-6 bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl border border-gray-100 dark:border-gray-700 max-w-[140px] sm:max-w-none">
                                 <div className="text-center">
                                     <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1">100%</div>
                                     <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Client Satisfaction</div>
@@ -290,14 +290,14 @@ export default function Services() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <HashLink
                                 smooth to="/#contact"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-medium transition-colors duration-300 text-lg flex items-center justify-center gap-2"
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 text-lg flex items-center justify-center gap-2"
                             >
                                 Get Free Consultation
                                 <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                             </HashLink>
                             <HashLink
                                 smooth to="/#portfolio"
-                                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl font-medium transition-colors duration-300 text-lg"
+                                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 text-lg"
                             >
                                 View My Work
                             </HashLink>
