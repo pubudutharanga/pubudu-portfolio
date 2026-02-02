@@ -19,7 +19,11 @@ export default defineConfig({
             manifest: false,
             strategies: 'generateSW',
             workbox: {
-                globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,woff2}'],
+                globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
+                // Exclude large images from precaching - they'll be loaded on-demand
+                globIgnores: ['**/blog*.png', '**/blog*.jpg', '**/pro*.png', '**/og-image*'],
+                // Increase limit for other assets
+                maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3MB
                 navigateFallback: 'index.html',
                 navigateFallbackDenylist: [/^\/api/, /^\/robots\.txt/, /^\/sitemap\.xml/],
                 cleanupOutdatedCaches: true,
