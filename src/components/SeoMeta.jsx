@@ -62,16 +62,7 @@ const SeoMeta = ({
         }
     };
 
-    // Construct the final JSON-LD array
-    let jsonLd = [personSchema];
 
-    if (schema) {
-        if (Array.isArray(schema)) {
-            jsonLd = [...jsonLd, ...schema];
-        } else {
-            jsonLd = [...jsonLd, schema];
-        }
-    }
 
     return (
         <Helmet>
@@ -99,8 +90,13 @@ const SeoMeta = ({
             <meta name="twitter:image" content={ogImage} />
             <meta name="twitter:creator" content="@PAbewarna29795" />
 
-            {/* Structured Data (JSON-LD) */}
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            {/* Structured Data (JSON-LD) - Person */}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+
+            {/* Dynamic Schema (e.g. WebSite, Article) */}
+            {schema && (
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            )}
         </Helmet>
     );
 };
