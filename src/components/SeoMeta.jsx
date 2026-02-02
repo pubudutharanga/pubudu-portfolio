@@ -24,31 +24,45 @@ const SeoMeta = ({
         : `${siteUrl}/og-image-2026.jpg`;
 
     // Base Person Schema (Identity) - valid for all pages as the "Author/Owner"
+    // Enhanced with ImageObject for better rich results (2025/2026 best practice)
     const personSchema = {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": `${siteUrl}/#person`,
         "name": SITE.name,
         "alternateName": ["Pubudu Tharanga Matara", "Pubudu"],
         "jobTitle": "Full Stack Developer",
         "url": siteUrl,
-        "image": `${siteUrl}/PTb.png`, // Using the background-removed profile image for cleaner look
+        "image": {
+            "@type": "ImageObject",
+            "url": `${siteUrl}/PTb.png`,
+            "width": 400,
+            "height": 400,
+            "caption": "Pubudu Tharanga - Full Stack Developer"
+        },
         "gender": "Male",
         "nationality": "Sri Lankan",
         "alumniOf": {
             "@type": "CollegeOrUniversity",
-            "name": "Sabaragamuwa University of Sri Lanka"
+            "name": "Sabaragamuwa University of Sri Lanka",
+            "url": "https://www.sab.ac.lk/"
+        },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
         },
         "sameAs": [
             SITE.linkedin,
             SITE.github,
             SITE.facebook,
-            "https://x.com/PAbewarna29795", // Assuming twitter handle based on meta tags
+            "https://x.com/PAbewarna29795"
         ],
         "knowsAbout": [
             "React", "Node.js", "Python", "JavaScript", "Full Stack Development",
             "Frontend Development", "Backend Development", "MERN Stack",
             "MongoDB", "Express.js", "Tailwind CSS", "API Development",
-            "Database Design", "Responsive Web Design", "Git"
+            "Database Design", "Responsive Web Design", "Git", "TypeScript",
+            "Next.js", "PostgreSQL", "Web Performance Optimization"
         ],
         "description": SITE.tagline,
         "email": `mailto:${SITE.email}`,
@@ -58,7 +72,41 @@ const SeoMeta = ({
             "streetAddress": SITE.address,
             "addressLocality": SITE.city,
             "postalCode": SITE.postalCode,
-            "addressCountry": SITE.country
+            "addressCountry": "LK"
+        }
+    };
+
+    // ProfessionalService Schema for local SEO
+    const professionalServiceSchema = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": `${siteUrl}/#business`,
+        "name": "Pubudu Tharanga - Full Stack Development Services",
+        "image": `${siteUrl}/og-image-2026.jpg`,
+        "url": siteUrl,
+        "telephone": SITE.phone,
+        "email": SITE.email,
+        "description": "Professional Full Stack Development services specializing in React, Node.js, and modern web technologies. Available for remote work worldwide.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": SITE.address,
+            "addressLocality": SITE.city,
+            "postalCode": SITE.postalCode,
+            "addressCountry": "LK"
+        },
+        "priceRange": "$$",
+        "serviceType": ["Web Development", "Full Stack Development", "UI/UX Design", "Technical Consulting"],
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 5.9549,
+                "longitude": 80.5550
+            },
+            "geoRadius": "50000"
+        },
+        "founder": {
+            "@id": `${siteUrl}/#person`
         }
     };
 
@@ -93,6 +141,11 @@ const SeoMeta = ({
             {/* Structured Data (JSON-LD) - Person */}
             <script type="application/ld+json">
                 {JSON.stringify(personSchema)}
+            </script>
+
+            {/* Structured Data (JSON-LD) - Professional Service for Local SEO */}
+            <script type="application/ld+json">
+                {JSON.stringify(professionalServiceSchema)}
             </script>
 
             {/* Dynamic Schema (e.g. WebSite, Article) */}

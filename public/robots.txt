@@ -4,24 +4,80 @@ Allow: /
 # Sitemap
 Sitemap: https://pubudu-tharanga.vercel.app/sitemap.xml
 
-# AI Crawlers
+# ===================================
+# AI Crawlers (2025-2026 Best Practices)
+# ===================================
+
+# Google AI Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Google-Other
+Allow: /
+
+# Microsoft / OpenAI
+User-agent: Bingbot
+Allow: /
+
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+# Anthropic
 User-agent: Claude-Web
 Allow: /
 
 User-agent: Anthropic-AI
 Allow: /
 
-User-agent: Google-Extended
+User-agent: ClaudeBot
 Allow: /
 
-User-agent: Bingbot
+# Perplexity
+User-agent: PerplexityBot
 Allow: /
 
-# LLMs.txt for AI tools
-# See: https://pubudu-tharanga.vercel.app/llms.txt
+# Meta / Facebook
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl (used for AI training datasets)
+User-agent: CCBot
+Allow: /
+
+# Bytedance
+User-agent: Bytespider
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# ===================================
+# Additional Resources for AI/LLMs
+# ===================================
+# LLMs.txt: https://pubudu-tharanga.vercel.app/llms.txt
+# AI.txt: https://pubudu-tharanga.vercel.app/ai.txt
+# Humans.txt: https://pubudu-tharanga.vercel.app/humans.txt

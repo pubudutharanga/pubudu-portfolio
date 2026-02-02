@@ -21,23 +21,23 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
-
     <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-
-    <!-- JSON-LD is now injected dynamically by SeoMeta.jsx -->
 
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Google Search Console Verification - Add your code here -->
+    <!-- Critical Fonts - Load with display swap for better LCP -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+    <!-- JSON-LD is now injected dynamically by SeoMeta.jsx -->
+
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="-V0RKnDbdKZRh-fAsPHmz3mZXuzZtEjYbXh0m-s5NOk" />
+
+</head>
 
 <body class="antialiased">
     <div id="root"></div>

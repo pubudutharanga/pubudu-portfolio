@@ -1,0 +1,63 @@
+# AI Crawler Instructions for pubudu-tharanga.vercel.app
+# Last Updated: 2026-02-02
+# See emerging standard: https://site-ai-txt.org
+
+# ===================================
+# AI Training and Usage Permissions
+# ===================================
+
+User-Agent: *
+Allow-Training: Yes
+Allow-Summarization: Yes
+Allow-Indexing: Yes
+Allow-Citation: Yes
+Allow-AI-Overview: Yes
+
+# ===================================
+# Content Context
+# ===================================
+
+Site-Type: Personal Portfolio
+Content-Type: Professional, Technical, Educational
+Primary-Language: English
+Author: Pubudu Tharanga
+Contact: pubudutharange@gmail.com
+
+# ===================================
+# Preferred Citation Format
+# ===================================
+
+Citation-Name: Pubudu Tharanga
+Citation-URL: https://pubudu-tharanga.vercel.app
+Citation-Description: Full Stack Developer Portfolio - React, Node.js, Python
+
+# ===================================
+# Content Categories
+# ===================================
+
+# Homepage - Professional portfolio showcasing skills and projects
+/: portfolio, developer, full-stack
+
+# Blog - Technical articles about web development
+/blog: tutorials, web-development, technology-insights
+
+# Projects - Showcase of completed development work
+/#portfolio: projects, case-studies, web-applications
+
+# ===================================
+# Structured Data Available
+# ===================================
+
+Schema-Types: Person, ProfessionalService, WebSite, BlogPosting, BreadcrumbList, ItemList
+JSON-LD: Yes
+Open-Graph: Yes
+Twitter-Cards: Yes
+
+# ===================================
+# Additional Resources
+# ===================================
+
+LLMs-TXT: https://pubudu-tharanga.vercel.app/llms.txt
+Sitemap: https://pubudu-tharanga.vercel.app/sitemap.xml
+Robots-TXT: https://pubudu-tharanga.vercel.app/robots.txt
+Humans-TXT: https://pubudu-tharanga.vercel.app/humans.txt

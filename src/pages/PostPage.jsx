@@ -456,8 +456,8 @@ export default function PostPage() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
-                                    <img src={post.author?.avatarLight || "/PT_light.webp"} alt="" className="w-full h-full object-cover dark:hidden" />
-                                    <img src={post.author?.avatarDark || "/PT_dark.webp"} alt="" className="w-full h-full object-cover hidden dark:block" />
+                                    <img src={post.author?.avatarLight || "/PT_light.webp"} alt={`${post.author?.name || "Pubudu Tharanga"} - Author`} className="w-full h-full object-cover dark:hidden" />
+                                    <img src={post.author?.avatarDark || "/PT_dark.webp"} alt={`${post.author?.name || "Pubudu Tharanga"} - Author`} className="w-full h-full object-cover hidden dark:block" />
                                 </div>
                                 <span>{post.author?.name || "Pubudu Tharanga"}</span>
                             </div>
