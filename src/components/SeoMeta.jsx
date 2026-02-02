@@ -28,14 +28,21 @@ const SeoMeta = ({
         "@context": "https://schema.org",
         "@type": "Person",
         "name": SITE.name,
-        "jobTitle": "Full Stack Developer & Undergraduate",
+        "alternateName": ["Pubudu Tharanga Matara", "Pubudu"],
+        "jobTitle": "Full Stack Developer",
         "url": siteUrl,
-        "image": `${siteUrl}/PT.png`, // Replace with actual profile image if avail
+        "image": `${siteUrl}/PTb.png`, // Using the background-removed profile image for cleaner look
         "gender": "Male",
+        "nationality": "Sri Lankan",
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Sabaragamuwa University of Sri Lanka"
+        },
         "sameAs": [
             SITE.linkedin,
             SITE.github,
-            SITE.facebook
+            SITE.facebook,
+            "https://x.com/PAbewarna29795", // Assuming twitter handle based on meta tags
         ],
         "knowsAbout": [
             "React", "Node.js", "Python", "JavaScript", "Full Stack Development",
@@ -90,7 +97,7 @@ const SeoMeta = ({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description || SITE.tagline} />
             <meta name="twitter:image" content={ogImage} />
-            <meta name="twitter:creator" content="@pubudutharanga" />
+            <meta name="twitter:creator" content="@PAbewarna29795" />
 
             {/* Structured Data (JSON-LD) */}
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
