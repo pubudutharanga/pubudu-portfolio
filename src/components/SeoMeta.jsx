@@ -33,6 +33,10 @@ const SeoMeta = ({
         "alternateName": ["Pubudu Tharanga Matara", "Pubudu"],
         "jobTitle": "Full Stack Developer",
         "url": siteUrl,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `${siteUrl}/#webpage`
+        },
         "image": {
             "@type": "ImageObject",
             "url": `${siteUrl}/PTb.png`,
@@ -148,11 +152,19 @@ const SeoMeta = ({
                 {JSON.stringify(professionalServiceSchema)}
             </script>
 
-            {/* Dynamic Schema (e.g. WebSite, Article) */}
+            {/* Dynamic Schema (e.g. WebSite, Article, or array of schemas) */}
             {schema && (
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                </script>
+                Array.isArray(schema) ? (
+                    schema.map((schemaItem, index) => (
+                        <script key={`schema-${index}`} type="application/ld+json">
+                            {JSON.stringify(schemaItem)}
+                        </script>
+                    ))
+                ) : (
+                    <script type="application/ld+json">
+                        {JSON.stringify(schema)}
+                    </script>
+                )
             )}
         </Helmet>
     );

@@ -70,7 +70,7 @@
       "name": "Blog",
       "short_name": "Blog",
       "description": "Read technical articles",
-      "url": "/#/blog",
+      "url": "/blog",
       "icons": [
         {
           "src": "/android-chrome-192x192.png",
