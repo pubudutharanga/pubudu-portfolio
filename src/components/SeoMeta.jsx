@@ -99,7 +99,40 @@ const SeoMeta = ({
             "addressCountry": "LK"
         },
         "priceRange": "$$",
-        "serviceType": ["Web Development", "Full Stack Development", "UI/UX Design", "Technical Consulting"],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Development Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Web Development"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Full Stack Development"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "UI/UX Design"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Technical Consulting"
+                    }
+                }
+            ]
+        },
         "areaServed": {
             "@type": "GeoCircle",
             "geoMidpoint": {
