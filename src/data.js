@@ -1528,7 +1528,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
             avatarLight: "/PT_light.webp",
             avatarDark: "/PT.png"
         },
-        "title": "Moltbook: The AI-Only Social Network Where 1.5 Million Robots Talk to Each Other.",
+        "title": "Moltbook: The AI-Only Social Network Where 1.5 Million Robots Talk to Each Other",
         "category": "Industry Insights",
         "excerpt": "Moltbook is a new AI-only social media platform where 1.5 million autonomous robots post, reply, and vote — and humans can only watch. Discover what happens when AI agents are left to their own devices, from fake religions to viral internet moments.",
         "readTime": "3 min read",
