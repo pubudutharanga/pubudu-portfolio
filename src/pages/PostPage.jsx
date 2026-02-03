@@ -325,7 +325,7 @@ export default function PostPage() {
             <SeoMeta
                 title={post.title}
                 description={post.excerpt}
-                keywords={`${post.tags?.join(', ') || ''}, Pubudu Tharanga, ${post.category}, blog`}
+                keywords={post.seoKeywords || `${post.tags?.join(', ') || ''}, Pubudu Tharanga, ${post.category}, blog`}
                 canonical={`https://pubudu-tharanga.vercel.app/blog/${post.id}`}
                 type="article"
                 image={post.featured}
@@ -354,24 +354,38 @@ export default function PostPage() {
                         "@context": "https://schema.org",
                         "@type": "BlogPosting",
                         "headline": post.title,
+                        "alternativeHeadline": post.excerpt,
                         "image": [
                             post.featured.startsWith('http')
                                 ? post.featured
                                 : `https://pubudu-tharanga.vercel.app${post.featured.startsWith('/') ? '' : '/'}${post.featured}`
                         ],
                         "datePublished": post.date,
-                        "dateModified": post.date, // Update this if you have modified date
+                        "dateModified": post.date,
                         "author": [{
                             "@type": "Person",
                             "name": "Pubudu Tharanga",
                             "url": "https://pubudu-tharanga.vercel.app/"
                         }],
+                        "publisher": {
+                            "@type": "Person",
+                            "name": "Pubudu Tharanga",
+                            "url": "https://pubudu-tharanga.vercel.app/",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://pubudu-tharanga.vercel.app/PTb.png"
+                            }
+                        },
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": `https://pubudu-tharanga.vercel.app/blog/${post.id}`
                         },
                         "description": post.excerpt,
-                        "articleBody": stripHtml(post.content)
+                        "articleBody": stripHtml(post.content),
+                        "keywords": post.tags?.join(', ') || post.category,
+                        "articleSection": post.category,
+                        "inLanguage": "en-US",
+                        "wordCount": stripHtml(post.content).split(/\s+/).length
                     }
                 ]}
             />
