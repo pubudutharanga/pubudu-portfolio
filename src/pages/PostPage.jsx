@@ -385,7 +385,11 @@ export default function PostPage() {
                         "keywords": post.tags?.join(', ') || post.category,
                         "articleSection": post.category,
                         "inLanguage": "en-US",
-                        "wordCount": stripHtml(post.content).split(/\s+/).length
+                        "wordCount": stripHtml(post.content).split(/\s+/).length,
+                        "speakable": {
+                            "@type": "SpeakableSpecification",
+                            "cssSelector": [".blog-content h2", ".blog-content p:first-of-type", ".excerpt"]
+                        }
                     }
                 ]}
             />

@@ -7,7 +7,11 @@
 
     <!-- Primary Meta Tags (Managed by React Helmet) -->
     <!-- Essential Fallbacks Only -->
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- Static Canonical URL (Feb 2026 JS SEO Best Practice) -->
+    <!-- Canonicalization happens before JS rendering, so static canonical is critical -->
+    <link rel="canonical" href="https://pubudu-tharanga.vercel.app/" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0ea5e9">
@@ -31,6 +35,9 @@
 
     <!-- Critical Fonts - Load with display swap for better LCP -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+    <!-- Preload Critical LCP Image for Core Web Vitals -->
+    <link rel="preload" href="/og-image-2026.jpg" as="image" type="image/jpeg">
 
     <!-- JSON-LD is now injected dynamically by SeoMeta.jsx -->
 

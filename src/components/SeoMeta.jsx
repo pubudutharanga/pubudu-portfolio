@@ -147,6 +147,30 @@ const SeoMeta = ({
         }
     };
 
+    // WebSite Schema for Google Discover optimization (Feb 2026 Core Update)
+    // Helps with site identity signals and potential sitelinks searchbox
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        "name": SITE.name,
+        "alternateName": "Pubudu Tharanga Portfolio",
+        "url": siteUrl,
+        "description": SITE.tagline,
+        "publisher": {
+            "@id": `${siteUrl}/#person`
+        },
+        "inLanguage": "en-US",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": `${siteUrl}/blog?q={search_term_string}`
+            },
+            "query-input": "required name=search_term_string"
+        }
+    };
+
 
 
     return (
@@ -183,6 +207,11 @@ const SeoMeta = ({
             {/* Structured Data (JSON-LD) - Professional Service for Local SEO */}
             <script type="application/ld+json">
                 {JSON.stringify(professionalServiceSchema)}
+            </script>
+
+            {/* Structured Data (JSON-LD) - WebSite for Discover (Feb 2026) */}
+            <script type="application/ld+json">
+                {JSON.stringify(websiteSchema)}
             </script>
 
             {/* Dynamic Schema (e.g. WebSite, Article, or array of schemas) */}

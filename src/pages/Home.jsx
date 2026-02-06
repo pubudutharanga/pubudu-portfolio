@@ -14,22 +14,15 @@ export default function Home({ site, dark }) {
         schema={[
           {
             "@context": "https://schema.org",
-            "@type": "WebSite",
-            "@id": `${site.siteUrl}#website`,
-            "name": site.name,
-            "url": site.siteUrl,
-            "description": "Full Stack Developer Portfolio - Building digital experiences with modern technologies",
-            "inLanguage": "en-US",
-            "publisher": {
-              "@id": `${site.siteUrl}#person`
+            "@type": "ProfilePage",
+            "@id": `${site.siteUrl}#profilepage`,
+            "mainEntity": {
+              "@id": `${site.siteUrl}/#person`
             },
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": `${site.siteUrl}blog?q={search_term_string}`
-              },
-              "query-input": "required name=search_term_string"
+            "dateCreated": "2024-01-01",
+            "dateModified": "2026-02-06",
+            "about": {
+              "@id": `${site.siteUrl}/#person`
             }
           },
           {
@@ -41,13 +34,13 @@ export default function Home({ site, dark }) {
             "description": "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
             "inLanguage": "en-US",
             "isPartOf": {
-              "@id": `${site.siteUrl}#website`
+              "@id": `${site.siteUrl}/#website`
             },
             "about": {
-              "@id": `${site.siteUrl}#person`
+              "@id": `${site.siteUrl}/#person`
             },
             "datePublished": "2024-01-01",
-            "dateModified": "2026-02-02"
+            "dateModified": "2026-02-06"
           }
         ]}
       />

@@ -18,6 +18,9 @@ Allow: /
 User-agent: Google-Other
 Allow: /
 
+User-agent: Google-NotebookLM
+Allow: /
+
 # Microsoft / OpenAI
 User-agent: Bingbot
 Allow: /
