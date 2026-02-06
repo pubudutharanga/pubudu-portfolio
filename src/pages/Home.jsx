@@ -17,13 +17,11 @@ export default function Home({ site, dark }) {
             "@type": "ProfilePage",
             "@id": `${site.siteUrl}#profilepage`,
             "mainEntity": {
-              "@id": `${site.siteUrl}/#person`
+              "@type": "Person",
+              "@id": `${site.siteUrl}#person`
             },
-            "dateCreated": "2024-01-01",
-            "dateModified": "2026-02-06",
-            "about": {
-              "@id": `${site.siteUrl}/#person`
-            }
+            "dateCreated": "2024-01-01T00:00:00+05:30",
+            "dateModified": "2026-02-06T00:00:00+05:30"
           },
           {
             "@context": "https://schema.org",
@@ -34,13 +32,13 @@ export default function Home({ site, dark }) {
             "description": "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
             "inLanguage": "en-US",
             "isPartOf": {
-              "@id": `${site.siteUrl}/#website`
+              "@id": `${site.siteUrl}#website`
             },
             "about": {
-              "@id": `${site.siteUrl}/#person`
+              "@id": `${site.siteUrl}#person`
             },
-            "datePublished": "2024-01-01",
-            "dateModified": "2026-02-06"
+            "datePublished": "2024-01-01T00:00:00+05:30",
+            "dateModified": "2026-02-06T00:00:00+05:30"
           }
         ]}
       />
