@@ -148,8 +148,7 @@ export default function About({ dark }) {
                             >
                                 <a
                                     href="/pubudu_resume.pdf"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    download="Pubudu_Tharanga_Resume.pdf"
                                     className="btn-primary group flex items-center justify-center w-full sm:w-auto"
                                 >
                                     <FaDownload className="mr-2 group-hover:scale-110 transition-transform" />

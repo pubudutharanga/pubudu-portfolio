@@ -9,7 +9,7 @@ export default [
     {
         files: ['**/*.{js,jsx}'],
         languageOptions: {
-            ecmaVersion: 2020,
+            ecmaVersion: 2025,
             globals: globals.browser,
             parserOptions: {
                 ecmaVersion: 'latest',
@@ -27,7 +27,10 @@ export default [
             ...js.configs.recommended.rules,
             ...react.configs.recommended.rules,
             ...react.configs['jsx-runtime'].rules,
-            ...reactHooks.configs.recommended.rules,
+            // react-hooks v7 recommended includes many new strict rules;
+            // we keep the classic two for backward compatibility
+            'react-hooks/rules-of-hooks': 'error',
+            'react-hooks/exhaustive-deps': 'warn',
             'react/jsx-no-target-blank': 'off',
             'react-refresh/only-export-components': [
                 'warn',

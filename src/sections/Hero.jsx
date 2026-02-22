@@ -241,8 +241,7 @@ export default function Hero({ site, dark }) {
                             <StarBorder
                                 as="a"
                                 href="/pubudu_resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                download="Pubudu_Tharanga_Resume.pdf"
                                 color="#a855f7"
                                 speed="4s"
                                 className="flex-1 sm:flex-initial"
