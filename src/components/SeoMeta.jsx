@@ -17,10 +17,12 @@ const SeoMeta = ({
     // Construct full title
     const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} - ${SITE.title}`;
 
-    // Construct absolute URLs
-    const canonicalUrl = canonical || window.location.href;
+    // Construct absolute URLs - use pathname only to avoid query params/hashes in canonical
+    const canonicalUrl = canonical
+        ? (canonical.startsWith('http') ? canonical : `${siteUrl}${canonical.startsWith('/') ? '' : '/'}${canonical}`)
+        : `${siteUrl}${window.location.pathname.replace(/\/$/, '') || '/'}`;
     const ogImage = image
-        ? (image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`)
+        ? (image.startsWith('http') ? image : `${siteUrl}/${image.replace(/^\.?\//, '')}`)
         : `${siteUrl}/og-image-2026.jpg`;
 
     // Base Person Schema (Identity) - valid for all pages as the "Author/Owner"
@@ -147,8 +149,10 @@ const SeoMeta = ({
         }
     };
 
-    // WebSite Schema for Google Discover optimization (Feb 2026 Core Update)
+    // WebSite Schema for Google Discover optimization (Apr 2026 Core Update)
     // Helps with site identity signals and potential sitelinks searchbox
+    // Note: SearchAction removed — no functional search endpoint exists at /blog?q=
+    // Adding an invalid SearchAction causes Rich Results Test failures
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -160,15 +164,7 @@ const SeoMeta = ({
         "publisher": {
             "@id": `${siteUrl}/#person`
         },
-        "inLanguage": "en-US",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": `${siteUrl}/blog?q={search_term_string}`
-            },
-            "query-input": "required name=search_term_string"
-        }
+        "inLanguage": "en-US"
     };
 
 

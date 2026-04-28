@@ -15,30 +15,50 @@ export default function Home({ site, dark }) {
           {
             "@context": "https://schema.org",
             "@type": "ProfilePage",
-            "@id": `${site.siteUrl}#profilepage`,
+            "@id": `${site.siteUrl.replace(/\/$/, '')}/#profilepage`,
             "mainEntity": {
               "@type": "Person",
-              "@id": `${site.siteUrl}#person`
+              "@id": `${site.siteUrl.replace(/\/$/, '')}/#person`,
+              "name": site.name,
+              "alternateName": ["Pubudu", "Pubudu Tharanga Matara"],
+              "url": site.siteUrl,
+              "image": `${site.siteUrl.replace(/\/$/, '')}/PTb.png`,
+              "description": site.tagline,
+              "sameAs": [
+                site.linkedin,
+                site.github,
+                site.facebook
+              ]
             },
             "dateCreated": "2024-01-01T00:00:00+05:30",
-            "dateModified": "2026-02-06T00:00:00+05:30"
+            "dateModified": "2026-04-28T00:00:00+05:30"
           },
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": `${site.siteUrl}#webpage`,
+            "@id": `${site.siteUrl.replace(/\/$/, '')}/#webpage`,
             "url": site.siteUrl,
             "name": `${site.name} - Full Stack Developer & Undergraduate | React & Node.js Specialist`,
             "description": "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
             "inLanguage": "en-US",
             "isPartOf": {
-              "@id": `${site.siteUrl}#website`
+              "@id": `${site.siteUrl.replace(/\/$/, '')}/#website`
             },
             "about": {
-              "@id": `${site.siteUrl}#person`
+              "@id": `${site.siteUrl.replace(/\/$/, '')}/#person`
             },
             "datePublished": "2024-01-01T00:00:00+05:30",
-            "dateModified": "2026-02-06T00:00:00+05:30"
+            "dateModified": "2026-04-28T00:00:00+05:30"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": site.siteUrl
+            }]
           }
         ]}
       />

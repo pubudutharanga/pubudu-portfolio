@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BLOG_POSTS, BLOG_CATEGORIES } from '../data'
+import { BLOG_POSTS, BLOG_CATEGORIES, SITE } from '../data'
 import { Link } from 'react-router-dom'
 import { FaSearch, FaCalendar, FaClock, FaArrowRight, FaFilter, FaTags, FaUser, FaArrowLeft, FaShare } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -154,7 +154,9 @@ export default function Blog({ dark }) {
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
             <SeoMeta
                 title="Blog"
-                description="Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering."
+                description="Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering by Pubudu Tharanga."
+                canonical={`${SITE.siteUrl.replace(/\/$/, '')}/blog`}
+                keywords="tech blog, web development blog, react tutorials, node.js guides, pubudu tharanga blog, AI articles, full stack development"
                 schema={[
                     {
                         "@context": "https://schema.org",
@@ -163,12 +165,12 @@ export default function Blog({ dark }) {
                             "@type": "ListItem",
                             "position": 1,
                             "name": "Home",
-                            "item": window.location.origin
+                            "item": SITE.siteUrl.replace(/\/$/, '')
                         }, {
                             "@type": "ListItem",
                             "position": 2,
                             "name": "Blog",
-                            "item": window.location.href
+                            "item": `${SITE.siteUrl.replace(/\/$/, '')}/blog`
                         }]
                     },
                     {
@@ -176,13 +178,20 @@ export default function Blog({ dark }) {
                         "@type": "CollectionPage",
                         "name": "Blog - Pubudu Tharanga",
                         "description": "Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering.",
-                        "url": window.location.href,
+                        "url": `${SITE.siteUrl.replace(/\/$/, '')}/blog`,
+                        "isPartOf": {
+                            "@id": `${SITE.siteUrl.replace(/\/$/, '')}/#website`
+                        },
+                        "about": {
+                            "@id": `${SITE.siteUrl.replace(/\/$/, '')}/#person`
+                        },
+                        "inLanguage": "en-US",
                         "mainEntity": {
                             "@type": "ItemList",
                             "itemListElement": BLOG_POSTS.map((post, index) => ({
                                 "@type": "ListItem",
                                 "position": index + 1,
-                                "url": `${window.location.origin}/blog/${post.id}`,
+                                "url": `${SITE.siteUrl.replace(/\/$/, '')}/blog/${post.id}`,
                                 "name": post.title
                             }))
                         }
