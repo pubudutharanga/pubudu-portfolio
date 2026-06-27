@@ -8,6 +8,13 @@ const __dirname = path.dirname(__filename);
 const basePath = path.resolve(__dirname, '../dist');
 
 async function run() {
+    // Vercel's build environment doesn't have the necessary OS shared libraries to run Puppeteer/Chrome.
+    // We skip the critical CSS generation on Vercel to prevent the build from failing (Error Code 127).
+    if (process.env.VERCEL) {
+        console.log('Skipping critical CSS generation on Vercel to avoid Puppeteer missing library errors.');
+        return;
+    }
+
     const server = await preview({
         preview: { port: 4173 },
         configFile: false,
