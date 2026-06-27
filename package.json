@@ -54,7 +54,6 @@
     "react-helmet-async": {
       "react": "$react",
       "react-dom": "$react-dom"
-    },
-    "brace-expansion": "^1.1.13"
+    }
   }
 }
