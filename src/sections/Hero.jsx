@@ -209,8 +209,9 @@ export default function Hero({ site, dark }) {
 
                     {/* Tagline */}
                     <motion.p
-                        variants={itemVariants}
                         className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-lg"
+                        initial={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     >
                         I design and build exceptional digital experiences that are fast, accessible, and user-friendly.
                         Currently pursuing my degree while creating innovative web solutions.

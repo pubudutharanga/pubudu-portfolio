@@ -201,13 +201,22 @@ const Particles = ({
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
         if (prefersReducedMotion) return
 
-        handleResize()
-        particlesRef.current = initParticles(
-            dimensionsRef.current.width,
-            dimensionsRef.current.height
-        )
+        let initRaf1;
+        let initRaf2;
 
-        animate()
+        initRaf1 = requestAnimationFrame(() => {
+            initRaf2 = requestAnimationFrame(() => {
+                if (!canvasRef.current) return;
+                
+                handleResize()
+                particlesRef.current = initParticles(
+                    dimensionsRef.current.width,
+                    dimensionsRef.current.height
+                )
+
+                animate()
+            })
+        });
 
         window.addEventListener('resize', handleResize)
 
@@ -216,6 +225,8 @@ const Particles = ({
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current)
             }
+            if (initRaf1) cancelAnimationFrame(initRaf1)
+            if (initRaf2) cancelAnimationFrame(initRaf2)
         }
     }, [animate, handleResize, initParticles])
 

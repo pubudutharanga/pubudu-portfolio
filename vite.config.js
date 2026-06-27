@@ -20,10 +20,8 @@ export default defineConfig({
             strategies: 'generateSW',
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
-                // Exclude large images from precaching - they'll be loaded on-demand
                 globIgnores: ['**/blog*.png', '**/blog*.jpg', '**/pro*.png', '**/og-image*'],
-                // Increase limit for other assets
-                maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3MB
+                maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
                 navigateFallback: 'index.html',
                 navigateFallbackDenylist: [/^\/api/, /^\/robots\.txt/, /^\/sitemap\.xml/],
                 cleanupOutdatedCaches: true,
@@ -31,7 +29,27 @@ export default defineConfig({
                 skipWaiting: true,
                 runtimeCaching: []
             }
-        })
+        }),
+        {
+            name: 'inject-preload',
+            transformIndexHtml: {
+                order: 'post',
+                handler(html, ctx) {
+                    let preloadTags = '';
+                    if (ctx.bundle) {
+                        for (const fileName of Object.keys(ctx.bundle)) {
+                            if (fileName.endsWith('.css') && fileName.includes('index-')) {
+                                preloadTags += `<link rel="preload" href="/assets/${fileName.split('/').pop()}" as="style">\n    `;
+                            }
+                            if (fileName.endsWith('.js') && fileName.includes('index-')) {
+                                preloadTags += `<link rel="preload" href="/assets/${fileName.split('/').pop()}" as="script" crossorigin="anonymous">\n    `;
+                            }
+                        }
+                    }
+                    return html.replace('</head>', `${preloadTags}</head>`);
+                }
+            }
+        }
     ],
     base: '/',
     build: {
@@ -47,11 +65,11 @@ export default defineConfig({
         chunkSizeWarningLimit: 1600,
         rollupOptions: {
             output: {
-                manualChunks: {
-                    'react-vendor': ['react', 'react-dom'],
-                    'router-vendor': ['react-router-dom', 'react-router-hash-link'],
-                    'animation-vendor': ['framer-motion'],
-                },
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return 'vendor';
+                    }
+                }
             },
         },
         cssCodeSplit: true,

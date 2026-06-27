@@ -49,22 +49,36 @@ const ClickSpark = ({
             resizeTimeout = setTimeout(resizeCanvas, 100);
         };
 
+        let initRaf1;
+        let initRaf2;
+        const delayedResize = () => {
+            initRaf1 = requestAnimationFrame(() => {
+                initRaf2 = requestAnimationFrame(() => {
+                    if (canvasRef.current) resizeCanvas();
+                });
+            });
+        };
+
         if (isGlobal) {
             window.addEventListener('resize', handleResize);
-            resizeCanvas();
+            delayedResize();
             return () => {
                 window.removeEventListener('resize', handleResize);
                 clearTimeout(resizeTimeout);
+                if (initRaf1) cancelAnimationFrame(initRaf1);
+                if (initRaf2) cancelAnimationFrame(initRaf2);
             };
         } else {
             const parent = canvas.parentElement;
             if (parent) {
                 const ro = new ResizeObserver(handleResize);
                 ro.observe(parent);
-                resizeCanvas();
+                delayedResize();
                 return () => {
                     ro.disconnect();
                     clearTimeout(resizeTimeout);
+                    if (initRaf1) cancelAnimationFrame(initRaf1);
+                    if (initRaf2) cancelAnimationFrame(initRaf2);
                 };
             }
         }

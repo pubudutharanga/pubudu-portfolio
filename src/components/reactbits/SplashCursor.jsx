@@ -1002,7 +1002,13 @@ function SplashCursor({
         window.addEventListener('touchmove', handleTouchMove, { passive: true });
         window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
-        updateFrame();
+        let initRaf1;
+        let initRaf2;
+        initRaf1 = requestAnimationFrame(() => {
+            initRaf2 = requestAnimationFrame(() => {
+                updateFrame();
+            });
+        });
 
         // Cleanup function
         return () => {
@@ -1010,6 +1016,8 @@ function SplashCursor({
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
+            if (initRaf1) cancelAnimationFrame(initRaf1);
+            if (initRaf2) cancelAnimationFrame(initRaf2);
             window.removeEventListener('mousedown', handleMouseDown);
             document.body.removeEventListener('mousemove', handleFirstMouseMove);
             window.removeEventListener('mousemove', handleMouseMove);

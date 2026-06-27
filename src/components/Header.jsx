@@ -158,7 +158,6 @@ export default function Header({ site, dark, setDark }) {
                                 variants={containerVariants}
                                 initial="hidden"
                                 animate="visible"
-                                role="menu"
                             >
                                 {navItems.map((item, index) => (
                                     <motion.button

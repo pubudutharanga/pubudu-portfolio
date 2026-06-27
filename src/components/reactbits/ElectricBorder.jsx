@@ -177,10 +177,22 @@ const ElectricBorder = ({
             return { width, height };
         };
 
-        let { width, height } = updateSize();
+        let width = 0;
+        let height = 0;
+        
+        let initRaf1;
+        let initRaf2;
+        initRaf1 = requestAnimationFrame(() => {
+            initRaf2 = requestAnimationFrame(() => {
+                const size = updateSize();
+                width = size.width;
+                height = size.height;
+                animationRef.current = requestAnimationFrame(drawElectricBorder);
+            });
+        });
 
         const drawElectricBorder = currentTime => {
-            if (!canvas || !ctx) return;
+            if (!canvas || !ctx || width === 0 || height === 0) return;
 
             const deltaTime = (currentTime - lastFrameTimeRef.current) / 1000;
             timeRef.current += deltaTime * speed;
@@ -258,15 +270,17 @@ const ElectricBorder = ({
             width = newSize.width;
             height = newSize.height;
         });
-        resizeObserver.observe(container);
-
-        animationRef.current = requestAnimationFrame(drawElectricBorder);
+        if (containerRef.current) {
+            resizeObserver.observe(containerRef.current);
+        }
 
         return () => {
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);
             }
             resizeObserver.disconnect();
+            if (initRaf1) cancelAnimationFrame(initRaf1);
+            if (initRaf2) cancelAnimationFrame(initRaf2);
         };
     }, [color, speed, chaos, borderRadius, borderOffset, octavedNoise, getRoundedRectPoint]);
 
