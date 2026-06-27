@@ -366,7 +366,7 @@ export default function Blog({ dark }) {
                                                                 to={`/blog/${post.id}`}
                                                                 className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors flex items-center gap-2"
                                                             >
-                                                                Read Article
+                                                                <span>Read Article<span className="sr-only"> about {post.title}</span></span>
                                                                 <FaArrowRight size={12} />
                                                             </Link>
                                                         </motion.div>
@@ -528,7 +528,7 @@ export default function Blog({ dark }) {
                                                             className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                                                             aria-label={`Read more about ${post.title}`}
                                                         >
-                                                            Read More
+                                                            <span>Read More<span className="sr-only"> about {post.title}</span></span>
                                                             <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                                         </Link>
                                                     </div>
