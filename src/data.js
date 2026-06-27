@@ -62,7 +62,7 @@ export const PROJECTS = [
         results: ' Lightning-fast, fully responsive portfolio that loads in under 2 seconds and works flawlessly across all devices to showcase my work with professional polish.',
         live: 'https://pubudu-tharanga.vercel.app/',
         github: 'https://github.com/pubudutharanga/pubudu-portfolio',
-        image: './pro1.png',
+        image: './pro1.jpg',
         status: 'completed' // Use: 'planned', 'in progress', or 'completed'
     },
 
@@ -76,7 +76,7 @@ export const PROJECTS = [
         results: 'Tourists can get a idea about best places in Sri Lanka',
         live: 'https://pubudutharanga.github.io/Serendib-Explorer/',
         github: 'https://github.com/pubudutharanga/Serendib-Explorer',
-        image: './pro2.png',
+        image: './pro2.jpg',
         status: 'completed' // Use: 'planned', 'in progress', or 'completed'
     },
 
@@ -180,7 +180,7 @@ export const PROJECTS = [
         github: 'https://github.com/pubudutharanga/nic-information-finder', // Update with actual repo
 
         // Media
-        image: './pro4.webp', // Update with your actual image path
+        image: './pro4.jpg', // Update with your actual image path
 
         // Project Status
         status: 'completed' // Options: 'planned', 'in progress', 'completed'
@@ -930,7 +930,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
         "excerpt": "Choosing the right AI tool can make or break your development workflow. Let's compare the top three AI assistants in simple English.",
         "readTime": "8 min read",
         "date": "2025-11-22",
-        "featured": "./blog5.png",
+        "featured": "./blog5.jpg",
         "tags": ["AI", "Developers", "Comparison", "Gemini", "GPT-5", "Claude", "Coding"],
         "content": `
         <div class="blog-content">
