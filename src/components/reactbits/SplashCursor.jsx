@@ -29,9 +29,10 @@ function SplashCursor({
     const animationFrameRef = useRef(null);
     const isUnmountedRef = useRef(false);
 
-    // Optimize resolution for mobile
+    // Cache mobile check to avoid forced reflow during render
+    const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
     const optimizedConfig = useMemo(() => {
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        const isMobile = isMobileRef.current;
         return {
             SIM_RESOLUTION: isMobile ? 64 : SIM_RESOLUTION,
             DYE_RESOLUTION: isMobile ? 512 : DYE_RESOLUTION,

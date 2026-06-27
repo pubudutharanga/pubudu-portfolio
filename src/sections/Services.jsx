@@ -25,13 +25,13 @@ export default function Services() {
             opacity: 0,
             y: 30,
             scale: 0.97,
-            filter: 'blur(6px)',
+
         },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
-            filter: 'blur(0px)',
+
             transition: {
                 duration: 0.6,
                 ease: [0.22, 1, 0.36, 1]
@@ -69,8 +69,8 @@ export default function Services() {
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-12 md:mb-16"
-                    initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
-                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >

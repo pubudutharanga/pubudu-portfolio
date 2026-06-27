@@ -67,6 +67,15 @@ export default defineConfig({
             output: {
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
+                        // Split framer-motion into its own chunk (largest dep)
+                        if (id.includes('framer-motion')) {
+                            return 'framer-motion';
+                        }
+                        // Split react-icons into its own chunk
+                        if (id.includes('react-icons')) {
+                            return 'react-icons';
+                        }
+                        // Everything else stays in vendor (including React core)
                         return 'vendor';
                     }
                 }

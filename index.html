@@ -29,8 +29,13 @@
 
     <!-- Fonts are self-hosted via src/styles/fonts.css for better LCP -->
 
-    <!-- Preload Critical LCP Image for Core Web Vitals -->
-    <link rel="preload" href="/og-image-2026.jpg" as="image" type="image/jpeg">
+    <!-- Critical inline CSS for instant first paint -->
+    <style>
+        body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+        #root { min-height: 100vh; }
+        .dark { color-scheme: dark; }
+        .dark body, .dark #root { background-color: #111827; color: #f3f4f6; }
+    </style>
 
     <!-- JSON-LD is now injected dynamically by SeoMeta.jsx -->
 

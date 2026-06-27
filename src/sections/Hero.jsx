@@ -15,27 +15,26 @@ export default function Hero({ site, dark }) {
     })
 
 
-    // Responsive particle count based on screen size
+    // Responsive settings based on screen size - cached to avoid forced reflow
     const [particleCount, setParticleCount] = useState(dark ? 90 : 30)
+    const [isMobile, setIsMobile] = useState(false)
 
     useEffect(() => {
-        const updateParticleCount = () => {
+        const updateResponsive = () => {
             const width = window.innerWidth
+            setIsMobile(width < 640)
             if (width < 640) {
-                // Mobile: minimal particles
                 setParticleCount(dark ? 25 : 12)
             } else if (width < 1024) {
-                // Tablet: moderate particles
                 setParticleCount(dark ? 50 : 20)
             } else {
-                // Desktop: full experience
                 setParticleCount(dark ? 90 : 30)
             }
         }
 
-        updateParticleCount()
-        window.addEventListener('resize', updateParticleCount)
-        return () => window.removeEventListener('resize', updateParticleCount)
+        updateResponsive()
+        window.addEventListener('resize', updateResponsive)
+        return () => window.removeEventListener('resize', updateResponsive)
     }, [dark])
 
     const scrollToSection = (id) => {
@@ -53,12 +52,12 @@ export default function Hero({ site, dark }) {
 
     // Premium staggered animation variants
     const containerVariants = {
-        hidden: { opacity: 0 },
+        hidden: { opacity: 1 },
         visible: {
             opacity: 1,
             transition: {
                 staggerChildren: 0.12,
-                delayChildren: 0.3,
+                delayChildren: 0.1,
             }
         }
     }
@@ -67,12 +66,10 @@ export default function Hero({ site, dark }) {
         hidden: {
             opacity: 0,
             y: 30,
-            filter: 'blur(10px)',
         },
         visible: {
             opacity: 1,
             y: 0,
-            filter: 'blur(0px)',
             transition: {
                 duration: 0.7,
                 ease: [0.25, 0.1, 0.25, 1],
@@ -83,16 +80,14 @@ export default function Hero({ site, dark }) {
     const letterVariants = {
         hidden: {
             opacity: 0,
-            y: 50,
-            rotateX: 90,
+            y: 20,
         },
         visible: (i) => ({
             opacity: 1,
             y: 0,
-            rotateX: 0,
             transition: {
-                duration: 0.6,
-                delay: i * 0.05,
+                duration: 0.4,
+                delay: i * 0.04,
                 ease: [0.25, 0.1, 0.25, 1],
             }
         })
@@ -111,7 +106,6 @@ export default function Hero({ site, dark }) {
                         initial="hidden"
                         animate="visible"
                         className={`inline-block mr-[0.3em] ${isGradient ? 'bg-gradient-to-r from-primary-600 to-blue-500 bg-clip-text text-transparent' : ''}`}
-                        style={{ transformStyle: 'preserve-3d' }}
                     >
                         {word}
                     </motion.span>
@@ -131,12 +125,12 @@ export default function Hero({ site, dark }) {
                     dark={dark}
                     particleCount={particleCount}
                     particleColors={['#0ea5e9', '#38bdf8', '#7dd3fc', '#818cf8', '#a78bfa']}
-                    connectionDistance={window.innerWidth < 640 ? 100 : 140}
-                    mouseRadius={window.innerWidth < 640 ? 100 : 150}
+                    connectionDistance={isMobile ? 100 : 140}
+                    mouseRadius={isMobile ? 100 : 150}
                     mouseForce={0.1}
                     speed={0.4}
                     particleMinSize={1}
-                    particleMaxSize={window.innerWidth < 640 ? 2 : 3}
+                    particleMaxSize={isMobile ? 2 : 3}
                 />
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-200/30 via-transparent to-transparent dark:from-primary-900/20"></div>
             </div>
@@ -207,15 +201,13 @@ export default function Hero({ site, dark }) {
                         <AnimatedText text="Developer" className="text-gray-900 dark:text-white block" />
                     </motion.h1>
 
-                    {/* Tagline */}
-                    <motion.p
+                    {/* Tagline - NOT animated for instant LCP */}
+                    <p
                         className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-lg"
-                        initial={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     >
                         I design and build exceptional digital experiences that are fast, accessible, and user-friendly.
                         Currently pursuing my degree while creating innovative web solutions.
-                    </motion.p>
+                    </p>
 
                     {/* CTA Buttons */}
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
