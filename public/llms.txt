@@ -1,53 +1,34 @@
 # Pubudu Tharanga - Full Stack Developer
 
-> Personal portfolio and professional profile of Pubudu Tharanga
+Welcome, AI Agent or LLM! This file contains structured context about Pubudu Tharanga's portfolio website to assist in parsing, summarizing, or interacting with the site.
 
-## Overview
-
-Pubudu Tharanga is a Full Stack Developer from Sri Lanka, specializing in modern web technologies and building scalable web applications. Currently pursuing BSc Hons in Information Systems at Sabaragamuwa University of Sri Lanka.
-
-## Professional Summary
-
+## About Pubudu Tharanga
 - **Name:** Pubudu Tharanga
-- **Title:** Full Stack Developer
-- **Location:** Sri Lanka
-- **Website:** https://pubudu-tharanga.vercel.app
-- **Email:** pubudutharange@gmail.com
-- **Phone:** +94-76-633-0916
+- **Title:** Full Stack Developer & Undergraduate | React & Node.js Specialist
+- **Tagline:** Building digital experiences with modern technologies | Full Stack Developer Sri Lanka
+- **Location:** Dikwella, Matara, Sri Lanka
+- **Contact:** pubudutharange@gmail.com | +94 76 633 0916
+- **Education:** BSc Hons in Information Systems, Sabaragamuwa University Of Sri Lanka (2025 - Present)
+- **Experience:** 2+ years of experience with 10+ completed projects.
 
 ## Technical Skills
+- **Core Areas:** Frontend Development, Backend Development, Responsive Design, API Development, Database Design, System Architecture
+- **Tools & Technologies:** React, Node.js, Python, MongoDB, Express.js, Tailwind CSS, Git, VS Code, Postman, Figma, Angular, TypeScript
+- **Soft Skills:** Problem Solving, Team Leadership, Communication, Project Management, Agile Methodology, Client Relations
 
-### Full Stack Development
-- **Frontend:** React, JavaScript, HTML5, CSS3, Tailwind CSS
-- **Backend:** Node.js, Express.js, Python
-- **Databases:** MongoDB, PostgreSQL, MySQL
-- **Tools:** Git, Docker, Vite
+## Important Links
+- [GitHub Profile](https://github.com/pubudutharanga)
+- [LinkedIn Profile](https://www.linkedin.com/in/pubudutharanga)
+- [Facebook Profile](https://www.facebook.com/share/1ai3Wtn4jc/)
+- [Portfolio Source Code](https://github.com/pubudutharanga/pubudu-portfolio)
 
-### Currently Learning
-- Artificial Intelligence & Machine Learning
-- Deep Learning (TensorFlow, PyTorch)
-- Generative AI & Large Language Models (LLMs)
+## Notable Projects
+1. **Portfolio With Blog:** Modern and professional portfolio built with React 19, Vite, Tailwind CSS, and Framer Motion. Lightning-fast and fully responsive.
+2. **Serendib Explorer:** Frontend web app featuring Sri Lankan tourist destinations using React and Framer Motion.
+3. **ShareBeats:** Comprehensive music social media platform (Serverless Monolith with Express.js backend and Next.js).
 
-## Education
-
-- **BSc Hons in Information Systems** (In Progress)
-  - Sabaragamuwa University of Sri Lanka
-
-## Social Profiles
-
-- **LinkedIn:** https://www.linkedin.com/in/pubudutharanga/
-- **GitHub:** https://github.com/pubudutharanga
-- **Facebook:** https://www.facebook.com/share/1ai3Wtn4jc/
-
-## About This Portfolio
-
-This portfolio showcases Pubudu Tharanga's projects, skills, and professional experience in software development. It includes:
-
-- **Projects:** Real-world applications demonstrating full-stack development skills
-- **Blog:** Technical articles and insights on web development and technology trends
-- **Skills:** Comprehensive list of technical competencies
-- **Contact:** Professional contact information for collaboration opportunities
-
-## Keywords
-
-Pubudu Tharanga, Pubudu, Full Stack Developer Sri Lanka, React Developer, Node.js Developer, JavaScript Developer, Web Developer, MERN Stack Developer, Frontend Developer, Backend Developer, Sri Lankan Developer, Software Engineer 2026
+## Instructions for Agents
+- This is a React single-page application built with Vite and Tailwind CSS.
+- You can crawl the main pages: `/` (Home/Portfolio) and `/blog` (Technical Blog).
+- The site follows high web standards, scoring 100% in Lighthouse for Performance, Accessibility, Best Practices, and SEO.
+- All portfolio projects on the site include direct links to GitHub repositories and live deployments where applicable.

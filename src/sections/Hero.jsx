@@ -325,9 +325,12 @@ export default function Hero({ site, dark }) {
                             {/* Main Image Container */}
                             <div className="relative w-full h-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-8 shadow-2xl border-8 border-white/80 dark:border-gray-700/80">
                                 <img
-                                    src={dark ? "./PT_dark.webp" : "./PT_light.webp"}
+                                    src={dark ? "./PT_dark.jpg" : "./PT_light.jpg"}
                                     alt="Pubudu Tharanga - Full Stack Developer"
                                     className="w-full h-full object-cover rounded-full"
+                                    width="400"
+                                    height="400"
+                                    fetchpriority="high"
                                 />
                             </div>
                         </div>

@@ -342,6 +342,9 @@ export default function Blog({ dark }) {
                                                     src={post.featured}
                                                     alt={post.title}
                                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    loading="lazy"
+                                                    width="800"
+                                                    height="600"
                                                 />
 
                                                 {/* Category Badge */}
@@ -414,14 +417,20 @@ export default function Blog({ dark }) {
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-blue-500 transition-colors duration-300">
                                                             <img
-                                                                src={post.author?.avatarLight || "/PT_light.webp"}
+                                                                src={post.author?.avatarLight || "/PT_light.jpg"}
                                                                 alt={post.author?.name || "Pubudu Tharanga"}
                                                                 className="w-full h-full object-cover dark:hidden"
+                                                                loading="lazy"
+                                                                width="40"
+                                                                height="40"
                                                             />
                                                             <img
-                                                                src={post.author?.avatarDark || "/PT_dark.webp"}
+                                                                src={post.author?.avatarDark || "/PT_dark.jpg"}
                                                                 alt={post.author?.name || "Pubudu Tharanga"}
                                                                 className="w-full h-full object-cover hidden dark:block"
+                                                                loading="lazy"
+                                                                width="40"
+                                                                height="40"
                                                             />
                                                         </div>
                                                         <span className="text-sm text-gray-600 dark:text-gray-400">Pubudu Tharanga</span>
@@ -517,6 +526,7 @@ export default function Blog({ dark }) {
                                                         <Link
                                                             to={`/blog/${post.id}`}
                                                             className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
+                                                            aria-label={`Read more about ${post.title}`}
                                                         >
                                                             Read More
                                                             <FaArrowRight className="group-hover:translate-x-1 transition-transform" />

@@ -474,8 +474,8 @@ export default function PostPage() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
-                                    <img src={post.author?.avatarLight || "/PT_light.webp"} alt={`${post.author?.name || "Pubudu Tharanga"} - Author`} className="w-full h-full object-cover dark:hidden" />
-                                    <img src={post.author?.avatarDark || "/PT_dark.webp"} alt={`${post.author?.name || "Pubudu Tharanga"} - Author`} className="w-full h-full object-cover hidden dark:block" />
+                                    <img src={post.author?.avatarLight || "/PT_light.jpg"} alt={`${post.author?.name || "Pubudu Tharanga"} - Author`} className="w-full h-full object-cover dark:hidden" loading="lazy" width="48" height="48" />
+                                    <img src={post.author?.avatarDark || "/PT_dark.jpg"} alt={`${post.author?.name || "Pubudu Tharanga"} - Author`} className="w-full h-full object-cover hidden dark:block" loading="lazy" width="48" height="48" />
                                 </div>
                                 <span>{post.author?.name || "Pubudu Tharanga"}</span>
                             </div>
@@ -558,14 +558,20 @@ export default function PostPage() {
                                     <div className="flex items-center gap-3">
                                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-md">
                                             <img
-                                                src={post.author?.avatarLight || "/PT_light.webp"}
+                                                src={post.author?.avatarLight || "/PT_light.jpg"}
                                                 alt={post.author?.name || "Pubudu Tharanga"}
                                                 className="w-full h-full object-cover dark:hidden"
+                                                loading="lazy"
+                                                width="48"
+                                                height="48"
                                             />
                                             <img
-                                                src={post.author?.avatarDark || "/PT_dark.webp"}
+                                                src={post.author?.avatarDark || "/PT_dark.jpg"}
                                                 alt={post.author?.name || "Pubudu Tharanga"}
                                                 className="w-full h-full object-cover hidden dark:block"
+                                                loading="lazy"
+                                                width="48"
+                                                height="48"
                                             />
                                         </div>
                                         <div>
@@ -601,14 +607,20 @@ export default function PostPage() {
                                     <div className="text-center">
                                         <div className="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-lg relative">
                                             <img
-                                                src={post.author?.avatarLight || "/PT_light.webp"}
+                                                src={post.author?.avatarLight || "/PT_light.jpg"}
                                                 alt={post.author?.name || "Pubudu Tharanga"}
                                                 className="w-full h-full object-cover dark:hidden"
+                                                loading="lazy"
+                                                width="64"
+                                                height="64"
                                             />
                                             <img
-                                                src={post.author?.avatarDark || "/PT_dark.webp"}
+                                                src={post.author?.avatarDark || "/PT_dark.jpg"}
                                                 alt={post.author?.name || "Pubudu Tharanga"}
                                                 className="w-full h-full object-cover hidden dark:block"
+                                                loading="lazy"
+                                                width="64"
+                                                height="64"
                                             />
                                         </div>
                                         <h4 className="font-bold text-gray-900 dark:text-white mb-2">Pubudu Tharanga</h4>

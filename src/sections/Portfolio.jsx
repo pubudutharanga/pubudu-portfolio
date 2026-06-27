@@ -68,13 +68,11 @@ export default function Portfolio() {
             opacity: 0,
             y: 30,
             scale: 0.97,
-            filter: 'blur(6px)',
         },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
-            filter: 'blur(0px)',
             transition: {
                 duration: 0.6,
                 ease: [0.22, 1, 0.36, 1]
@@ -83,11 +81,10 @@ export default function Portfolio() {
     }
 
     const filterVariants = {
-        hidden: { opacity: 0, x: -15, filter: 'blur(3px)' },
+        hidden: { opacity: 0, x: -15 },
         visible: {
             opacity: 1,
             x: 0,
-            filter: 'blur(0px)',
             transition: {
                 duration: 0.4,
                 ease: [0.22, 1, 0.36, 1]
@@ -121,8 +118,8 @@ export default function Portfolio() {
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-16"
-                    initial={{ opacity: 0, y: 25, filter: 'blur(6px)' }}
-                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
@@ -242,7 +239,9 @@ export default function Portfolio() {
                                                             rel="noopener noreferrer"
                                                             className="p-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-colors"
                                                             onClick={(e) => e.stopPropagation()}
+                                                            aria-label={`View ${project.title} source code on GitHub`}
                                                         >
+                                                            <span className="sr-only">View {project.title} source code on GitHub</span>
                                                             <FaGithub size={14} />
                                                         </a>
                                                     )}
@@ -254,7 +253,9 @@ export default function Portfolio() {
                                                             rel="noopener noreferrer"
                                                             className="p-2 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-colors"
                                                             onClick={(e) => e.stopPropagation()}
+                                                            aria-label={`View ${project.title} live site`}
                                                         >
+                                                            <span className="sr-only">View {project.title} live site</span>
                                                             <FaExternalLinkAlt size={14} />
                                                         </a>
                                                     )}
@@ -438,7 +439,9 @@ export default function Portfolio() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="p-3 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                                aria-label={`View ${selectedProject.title} source code on GitHub`}
                                             >
+                                                <span className="sr-only">View {selectedProject.title} source code on GitHub</span>
                                                 <FaGithub size={20} />
                                             </a>
                                         )}
@@ -449,7 +452,9 @@ export default function Portfolio() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="p-3 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                                aria-label={`View ${selectedProject.title} live site`}
                                             >
+                                                <span className="sr-only">View {selectedProject.title} live site</span>
                                                 <FaExternalLinkAlt size={20} />
                                             </a>
                                         )}

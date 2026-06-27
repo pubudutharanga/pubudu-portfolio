@@ -13,7 +13,7 @@ export default defineConfig({
         tailwindcss(),
         VitePWA({
             registerType: 'autoUpdate',
-            injectRegister: 'auto',
+            injectRegister: null,
             includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png', 'site.webmanifest'],
             // Use existing site.webmanifest instead of generating a new one
             manifest: false,
@@ -29,36 +29,7 @@ export default defineConfig({
                 cleanupOutdatedCaches: true,
                 clientsClaim: true,
                 skipWaiting: true,
-                runtimeCaching: [
-                    {
-                        urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-                        handler: 'CacheFirst',
-                        options: {
-                            cacheName: 'google-fonts-cache',
-                            expiration: {
-                                maxEntries: 10,
-                                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-                            },
-                            cacheableResponse: {
-                                statuses: [0, 200]
-                            }
-                        }
-                    },
-                    {
-                        urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-                        handler: 'CacheFirst',
-                        options: {
-                            cacheName: 'gstatic-fonts-cache',
-                            expiration: {
-                                maxEntries: 10,
-                                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-                            },
-                            cacheableResponse: {
-                                statuses: [0, 200]
-                            }
-                        }
-                    }
-                ]
+                runtimeCaching: []
             }
         })
     ],

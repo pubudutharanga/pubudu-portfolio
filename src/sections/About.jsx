@@ -97,7 +97,7 @@ export default function About({ dark }) {
                                     {/* Profile Image */}
                                     <div className="relative w-full h-full bg-white dark:bg-gray-800 rounded-full p-2 shadow-2xl border-4 border-white dark:border-gray-700">
                                         <img
-                                            src={dark ? "./PT.png" : "./PT_light.webp"}
+                                            src={dark ? "./PT.jpg" : "./PT_light.jpg"}
                                             alt="Pubudu Tharanga - Full Stack Developer"
                                             className="w-full h-full object-cover rounded-full"
                                             width="192"

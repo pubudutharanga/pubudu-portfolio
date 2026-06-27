@@ -40,6 +40,16 @@ export default function App() {
     // Remove the redundant initial useEffect that was causing the overwrite logic
 
 
+    // Register service worker after page load (deferred to avoid render-blocking)
+    useEffect(() => {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .catch(() => { /* SW registration failed silently */ })
+            })
+        }
+    }, [])
+
     // Update document class when dark mode changes
     useEffect(() => {
         document.documentElement.classList.toggle('dark', dark)

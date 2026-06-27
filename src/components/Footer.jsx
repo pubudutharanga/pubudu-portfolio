@@ -357,6 +357,7 @@ export default function Footer({ site }) {
             {/* Scroll to Top Button */}
             <motion.button
                 onClick={scrollToTop}
+                aria-label="Scroll to top"
                 className="fixed bottom-6 right-6 z-50 p-3 bg-blue-500 text-white rounded-xl shadow-2xl hover:bg-blue-600 transition-colors duration-300 border border-blue-400/20"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
@@ -364,6 +365,7 @@ export default function Footer({ site }) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
             >
+                <span className="sr-only">Scroll to top</span>
                 <FaArrowUp size={16} />
             </motion.button>
 
