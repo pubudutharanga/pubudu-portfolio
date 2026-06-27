@@ -36,17 +36,27 @@ export default defineConfig({
                 order: 'post',
                 handler(html, ctx) {
                     let preloadTags = '';
+                    let noscriptTags = '<noscript>';
                     if (ctx.bundle) {
                         for (const fileName of Object.keys(ctx.bundle)) {
-                            if (fileName.endsWith('.css') && fileName.includes('index-')) {
-                                preloadTags += `<link rel="preload" href="/assets/${fileName.split('/').pop()}" as="style">\n    `;
-                            }
                             if (fileName.endsWith('.js') && fileName.includes('index-')) {
                                 preloadTags += `<link rel="preload" href="/assets/${fileName.split('/').pop()}" as="script" crossorigin="anonymous">\n    `;
                             }
+                            if (fileName.endsWith('.css') && fileName.includes('index-')) {
+                                preloadTags += `<link rel="preload" href="/assets/${fileName.split('/').pop()}" as="style">\n    `;
+                                noscriptTags += `<link rel="stylesheet" crossorigin href="/assets/${fileName.split('/').pop()}">`;
+                            }
                         }
                     }
-                    return html.replace('</head>', `${preloadTags}</head>`);
+                    noscriptTags += '</noscript>\n';
+                    
+                    // Defer all synchronous CSS loading using media="print" trick
+                    let modifiedHtml = html.replace(
+                        /<link rel="stylesheet"(.*?)>/g, 
+                        '<link rel="stylesheet"$1 media="print" onload="this.media=\'all\'">'
+                    );
+                    
+                    return modifiedHtml.replace('</head>', `${noscriptTags}${preloadTags}</head>`);
                 }
             }
         }
