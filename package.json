@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
-    "build": "npm run sitemap && vite build && node scripts/inject-preload.js && npx critical dist/index.html --base dist/ --inline --width 1300 --height 900 --output dist/index.html",
+    "build": "npm run sitemap && vite build && node scripts/inject-preload.js && node scripts/generate-critical.js",
     "preview": "vite preview",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build",
@@ -40,6 +40,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^5.1.4",
+    "critical": "^8.0.0",
     "eslint": "^10.0.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
