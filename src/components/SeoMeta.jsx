@@ -33,7 +33,7 @@ const SeoMeta = ({
         "@id": `${siteUrl}/#person`,
         "name": SITE.name,
         "alternateName": ["Pubudu Tharanga Matara", "Pubudu"],
-        "jobTitle": "Full Stack Developer",
+        "jobTitle": "Full Stack Developer & Freelance Web Developer",
         "url": siteUrl,
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -135,15 +135,14 @@ const SeoMeta = ({
                 }
             ]
         },
-        "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": 5.9549,
-                "longitude": 80.5550
-            },
-            "geoRadius": "50000"
-        },
+        "areaServed": [
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "United Kingdom" },
+            { "@type": "Country", "name": "Germany" },
+            { "@type": "Country", "name": "Canada" },
+            { "@type": "Country", "name": "Australia" },
+            { "@type": "Country", "name": "Sri Lanka" }
+        ],
         "founder": {
             "@id": `${siteUrl}/#person`
         }
@@ -167,7 +166,60 @@ const SeoMeta = ({
         "inLanguage": "en-US"
     };
 
-
+    // Individual Service Schemas for international discovery
+    const serviceSchemas = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "@id": `${siteUrl}/#service-webdev`,
+            "serviceType": "Web Development",
+            "name": "Custom Web Application Development",
+            "description": "High-performance React & Node.js web applications for startups and businesses. Full-stack MERN development with SEO optimization and responsive design.",
+            "provider": { "@id": `${siteUrl}/#person` },
+            "areaServed": [
+                { "@type": "Country", "name": "United States" },
+                { "@type": "Country", "name": "United Kingdom" },
+                { "@type": "Country", "name": "Germany" },
+                { "@type": "Country", "name": "Canada" },
+                { "@type": "Country", "name": "Australia" }
+            ],
+            "availableChannel": {
+                "@type": "ServiceChannel",
+                "serviceUrl": siteUrl,
+                "availableLanguage": "English"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "@id": `${siteUrl}/#service-uiux`,
+            "serviceType": "UI/UX Design",
+            "name": "UI/UX Design Services",
+            "description": "WCAG-compliant, user-centered design with GDPR-aware interfaces. Design systems, prototyping, and accessibility-first approach.",
+            "provider": { "@id": `${siteUrl}/#person` },
+            "areaServed": [
+                { "@type": "Country", "name": "United States" },
+                { "@type": "Country", "name": "United Kingdom" },
+                { "@type": "Country", "name": "Germany" }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "@id": `${siteUrl}/#service-consulting`,
+            "serviceType": "Technical Consulting",
+            "name": "Web Development Consulting",
+            "description": "Strategic technical guidance for digital transformation. Timezone-flexible consulting with milestone-based delivery for startups and enterprises.",
+            "provider": { "@id": `${siteUrl}/#person` },
+            "areaServed": [
+                { "@type": "Country", "name": "United States" },
+                { "@type": "Country", "name": "United Kingdom" },
+                { "@type": "Country", "name": "Germany" },
+                { "@type": "Country", "name": "Canada" },
+                { "@type": "Country", "name": "Australia" }
+            ]
+        }
+    ];
 
     return (
         <Helmet>
@@ -209,6 +261,13 @@ const SeoMeta = ({
             <script type="application/ld+json">
                 {JSON.stringify(websiteSchema)}
             </script>
+
+            {/* Structured Data (JSON-LD) - Individual Services for International Discovery */}
+            {serviceSchemas.map((schema, index) => (
+                <script key={`service-schema-${index}`} type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            ))}
 
             {/* Dynamic Schema (e.g. WebSite, Article, or array of schemas) */}
             {schema && (

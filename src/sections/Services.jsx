@@ -82,8 +82,8 @@ export default function Services() {
                         Professional <span className="text-blue-600">Services</span>
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-                        Comprehensive solutions tailored to bring your digital vision to life.
-                        From concept to deployment, I ensure exceptional quality and performance.
+                        Premium web development services trusted by startups and businesses worldwide.
+                        From concept to deployment — fast, reliable, and timezone-flexible.
                     </p>
                 </motion.div>
 

@@ -86,7 +86,7 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Home site={SITE} dark={dark} />} />
                         <Route path="/blog" element={<Blog dark={dark} />} />
-                        <Route path="/blog/:id" element={<PostPage />} />
+                        <Route path="/blog/:slug" element={<PostPage />} />
 
                         {/* 404 Fallback */}
                         <Route path="*" element={

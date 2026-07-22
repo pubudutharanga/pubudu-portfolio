@@ -30,7 +30,7 @@ export default function Blog({ dark }) {
             e.stopPropagation()
         }
 
-        const postUrl = `${window.location.origin}/blog/${post.id}`
+        const postUrl = `${window.location.origin}/blog/${post.slug || post.id}`
         const shareText = `Check out this article: ${post.title}`
 
         // Open window immediately (synchronously) before any async operations
@@ -191,7 +191,7 @@ export default function Blog({ dark }) {
                             "itemListElement": BLOG_POSTS.map((post, index) => ({
                                 "@type": "ListItem",
                                 "position": index + 1,
-                                "url": `${SITE.siteUrl.replace(/\/$/, '')}/blog/${post.id}`,
+                                "url": `${SITE.siteUrl.replace(/\/$/, '')}/blog/${post.slug || post.id}`,
                                 "name": post.title
                             }))
                         }
@@ -363,7 +363,7 @@ export default function Blog({ dark }) {
                                                             className="flex justify-center"
                                                         >
                                                             <Link
-                                                                to={`/blog/${post.id}`}
+                                                                to={`/blog/${post.slug || post.id}`}
                                                                 className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors flex items-center gap-2"
                                                             >
                                                                 <span>Read Article<span className="sr-only"> about {post.title}</span></span>
@@ -524,7 +524,7 @@ export default function Blog({ dark }) {
 
                                                         {/* Read More Link */}
                                                         <Link
-                                                            to={`/blog/${post.id}`}
+                                                            to={`/blog/${post.slug || post.id}`}
                                                             className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                                                             aria-label={`Read more about ${post.title}`}
                                                         >

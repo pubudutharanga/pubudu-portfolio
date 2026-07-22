@@ -1,7 +1,7 @@
 export const SITE = {
     name: "Pubudu Tharanga",
-    title: "Full Stack Developer & Undergraduate | React & Node.js Specialist",
-    tagline: "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
+    title: "Full Stack Developer | Hire for React & Node.js Projects",
+    tagline: "Professional web development services for startups & businesses — React, Node.js, MERN Stack | Available for remote projects worldwide",
     location: "Sri Lanka",
     email: "pubudutharange@gmail.com",
     phone: "+94 76 633 0916",
@@ -11,7 +11,7 @@ export const SITE = {
     resume: "/pubudu_resume.pdf",
     // SEO enhancement
     siteUrl: "https://pubudu-tharanga.vercel.app/",
-    keywords: "full stack developer, react developer, web developer, sri lanka, javascript developer, node.js developer, frontend developer, backend developer, portfolio, pubudu tharanga, software engineer, web development, react js, node js, mongodb, express js, MERN stack, software architect, freelance web developer, tailwind css, framer motion, python, dikwella, matara, southern province, remote developer, progressive web apps, pwa, modern web design, seo optimization, performance tuning, accessibility, wcag, single page application, spa, vite, api development, database design, ui/ux design, Pubudu Tharanga",
+    keywords: "hire web developer, freelance react developer for hire, remote full stack developer, hire node.js developer, web developer for startups, custom web application development, react developer available, affordable web developer, MERN stack developer, hire freelance developer US UK Europe, remote web developer for hire, full stack developer for startups, website development services, react consultant, node.js consultant, frontend developer for hire, backend developer for hire, web app development, pubudu tharanga, professional web developer, hire remote developer, freelance software engineer, web development agency alternative",
     address: "No.341/1 A, Abaya Niwasa, Dodampahala, Dikwella",
     city: "Matara",
     postalCode: "88100",
@@ -191,37 +191,37 @@ export const SERVICES = [
     {
         title: 'Web Development',
         icon: '💻',
-        description: 'Custom web applications built with modern technologies like React, Node.js, and MongoDB. I create fast, scalable, and maintainable solutions that drive business growth.',
+        description: 'Custom web applications that convert visitors into customers. I build high-performance React & Node.js solutions for startups and businesses across the US, UK, and Europe — fast, scalable, and SEO-optimized.',
         features: [
             'Responsive Web Design',
-            'Full-Stack Development',
-            'Performance Optimization',
-            'SEO Implementation',
+            'Full-Stack Development (MERN)',
+            'Performance & SEO Optimization',
             'Cross-browser Compatibility',
-            'API Integration',
-            'Database Design',
-            'Progressive Web Apps'
+            'REST & GraphQL API Integration',
+            'Database Architecture',
+            'Progressive Web Apps (PWA)',
+            'E-commerce Solutions'
         ]
     },
     {
         title: 'UI/UX Design',
         icon: '🎨',
-        description: 'User-centered designs that combine aesthetics with functionality and great user experience. I create intuitive interfaces that users love to interact with.',
+        description: 'User-centered designs that combine aesthetics with conversion. I create WCAG-compliant, GDPR-aware interfaces that delight users and meet international accessibility standards.',
         features: [
             'User Research & Analysis',
             'Wireframing & Prototyping',
             'Visual Design Systems',
             'Interaction Design',
             'Usability Testing',
-            'Design Handoff',
-            'Accessibility Compliance',
-            'Design System Creation'
+            'WCAG Accessibility Compliance',
+            'Design System Creation',
+            'Mobile-First Design'
         ]
     },
     {
         title: 'Consulting',
         icon: '🚀',
-        description: 'Technical consultation to help you make informed decisions about your technology stack and architecture. Strategic guidance for your digital transformation.',
+        description: 'Strategic technical guidance for your digital transformation. Timezone-flexible consulting with milestone-based delivery — helping startups and businesses make informed technology decisions.',
         features: [
             'Code Review & Audits',
             'Architecture Planning',
@@ -229,8 +229,8 @@ export const SERVICES = [
             'Technical Strategy',
             'Best Practices Implementation',
             'Team Mentoring',
-            'Technology Selection',
-            'Project Rescue'
+            'Technology Stack Selection',
+            'Project Rescue & Recovery'
         ]
     }
 ]
@@ -238,6 +238,7 @@ export const SERVICES = [
 export const BLOG_POSTS = [
     {
         id: 'b1',
+        slug: 'future-of-web-development-2025-trends',
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -402,6 +403,7 @@ const result = module.instance.exports.heavyComputation();</code></pre>
     },
     {
         id: 'b2',
+        slug: 'getting-started-react-19-new-features',
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -641,6 +643,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: 'b3',
+        slug: 'ai-powered-coding-assistants-replace-developers',
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -758,6 +761,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: 'b4',
+        slug: 'ai-unlocked-beginners-roadmap-artificial-intelligence',
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -920,6 +924,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         "id": "b5",
+        "slug": "best-ai-for-developers-gemini-gpt-claude",
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -1129,6 +1134,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: "b6",
+        slug: "google-code-wiki-ai-documentation",
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -1229,6 +1235,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: "b7",
+        slug: "gpt-5-codex-github-copilot-ai-development",
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -1325,6 +1332,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         "id": "b8",
+        "slug": "google-antigravity-future-software-development",
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -1523,6 +1531,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         "id": "b9",
+        "slug": "moltbook-ai-social-network-robots",
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",
@@ -1611,6 +1620,7 @@ preinit('analytics.js', { as: 'script' });</code></pre>
     },
     {
         id: "b10",
+        slug: "seo-guide-2026-whats-working",
         author: {
             name: "Pubudu Tharanga",
             avatarLight: "/PT_light.jpg",

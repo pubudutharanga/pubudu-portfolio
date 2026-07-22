@@ -43,7 +43,7 @@ function generateSitemap() {
     BLOG_POSTS.forEach(post => {
         xml += `
   <url>
-    <loc>${BASE_URL}/blog/${post.id}</loc>
+    <loc>${BASE_URL}/blog/${post.slug || post.id}</loc>
     <lastmod>${formatDate(post.date)}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

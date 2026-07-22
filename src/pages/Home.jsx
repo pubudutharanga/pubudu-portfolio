@@ -33,7 +33,7 @@ export default function Home({ site, dark }) {
               ]
             },
             "dateCreated": "2024-01-01T00:00:00+05:30",
-            "dateModified": "2026-04-28T00:00:00+05:30"
+            "dateModified": "2026-07-21T00:00:00+05:30"
           },
           {
             "@context": "https://schema.org",
@@ -41,7 +41,7 @@ export default function Home({ site, dark }) {
             "@id": `${site.siteUrl.replace(/\/$/, '')}/#webpage`,
             "url": site.siteUrl,
             "name": `${site.name} - Full Stack Developer & Undergraduate | React & Node.js Specialist`,
-            "description": "Building digital experiences with modern technologies | Full Stack Developer Sri Lanka",
+            "description": "Professional web development services for startups & businesses — React, Node.js, MERN Stack | Available for remote projects worldwide",
             "inLanguage": "en-US",
             "isPartOf": {
               "@id": `${site.siteUrl.replace(/\/$/, '')}/#website`
@@ -50,7 +50,7 @@ export default function Home({ site, dark }) {
               "@id": `${site.siteUrl.replace(/\/$/, '')}/#person`
             },
             "datePublished": "2024-01-01T00:00:00+05:30",
-            "dateModified": "2026-04-28T00:00:00+05:30"
+            "dateModified": "2026-07-21T00:00:00+05:30"
           },
           {
             "@context": "https://schema.org",

@@ -205,8 +205,8 @@ export default function Hero({ site, dark }) {
                     <p
                         className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-lg"
                     >
-                        I design and build exceptional digital experiences that are fast, accessible, and user-friendly.
-                        Currently pursuing my degree while creating innovative web solutions.
+                        Delivering high-performance web solutions for startups and businesses
+                        across the US, UK, and Europe. Let's build something exceptional together.
                     </p>
 
                     {/* CTA Buttons */}
@@ -284,8 +284,8 @@ export default function Hero({ site, dark }) {
                             transition={{ delay: 1.2 }}
                         >
                             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            <span className="hidden xs:inline">Available for projects</span>
-                            <span className="xs:hidden">Available</span>
+                            <span className="hidden xs:inline">Available for remote projects worldwide</span>
+                            <span className="xs:hidden">Available Worldwide</span>
                         </motion.div>
                     </motion.div>
 

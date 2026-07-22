@@ -15,9 +15,9 @@ const stripHtml = (html) => {
 }
 
 export default function PostPage() {
-    const { id } = useParams()
+    const { slug } = useParams()
     const navigate = useNavigate()
-    const post = BLOG_POSTS.find(p => p.id === parseInt(id) || p.id === id)
+    const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug)
     const [progress, setProgress] = useState(0)
     const [isBookmarked, setIsBookmarked] = useState(false)
     const [showShareMenu, setShowShareMenu] = useState(false)
@@ -326,7 +326,7 @@ export default function PostPage() {
                 title={post.title}
                 description={post.excerpt}
                 keywords={post.seoKeywords || `${post.tags?.join(', ') || ''}, Pubudu Tharanga, ${post.category}, blog`}
-                canonical={`https://pubudu-tharanga.vercel.app/blog/${post.id}`}
+                canonical={`https://pubudu-tharanga.vercel.app/blog/${post.slug || post.id}`}
                 type="article"
                 image={post.featured}
                 schema={[
@@ -347,7 +347,7 @@ export default function PostPage() {
                             "@type": "ListItem",
                             "position": 3,
                             "name": post.title,
-                            "item": `https://pubudu-tharanga.vercel.app/blog/${post.id}`
+                            "item": `https://pubudu-tharanga.vercel.app/blog/${post.slug || post.id}`
                         }]
                     },
                     {
@@ -378,7 +378,7 @@ export default function PostPage() {
                         },
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": `https://pubudu-tharanga.vercel.app/blog/${post.id}`
+                            "@id": `https://pubudu-tharanga.vercel.app/blog/${post.slug || post.id}`
                         },
                         "description": post.excerpt,
                         "articleBody": stripHtml(post.content),

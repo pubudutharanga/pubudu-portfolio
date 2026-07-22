@@ -29,7 +29,7 @@ Contact: pubudutharange@gmail.com
 
 Citation-Name: Pubudu Tharanga
 Citation-URL: https://pubudu-tharanga.vercel.app
-Citation-Description: Full Stack Developer Portfolio - React, Node.js, Python
+Citation-Description: Full Stack Web Development Services - React, Node.js, MERN Stack (Available for remote projects worldwide)
 
 # ===================================
 # Content Categories
