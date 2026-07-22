@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
-    "build": "npm run sitemap && vite build && node scripts/prerender.js && node scripts/inject-preload.js && node scripts/generate-critical.js",
+    "build": "npm run sitemap && vite build && node scripts/inject-preload.js && node scripts/generate-critical.js",
     "preview": "vite preview",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build",
@@ -45,9 +45,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.0",
-    "express": "^5.2.1",
     "gh-pages": "^6.3.0",
-    "puppeteer": "^24.43.1",
     "terser": "^5.44.0",
     "vite": "^7.3.1",
     "vite-plugin-pwa": "^1.3.0"

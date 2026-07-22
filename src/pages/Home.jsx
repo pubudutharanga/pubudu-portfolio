@@ -61,6 +61,52 @@ export default function Home({ site, dark }) {
               "name": "Home",
               "item": site.siteUrl
             }]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I hire Pubudu Tharanga for a web development project?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can hire me by visiting the Contact section on my portfolio or emailing pubudutharange@gmail.com. I offer free initial consultations to discuss your project requirements, timeline, and budget. I work with clients across the US, UK, Europe, and worldwide."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What technologies does Pubudu Tharanga specialize in?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "I specialize in the MERN stack (MongoDB, Express.js, React, Node.js), along with TypeScript, Next.js, PostgreSQL, Tailwind CSS, and Python. I build responsive, SEO-optimized web applications with modern frameworks."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you work with clients in the US, UK, and Europe?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! I work remotely with clients worldwide, with a focus on the US, UK, and European markets. I'm flexible with timezones and maintain clear communication through tools like Slack, Zoom, and project management platforms."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does the remote collaboration process work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "I follow a milestone-based approach: 1) Free consultation to understand your needs, 2) Project proposal with timeline and deliverables, 3) Iterative development with regular updates and demos, 4) Testing and deployment, 5) Post-launch support. I use Git, CI/CD, and agile methodologies."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the typical timeline and cost for a web development project?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Project timelines vary based on complexity: simple websites take 2-4 weeks, web applications 4-8 weeks, and complex platforms 8-16 weeks. I offer competitive rates with flexible pricing models including fixed-price, hourly, and milestone-based payments. Contact me for a free quote."
+                }
+              }
+            ]
           }
         ]}
       />

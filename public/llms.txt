@@ -4,11 +4,11 @@ Welcome, AI Agent or LLM! This file contains structured context about Pubudu Tha
 
 ## About Pubudu Tharanga
 - **Name:** Pubudu Tharanga
-- **Title:** Full Stack Developer & Freelance Web Developer
-- **Tagline:** Professional web development services for startups & businesses — React, Node.js, MERN Stack
-- **Location:** Sri Lanka (Remote Worldwide, specializing in US, UK, and Europe)
+- **Title:** Full Stack Developer & Undergraduate | React & Node.js Specialist
+- **Tagline:** Building digital experiences with modern technologies | Full Stack Developer Sri Lanka
+- **Location:** Dikwella, Matara, Sri Lanka
 - **Contact:** pubudutharange@gmail.com | +94 76 633 0916
-- **Education:** BSc Hons in Information Systems, Sabaragamuwa University Of Sri Lanka
+- **Education:** BSc Hons in Information Systems, Sabaragamuwa University Of Sri Lanka (2025 - Present)
 - **Experience:** 2+ years of experience with 10+ completed projects.
 
 ## Technical Skills
