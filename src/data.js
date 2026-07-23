@@ -1,7 +1,7 @@
 export const SITE = {
     name: "Pubudu Tharanga",
-    title: "Full Stack Developer | Hire for React & Node.js Projects",
-    tagline: "Professional web development services for startups & businesses — React, Node.js, MERN Stack | Available for remote projects worldwide",
+    title: "Full Stack Developer | Hire for Next.js, React & Node.js Projects",
+    tagline: "Professional web development services for startups & businesses — Next.js, React, Node.js, MERN Stack | Available for remote projects worldwide",
     location: "Sri Lanka",
     email: "pubudutharange@gmail.com",
     phone: "+94 76 633 0916",
@@ -11,7 +11,7 @@ export const SITE = {
     resume: "/pubudu_resume.pdf",
     // SEO enhancement
     siteUrl: "https://pubudu-tharanga.vercel.app/",
-    keywords: "hire web developer, freelance react developer for hire, remote full stack developer, hire node.js developer, web developer for startups, custom web application development, react developer available, affordable web developer, MERN stack developer, hire freelance developer US UK Europe, remote web developer for hire, full stack developer for startups, website development services, react consultant, node.js consultant, frontend developer for hire, backend developer for hire, web app development, pubudu tharanga, professional web developer, hire remote developer, freelance software engineer, web development agency alternative",
+    keywords: "hire next.js developer, expert next.js developer, next.js seo optimization, next.js consultant, nextjs full stack developer, hire web developer, freelance react developer for hire, remote full stack developer, hire node.js developer, web developer for startups, custom web application development, react developer available, affordable web developer, MERN stack developer, hire freelance developer US UK Europe, remote web developer for hire, full stack developer for startups, website development services, react consultant, node.js consultant, frontend developer for hire, backend developer for hire, web app development, pubudu tharanga, professional web developer, hire remote developer, freelance software engineer, web development agency alternative",
     address: "No.341/1 A, Abaya Niwasa, Dodampahala, Dikwella",
     city: "Matara",
     postalCode: "88100",
@@ -24,7 +24,7 @@ export const SKILLS = {
         "API Development", "Database Design", "System Architecture"
     ],
     tools: [
-        "React", "Node.js", "Python", "MongoDB", "Express.js", "Tailwind CSS",
+        "React", "Next.js", "Node.js", "Python", "MongoDB", "Express.js", "Tailwind CSS",
         "Git", "VS Code", "Postman", "Figma", "Angular", "TypeScript"
     ],
     soft: [
@@ -191,16 +191,16 @@ export const SERVICES = [
     {
         title: 'Web Development',
         icon: '💻',
-        description: 'Custom web applications that convert visitors into customers. I build high-performance React & Node.js solutions for startups and businesses across the US, UK, and Europe — fast, scalable, and SEO-optimized.',
+        description: 'Custom web applications that convert visitors into customers. I build high-performance Next.js, React & Node.js solutions for startups and businesses across the US, UK, and Europe — fast, scalable, and SEO-optimized.',
         features: [
-            'Responsive Web Design',
+            'Next.js Server-Side Rendering (SSR)',
             'Full-Stack Development (MERN)',
             'Performance & SEO Optimization',
-            'Cross-browser Compatibility',
+            'Next.js App Router Architecture',
             'REST & GraphQL API Integration',
             'Database Architecture',
             'Progressive Web Apps (PWA)',
-            'E-commerce Solutions'
+            'Responsive Web Design'
         ]
     },
     {

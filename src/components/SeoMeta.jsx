@@ -64,11 +64,11 @@ const SeoMeta = ({
             "https://x.com/PAbewarna29795"
         ],
         "knowsAbout": [
-            "React", "Node.js", "Python", "JavaScript", "Full Stack Development",
+            "Next.js", "React", "Node.js", "Python", "JavaScript", "Full Stack Development",
             "Frontend Development", "Backend Development", "MERN Stack",
             "MongoDB", "Express.js", "Tailwind CSS", "API Development",
             "Database Design", "Responsive Web Design", "Git", "TypeScript",
-            "Next.js", "PostgreSQL", "Web Performance Optimization"
+            "PostgreSQL", "Web Performance Optimization"
         ],
         "description": SITE.tagline,
         "email": `mailto:${SITE.email}`,
@@ -92,7 +92,7 @@ const SeoMeta = ({
         "url": siteUrl,
         "telephone": SITE.phone,
         "email": SITE.email,
-        "description": "Professional Full Stack Development services specializing in React, Node.js, and modern web technologies. Available for remote work worldwide.",
+        "description": "Professional Full Stack Development services specializing in Next.js, React, Node.js, and modern web technologies. Available for remote work worldwide.",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": SITE.address,
@@ -173,8 +173,8 @@ const SeoMeta = ({
             "@type": "Service",
             "@id": `${siteUrl}/#service-webdev`,
             "serviceType": "Web Development",
-            "name": "Custom Web Application Development",
-            "description": "High-performance React & Node.js web applications for startups and businesses. Full-stack MERN development with SEO optimization and responsive design.",
+            "name": "Custom Next.js & React Web Application Development",
+            "description": "High-performance Next.js & Node.js web applications for startups and businesses. Full-stack development with Server-Side Rendering (SSR) for optimal SEO and responsive design.",
             "provider": { "@id": `${siteUrl}/#person` },
             "areaServed": [
                 { "@type": "Country", "name": "United States" },

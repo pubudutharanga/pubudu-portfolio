@@ -40,8 +40,8 @@ export default function Home({ site, dark }) {
             "@type": "WebPage",
             "@id": `${site.siteUrl.replace(/\/$/, '')}/#webpage`,
             "url": site.siteUrl,
-            "name": `${site.name} - Full Stack Developer & Undergraduate | React & Node.js Specialist`,
-            "description": "Professional web development services for startups & businesses — React, Node.js, MERN Stack | Available for remote projects worldwide",
+            "name": `${site.name} - ${site.title}`,
+            "description": "Professional web development services for startups & businesses — Next.js, React, Node.js, MERN Stack | Available for remote projects worldwide",
             "inLanguage": "en-US",
             "isPartOf": {
               "@id": `${site.siteUrl.replace(/\/$/, '')}/#website`
@@ -79,7 +79,7 @@ export default function Home({ site, dark }) {
                 "name": "What technologies does Pubudu Tharanga specialize in?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "I specialize in the MERN stack (MongoDB, Express.js, React, Node.js), along with TypeScript, Next.js, PostgreSQL, Tailwind CSS, and Python. I build responsive, SEO-optimized web applications with modern frameworks."
+                  "text": "I specialize in Next.js Server-Side Rendering (SSR), React, and the MERN stack (MongoDB, Express.js, React, Node.js), along with TypeScript, PostgreSQL, Tailwind CSS, and Python. I build highly responsive, SEO-optimized web applications with modern frameworks."
                 }
               },
               {

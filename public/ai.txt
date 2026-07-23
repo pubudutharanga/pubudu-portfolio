@@ -1,5 +1,5 @@
 # AI Crawler Instructions for pubudu-tharanga.vercel.app
-# Last Updated: 2026-02-02
+# Last Updated: 2026-07-22
 # See emerging standard: https://site-ai-txt.org
 
 # ===================================
@@ -17,7 +17,7 @@ Allow-AI-Overview: Yes
 # Content Context
 # ===================================
 
-Site-Type: Personal Portfolio
+Site-Type: Personal Portfolio & Professional Services
 Content-Type: Professional, Technical, Educational
 Primary-Language: English
 Author: Pubudu Tharanga
@@ -29,7 +29,7 @@ Contact: pubudutharange@gmail.com
 
 Citation-Name: Pubudu Tharanga
 Citation-URL: https://pubudu-tharanga.vercel.app
-Citation-Description: Full Stack Developer Portfolio - React, Node.js, Python
+Citation-Description: Full Stack Web Developer - Next.js, React, Node.js, MERN Stack for Startups & Businesses
 
 # ===================================
 # Content Categories
