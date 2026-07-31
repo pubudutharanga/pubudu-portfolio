@@ -54,8 +54,7 @@ export default function Services() {
 
     const serviceIcons = {
         'Web Development': FaCode,
-        'UI/UX Design': FaPalette,
-        'Consulting': FaRocket
+        'UI/UX Design': FaPalette
     }
 
     return (
@@ -88,7 +87,7 @@ export default function Services() {
                 </motion.div>
 
                 {/* Services Grid */}
-                <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+                <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16 max-w-5xl mx-auto">
                     {SERVICES.map((service, index) => {
                         const IconComponent = serviceIcons[service.title] || FaCode
                         const isSelected = selectedService === index
@@ -239,12 +238,6 @@ export default function Services() {
                                     Start Your Project
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </HashLink>
-                                <a
-                                    href="mailto:pubudutharange@gmail.com"
-                                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center"
-                                >
-                                    Schedule Consultation
-                                </a>
                             </div>
                         </div>
 
@@ -258,7 +251,6 @@ export default function Services() {
                                         <div className="text-6xl mb-4">
                                             {selectedService === 0 && <FaCode />}
                                             {selectedService === 1 && <FaPalette />}
-                                            {selectedService === 2 && <FaRocket />}
                                         </div>
                                         <p className="text-xl font-semibold">Premium Quality</p>
                                         <p className="text-white/80 mt-2">Tailored to Your Needs</p>
@@ -273,34 +265,6 @@ export default function Services() {
                                     <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Client Satisfaction</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom CTA */}
-                <div className="text-center mt-20">
-                    <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-8 max-w-3xl mx-auto">
-                        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                            Ready to Start Your Project?
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg">
-                            Let's collaborate to bring your ideas to life with cutting-edge solutions
-                            and exceptional user experiences.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <HashLink
-                                smooth to="/#contact"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 text-lg flex items-center justify-center gap-2"
-                            >
-                                Get Free Consultation
-                                <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-                            </HashLink>
-                            <HashLink
-                                smooth to="/#portfolio"
-                                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 text-lg"
-                            >
-                                View My Work
-                            </HashLink>
                         </div>
                     </div>
                 </div>

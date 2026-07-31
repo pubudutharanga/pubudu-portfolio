@@ -217,21 +217,6 @@ export const SERVICES = [
             'Design System Creation',
             'Mobile-First Design'
         ]
-    },
-    {
-        title: 'Consulting',
-        icon: '🚀',
-        description: 'Strategic technical guidance for your digital transformation. Timezone-flexible consulting with milestone-based delivery — helping startups and businesses make informed technology decisions.',
-        features: [
-            'Code Review & Audits',
-            'Architecture Planning',
-            'Performance Optimization',
-            'Technical Strategy',
-            'Best Practices Implementation',
-            'Team Mentoring',
-            'Technology Stack Selection',
-            'Project Rescue & Recovery'
-        ]
     }
 ]
 

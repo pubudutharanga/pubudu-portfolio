@@ -125,13 +125,6 @@ const SeoMeta = ({
                         "@type": "Service",
                         "name": "UI/UX Design"
                     }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Technical Consulting"
-                    }
                 }
             ]
         },
@@ -201,22 +194,6 @@ const SeoMeta = ({
                 { "@type": "Country", "name": "United States" },
                 { "@type": "Country", "name": "United Kingdom" },
                 { "@type": "Country", "name": "Germany" }
-            ]
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "@id": `${siteUrl}/#service-consulting`,
-            "serviceType": "Technical Consulting",
-            "name": "Web Development Consulting",
-            "description": "Strategic technical guidance for digital transformation. Timezone-flexible consulting with milestone-based delivery for startups and enterprises.",
-            "provider": { "@id": `${siteUrl}/#person` },
-            "areaServed": [
-                { "@type": "Country", "name": "United States" },
-                { "@type": "Country", "name": "United Kingdom" },
-                { "@type": "Country", "name": "Germany" },
-                { "@type": "Country", "name": "Canada" },
-                { "@type": "Country", "name": "Australia" }
             ]
         }
     ];

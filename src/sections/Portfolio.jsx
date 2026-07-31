@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { PROJECTS } from '../data'
 import { FaGithub, FaExternalLinkAlt, FaCode, FaFilter, FaTimes, FaArrowRight, FaRegClock, FaCheck, FaSpinner } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HashLink } from 'react-router-hash-link';
+
 import { Helmet } from 'react-helmet-async';
 
 export default function Portfolio() {
@@ -338,39 +338,7 @@ export default function Portfolio() {
                     </motion.div>
                 )}
 
-                {/* Call to Action */}
-                <motion.div
-                    className="text-center mt-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                    <div className="card p-8 max-w-2xl mx-auto bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 border border-primary-100 dark:border-primary-800">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Interested in Working Together?
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-6">
-                            I'm always excited to take on new challenges and collaborate on innovative projects.
-                            Let's discuss how we can bring your ideas to life.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <HashLink
-                                smooth to="/#contact"
-                                className="btn-primary group"
-                            >
-                                Start a Project
-                                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                            </HashLink>
-                            <a
-                                href="mailto:pubudutharange@gmail.com"
-                                className="btn-secondary"
-                            >
-                                Get In Touch
-                            </a>
-                        </div>
-                    </div>
-                </motion.div>
+
             </div>
 
             {/* Project Detail Modal */}
