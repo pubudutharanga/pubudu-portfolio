@@ -158,7 +158,7 @@ export default function Footer({ site }) {
     }
 
     return (
-        <footer className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-white overflow-hidden border-t border-gray-200 dark:border-gray-800">
+        <footer className="relative z-10 bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-white overflow-hidden border-t border-gray-200 dark:border-gray-800">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200/30 dark:bg-blue-500/10 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/30 dark:bg-purple-500/10 rounded-full blur-3xl opacity-15 animate-pulse animation-delay-2000"></div>

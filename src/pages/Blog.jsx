@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaSearch, FaCalendar, FaClock, FaArrowRight, FaFilter, FaTags, FaUser, FaArrowLeft, FaShare } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import SeoMeta from '../components/SeoMeta'
-import { ElectricBorder } from '../components/reactbits'
+import { ElectricBorder, TracingBeam } from '../components/reactbits'
 
 export default function Blog({ dark }) {
     const [query, setQuery] = useState('')
@@ -151,7 +151,7 @@ export default function Blog({ dark }) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div className="min-h-screen bg-gray-50/75 dark:bg-gray-900/50 transition-colors duration-300">
             <SeoMeta
                 title="Blog"
                 description="Technical articles, tutorials, and insights on AI, Web Development, and Software Engineering by Pubudu Tharanga."
@@ -199,7 +199,7 @@ export default function Blog({ dark }) {
                 ]}
             />
             {/* Hero Section for Blog */}
-            <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
+            <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50/80 via-white/80 to-indigo-100/80 dark:from-gray-900/80 dark:via-gray-800/80 dark:to-blue-900/80">
                 {/* Background Elements */}
                 <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-15 animate-pulse animation-delay-2000"></div>
@@ -245,7 +245,8 @@ export default function Blog({ dark }) {
 
             {/* Blog Content */}
             <section className="py-16 px-4">
-                <div className="max-w-7xl mx-auto">
+                <TracingBeam className="w-full">
+                    <div className="max-w-7xl mx-auto">
                     {/* Search and Filter Section */}
                     <motion.div
                         className="mb-12"
@@ -611,7 +612,8 @@ export default function Blog({ dark }) {
                             </p>
                         </motion.div>
                     )}
-                </div>
+                    </div>
+                </TracingBeam>
             </section>
         </div>
     )

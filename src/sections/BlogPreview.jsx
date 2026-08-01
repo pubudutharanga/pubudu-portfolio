@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCalendar, FaClock, FaTags, FaEye } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
-import { ElectricBorder } from '../components/reactbits'
+import { ElectricBorder, LampContainer } from '../components/reactbits'
 
 export default function BlogPreview({ dark }) {
     const [hoveredPost, setHoveredPost] = useState(null)
@@ -59,7 +59,7 @@ export default function BlogPreview({ dark }) {
     }
 
     return (
-        <section id="blog" className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+        <section id="blog" className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-gray-50/75 to-blue-50/75 dark:from-gray-900/50 dark:to-blue-900/20">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-15 animate-pulse animation-delay-2000"></div>
@@ -72,13 +72,7 @@ export default function BlogPreview({ dark }) {
 
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
-                <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.8 }}
-                >
+                <LampContainer className="mb-16">
                     <motion.div
                         className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-4"
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -110,7 +104,7 @@ export default function BlogPreview({ dark }) {
                         Discover my latest thoughts on web development, design trends, and technology insights.
                         Stay updated with practical tutorials and industry analysis.
                     </motion.p>
-                </motion.div>
+                </LampContainer>
 
                 {/* Blog Posts Grid */}
                 <motion.div

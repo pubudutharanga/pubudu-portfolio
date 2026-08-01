@@ -6,22 +6,15 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { SITE } from './data'
-import { ClickSpark } from './components/reactbits'
+import { ClickSpark, GridBackground, Loader } from './components/reactbits'
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'))
 const Blog = lazy(() => import('./pages/Blog'))
 const PostPage = lazy(() => import('./pages/PostPage'))
 
-// Loading component
-const LoadingSpinner = () => (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
-        <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-            <p className="text-gray-600 dark:text-gray-400">Loading...</p>
-        </div>
-    </div>
-)
+// Premium animated multi-step loading experience
+const LoadingSpinner = () => <Loader fullScreen={true} />
 
 export default function App() {
     const location = useLocation()
@@ -62,7 +55,8 @@ export default function App() {
     }, [location.pathname])
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
+            <GridBackground />
             <SpeedInsights />
             <Analytics />
 
@@ -81,7 +75,7 @@ export default function App() {
             <Header site={SITE} dark={dark} setDark={setDark} />
 
             {/* Main Content */}
-            <main id="main-content" className="pt-16 lg:pt-20" role="main">
+            <main id="main-content" className="pt-16 lg:pt-20 relative z-10" role="main">
                 <Suspense fallback={<LoadingSpinner />}>
                     <Routes>
                         <Route path="/" element={<Home site={SITE} dark={dark} />} />

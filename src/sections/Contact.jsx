@@ -3,6 +3,7 @@ import { SITE } from '../data'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheck, FaLinkedin, FaGithub, FaFacebook, FaClock } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import { LampContainer } from '../components/reactbits'
 
 export default function Contact() {
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
@@ -126,7 +127,7 @@ export default function Contact() {
     ]
 
     return (
-        <section id="contact" className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+        <section id="contact" className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50/75 to-blue-50/75 dark:from-gray-900/50 dark:to-blue-900/20">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-15 animate-pulse animation-delay-2000"></div>
@@ -134,13 +135,7 @@ export default function Contact() {
 
             <div className="relative max-w-7xl mx-auto px-4">
                 {/* Section Header */}
-                <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <LampContainer className="mb-16">
                     <motion.div
                         className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-4"
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -172,7 +167,7 @@ export default function Contact() {
                         Ready to bring your ideas to life? Let's discuss your project and create something amazing together.
                         I'm always open to new opportunities and collaborations.
                     </motion.p>
-                </motion.div>
+                </LampContainer>
 
                 <div className="grid lg:grid-cols-2 gap-12">
                     {/* Contact Form */}

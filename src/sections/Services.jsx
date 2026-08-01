@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { SERVICES } from '../data'
 import { FaCode, FaPalette, FaRocket, FaCheck, FaArrowRight, FaStar, FaClock, FaUsers, FaAward } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { LampContainer } from '../components/reactbits'
 import { HashLink } from 'react-router-hash-link';
 
 export default function Services() {
@@ -59,20 +60,14 @@ export default function Services() {
 
     return (
 
-        <section id="services" className="py-12 md:py-20 px-4 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <section id="services" className="py-12 md:py-20 px-4 bg-white/75 dark:bg-gray-900/50 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-200 rounded-full blur-3xl opacity-15 animate-pulse"></div>
 
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
-                <motion.div
-                    className="text-center mb-12 md:mb-16"
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <LampContainer className="mb-12 md:mb-16">
                     <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-4">
                         <FaRocket className="mr-2" />
                         What I Offer
@@ -84,7 +79,7 @@ export default function Services() {
                         Premium web development services trusted by startups and businesses worldwide.
                         From concept to deployment — fast, reliable, and timezone-flexible.
                     </p>
-                </motion.div>
+                </LampContainer>
 
                 {/* Services Grid */}
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16 max-w-5xl mx-auto">

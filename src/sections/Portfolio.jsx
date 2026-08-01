@@ -4,6 +4,7 @@ import { FaGithub, FaExternalLinkAlt, FaCode, FaFilter, FaTimes, FaArrowRight, F
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { Helmet } from 'react-helmet-async';
+import { LampContainer } from '../components/reactbits';
 
 export default function Portfolio() {
     const [filter, setFilter] = useState('All')
@@ -105,7 +106,7 @@ export default function Portfolio() {
     }
 
     return (
-        <section id="portfolio" className="section-padding relative overflow-hidden bg-gray-50 dark:bg-gray-900/50">
+        <section id="portfolio" className="section-padding relative overflow-hidden bg-gray-50/75 dark:bg-gray-900/50">
             <Helmet>
                 <script type="application/ld+json">{JSON.stringify(projectsSchema)}</script>
             </Helmet>
@@ -116,13 +117,7 @@ export default function Portfolio() {
 
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
-                <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <LampContainer className="mb-16">
                     <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
                         <FaCode className="mr-2" />
                         My Work
@@ -134,7 +129,7 @@ export default function Portfolio() {
                         A collection of projects that showcase my skills in full-stack development,
                         problem-solving, and creating exceptional user experiences.
                     </p>
-                </motion.div>
+                </LampContainer>
 
                 {/* Filter Buttons */}
                 <motion.div

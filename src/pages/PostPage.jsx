@@ -320,7 +320,7 @@ export default function PostPage() {
     )
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 pt-20">
+        <div className="min-h-screen bg-white/75 dark:bg-gray-900/50 pt-20">
             {/* SEO Meta Tags for Blog Post */}
             <SeoMeta
                 title={post.title}

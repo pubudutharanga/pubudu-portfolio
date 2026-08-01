@@ -120,7 +120,7 @@ export default function Hero({ site, dark }) {
             {dark && isHeroVisible && <SplashCursor />}
 
             {/* Particle Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white/80 to-indigo-100/80 dark:from-gray-900/80 dark:via-gray-800/80 dark:to-blue-900/80">
                 <Particles
                     dark={dark}
                     particleCount={particleCount}

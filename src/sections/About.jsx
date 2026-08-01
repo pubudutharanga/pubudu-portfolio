@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { SKILLS, SITE } from '../data'
 import { FaDownload, FaCode, FaTools, FaUsers, FaAward, FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { LampContainer } from '../components/reactbits'
 
 export default function About({ dark }) {
     const [activeTab, setActiveTab] = useState('technical')
@@ -55,13 +56,7 @@ export default function About({ dark }) {
 
             <div className="relative max-w-7xl mx-auto px-4">
                 {/* Section Header */}
-                <motion.div
-                    className="text-center mb-12 md:mb-16"
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <LampContainer className="mb-12 md:mb-16">
                     <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
                         <FaAward className="mr-2" />
                         About Me
@@ -73,7 +68,7 @@ export default function About({ dark }) {
                         Bridging the gap between <strong>complex backend logic</strong> and <strong>intuitive frontend design</strong>.
                         I build scalable, accessible, and performance-driven web applications using the latest standards in the MERN stack.
                     </p>
-                </motion.div>
+                </LampContainer>
 
                 <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
                     {/* Profile Image & Personal Info */}
