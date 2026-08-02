@@ -192,6 +192,14 @@
         mix-blend-mode: normal;
     }
 
+    /* Suppress standard CSS animations and transitions while View Transition is wiping */
+    html.transitioning-theme,
+    html.transitioning-theme *,
+    html.transitioning-theme *::before,
+    html.transitioning-theme *::after {
+        transition: none !important;
+    }
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
         @apply w-2;

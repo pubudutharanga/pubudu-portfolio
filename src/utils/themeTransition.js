@@ -1,3 +1,5 @@
+let isTransitioning = false;
+
 /**
  * Toggles theme state using the native View Transitions API with an expanding circular clip-path animation.
  * Automatically falls back to standard theme toggling on browsers that lack support or when reduced motion is requested.
@@ -7,6 +9,8 @@
  * @param {Function} setDark - The state setter function for the dark theme
  */
 export async function toggleThemeWithTransition(event, currentDark, setDark) {
+    if (isTransitioning) return;
+
     const nextDark = !currentDark;
 
     // Fallback if View Transitions API is unsupported or user prefers reduced motion
@@ -14,9 +18,14 @@ export async function toggleThemeWithTransition(event, currentDark, setDark) {
         !document.startViewTransition ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
+        document.documentElement.classList.toggle('dark', nextDark);
+        try { localStorage.setItem('dark', nextDark.toString()); } catch (_) {}
         setDark(nextDark);
         return;
     }
+
+    isTransitioning = true;
+    document.documentElement.classList.add('transitioning-theme');
 
     // Capture coordinates of the user interaction (mouse click or touch point)
     let x = window.innerWidth / 2;
@@ -46,16 +55,21 @@ export async function toggleThemeWithTransition(event, currentDark, setDark) {
         Math.max(y, window.innerHeight - y)
     );
 
-    // Start View Transition
-    const transition = document.startViewTransition(() => {
+    // Start View Transition with synchronous DOM update and brief layout wait
+    const transition = document.startViewTransition(async () => {
+        document.documentElement.classList.toggle('dark', nextDark);
+        try { localStorage.setItem('dark', nextDark.toString()); } catch (_) {}
         setDark(nextDark);
+
+        // Wait for React rendering and layout stability before second snapshot
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     });
 
     try {
         // Animate the circular clip-path when DOM snapshot is ready
         await transition.ready;
 
-        document.documentElement.animate(
+        const anim = document.documentElement.animate(
             {
                 clipPath: [
                     `circle(0px at ${x}px ${y}px)`,
@@ -68,7 +82,12 @@ export async function toggleThemeWithTransition(event, currentDark, setDark) {
                 pseudoElement: '::view-transition-new(root)'
             }
         );
+        
+        await anim.finished;
     } catch (e) {
         // Transition was canceled or finished prematurely, ignore silently
+    } finally {
+        document.documentElement.classList.remove('transitioning-theme');
+        isTransitioning = false;
     }
 }

@@ -3,7 +3,7 @@
  * 
  * A stunning canvas-based particle animation with mouse interactivity,
  * connection lines between nearby particles, and dark mode support.
- * Optimized for performance using RequestAnimationFrame.
+ * Optimized for performance using RequestAnimationFrame and zero-reload theme switches.
  */
 
 import React, { useRef, useEffect, useCallback, useMemo } from 'react'
@@ -39,9 +39,48 @@ const Particles = ({
         return dark ? 'rgba(96, 165, 250, 0.12)' : lineColor
     }, [dark, lineColor])
 
+    const colorsRef = useRef(colors)
+    const lineColorRef = useRef(lineColorAdjusted)
+
+    // Update refs and gently transition existing particle colors in-place when theme toggles
+    useEffect(() => {
+        colorsRef.current = colors
+        lineColorRef.current = lineColorAdjusted
+        particlesRef.current.forEach(particle => {
+            particle.color = colors[Math.floor(Math.random() * colors.length)]
+        })
+    }, [colors, lineColorAdjusted])
+
+    // Handle count changes without restarting animation loop
+    useEffect(() => {
+        const currentLength = particlesRef.current.length
+        const { width, height } = dimensionsRef.current
+        if (width && height && currentLength !== particleCount) {
+            if (particleCount > currentLength) {
+                const added = particleCount - currentLength
+                for (let i = 0; i < added; i++) {
+                    particlesRef.current.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * speed,
+                        vy: (Math.random() - 0.5) * speed,
+                        size: Math.random() * (particleMaxSize - particleMinSize) + particleMinSize,
+                        color: colorsRef.current[Math.floor(Math.random() * colorsRef.current.length)],
+                        originalX: 0,
+                        originalY: 0,
+                        opacity: Math.random() * 0.5 + 0.5,
+                    })
+                }
+            } else {
+                particlesRef.current.length = particleCount
+            }
+        }
+    }, [particleCount, speed, particleMaxSize, particleMinSize])
+
     // Initialize particles
     const initParticles = useCallback((width, height) => {
         const particles = []
+        const currentColors = colorsRef.current
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * width,
@@ -49,14 +88,14 @@ const Particles = ({
                 vx: (Math.random() - 0.5) * speed,
                 vy: (Math.random() - 0.5) * speed,
                 size: Math.random() * (particleMaxSize - particleMinSize) + particleMinSize,
-                color: colors[Math.floor(Math.random() * colors.length)],
+                color: currentColors[Math.floor(Math.random() * currentColors.length)],
                 originalX: 0,
                 originalY: 0,
                 opacity: Math.random() * 0.5 + 0.5,
             })
         }
         return particles
-    }, [particleCount, particleMaxSize, particleMinSize, speed, colors])
+    }, [particleCount, particleMaxSize, particleMinSize, speed])
 
     // Animation loop
     const animate = useCallback(() => {
@@ -67,6 +106,7 @@ const Particles = ({
         const { width, height } = dimensionsRef.current
         const particles = particlesRef.current
         const mouse = mouseRef.current
+        const activeLineColor = lineColorRef.current
 
         // Clear canvas
         ctx.clearRect(0, 0, width, height)
@@ -138,7 +178,7 @@ const Particles = ({
                     ctx.beginPath()
                     ctx.moveTo(particle.x, particle.y)
                     ctx.lineTo(other.x, other.y)
-                    ctx.strokeStyle = lineColorAdjusted
+                    ctx.strokeStyle = activeLineColor
                     ctx.globalAlpha = opacity
                     ctx.lineWidth = 0.5
                     ctx.stroke()
@@ -148,7 +188,7 @@ const Particles = ({
         })
 
         animationRef.current = requestAnimationFrame(animate)
-    }, [connectionDistance, lineColorAdjusted, mouseForce, mouseRadius])
+    }, [connectionDistance, mouseForce, mouseRadius])
 
     // Handle resize
     const handleResize = useCallback(() => {
@@ -173,11 +213,10 @@ const Particles = ({
         dimensionsRef.current = { width, height }
 
         // Reinitialize particles on significant resize
-        if (particlesRef.current.length === 0 ||
-            Math.abs(particlesRef.current.length - particleCount) > 10) {
+        if (particlesRef.current.length === 0) {
             particlesRef.current = initParticles(width, height)
         }
-    }, [initParticles, particleCount])
+    }, [initParticles])
 
     // Mouse handlers
     const handleMouseMove = useCallback((e) => {
@@ -195,7 +234,7 @@ const Particles = ({
         mouseRef.current = { x: null, y: null }
     }, [])
 
-    // Setup and cleanup
+    // Setup and cleanup - starts animation only once on mount
     useEffect(() => {
         // Check for reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -229,14 +268,6 @@ const Particles = ({
             if (initRaf2) cancelAnimationFrame(initRaf2)
         }
     }, [animate, handleResize, initParticles])
-
-    // Reinitialize when colors change (dark mode toggle)
-    useEffect(() => {
-        const { width, height } = dimensionsRef.current
-        if (width && height) {
-            particlesRef.current = initParticles(width, height)
-        }
-    }, [colors, initParticles])
 
     return (
         <canvas
