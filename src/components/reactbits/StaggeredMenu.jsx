@@ -523,7 +523,7 @@ export const StaggeredMenu = ({
                             {onToggleDark && (
                                 <div className="sm-theme-toggle">
                                     <button
-                                        onClick={onToggleDark}
+                                        onClick={(e) => onToggleDark(e)}
                                         className="group relative flex items-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 border border-gray-200/50 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full"
                                         aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
                                     >

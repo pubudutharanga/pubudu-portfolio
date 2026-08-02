@@ -181,6 +181,17 @@
         @apply antialiased;
     }
 
+    /* View Transitions API for industry-standard circular theme switching */
+    ::view-transition-group(root) {
+        animation-duration: 0s;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+    }
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
         @apply w-2;

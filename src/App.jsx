@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { SITE } from './data'
 import { ClickSpark, GridBackground, Loader } from './components/reactbits'
+import { toggleThemeWithTransition } from './utils/themeTransition'
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'))
@@ -54,6 +55,10 @@ export default function App() {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [location.pathname])
 
+    const handleToggleDark = (e) => {
+        toggleThemeWithTransition(e, dark, setDark)
+    }
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
             <GridBackground />
@@ -72,7 +77,7 @@ export default function App() {
             )}
 
             {/* Header */}
-            <Header site={SITE} dark={dark} setDark={setDark} />
+            <Header site={SITE} dark={dark} setDark={setDark} toggleDark={handleToggleDark} />
 
             {/* Main Content */}
             <main id="main-content" className="pt-16 lg:pt-20 relative z-10" role="main">

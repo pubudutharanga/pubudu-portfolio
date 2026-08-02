@@ -5,17 +5,31 @@ import { FiMenu, FiX, FiSun, FiMoon, FiCode } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { StaggeredMenu } from './reactbits'
 
-export default function Header({ site, dark, setDark }) {
+export default function Header({ site, dark, setDark, toggleDark }) {
+    const handleThemeToggle = (e) => {
+        if (toggleDark) {
+            toggleDark(e)
+        } else {
+            setDark(!dark)
+        }
+    }
     const [isOpen, setIsOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
 
     useEffect(() => {
+        let ticking = false
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50)
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setScrolled(window.scrollY > 60)
+                    ticking = false
+                })
+                ticking = true
+            }
         }
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
@@ -114,110 +128,84 @@ export default function Header({ site, dark, setDark }) {
 
     return (
         <>
-            <motion.header
-                className={`fixed w-full z-50 transition-[background-color,backdrop-filter,border-color,box-shadow] duration-500 ${scrolled || isOpen
-                    ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg shadow-black/5 border-b border-gray-200/50 dark:border-gray-700/50'
-                    : 'bg-transparent'
-                    }`}
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16 lg:h-20">
-                        {/* Logo */}
-                        <motion.div
-                            className="flex items-center gap-3 cursor-pointer group"
-                            onClick={() => navigate('/')}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                        >
+            <div className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none">
+                <motion.header
+                    className={`pointer-events-auto w-full overflow-hidden transition-[width,max-width,margin,border-radius,background-color,border-color,box-shadow,height,padding] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled || isOpen
+                        ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-xl shadow-black/5 border-b border-gray-200/60 dark:border-gray-800/60 md:w-[92%] lg:w-[86%] md:max-w-5xl md:mt-3 lg:mt-4 md:rounded-full md:border md:border-gray-200/80 md:dark:border-gray-700/80 md:shadow-2xl md:shadow-black/10'
+                        : 'bg-white dark:bg-gray-900 w-full max-w-full mt-0 rounded-none border-b border-gray-100 dark:border-gray-800/60 shadow-none'
+                        }`}
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+                        <div className={`flex items-center justify-between transition-[height,padding] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                            scrolled ? "h-14 lg:h-16" : "h-16 lg:h-20"
+                        }`}>
+                            {/* Logo */}
                             <motion.div
-                                className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 shadow-lg"
-                                whileHover={{ rotate: 5 }}
+                                className="flex items-center gap-3 cursor-pointer group select-none"
+                                onClick={() => navigate('/')}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
                             >
-                                <FiCode className="text-white text-xl" />
-                            </motion.div>
-                            <div>
                                 <motion.div
-                                    className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent"
-                                    whileHover={{ scale: 1.05 }}
+                                    className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 shadow-md group-hover:rotate-6"
+                                    whileHover={{ rotate: 5 }}
+                                >
+                                    <FiCode className="text-white text-xl" />
+                                </motion.div>
+                                <motion.div
+                                    className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent tracking-tight"
+                                    whileHover={{ scale: 1.04 }}
                                 >
                                     {site.name}
                                 </motion.div>
-                                <div className="hidden sm:block text-xs text-gray-500 dark:text-gray-400 font-medium">
-                                    {site.title}
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Desktop Navigation */}
-                        <nav className="hidden lg:flex items-center gap-8" role="navigation" aria-label="Main navigation">
-                            <motion.div
-                                className="flex items-center gap-8"
-                                variants={containerVariants}
-                                initial="hidden"
-                                animate="visible"
-                            >
-                                {navItems.map((item, index) => (
-                                    <motion.button
-                                        key={item.label}
-                                        onClick={item.action}
-                                        className="relative text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 py-2"
-                                        variants={itemVariants}
-                                        whileHover={{ y: -1 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        {item.label}
-                                        <motion.div
-                                            className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                                            whileHover={{ width: "100%" }}
-                                            transition={{ duration: 0.3 }}
-                                        />
-                                    </motion.button>
-                                ))}
                             </motion.div>
 
-                            {/* Theme Toggle */}
-                            <motion.button
-                                onClick={() => setDark(!dark)}
-                                aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-                                aria-pressed={dark}
-                                type="button"
-                                className="p-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-200 dark:border-gray-700"
-                                whileHover={{ scale: 1.05, rotate: 15 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {dark ? (
-                                    <FiSun className="text-yellow-400 text-lg" />
-                                ) : (
-                                    <FiMoon className="text-gray-600 text-lg" />
-                                )}
-                            </motion.button>
+                            {/* Desktop Navigation */}
+                            <nav className="hidden lg:flex items-center gap-1 xl:gap-2" role="navigation" aria-label="Main navigation">
+                                <motion.div
+                                    className="flex items-center gap-1 xl:gap-1.5"
+                                    variants={containerVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                >
+                                    {navItems.map((item, index) => (
+                                        <motion.button
+                                            key={item.label}
+                                            onClick={item.action}
+                                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-white rounded-full hover:bg-gray-100/80 dark:hover:bg-gray-800/70 transition-all duration-300 cursor-pointer select-none"
+                                            variants={itemVariants}
+                                            whileHover={{ y: -1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            {item.label}
+                                        </motion.button>
+                                    ))}
+                                </motion.div>
 
-                            {/* CTA Button */}
-                            <motion.button
-                                onClick={() => scrollToSection('contact')}
-                                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg shadow-blue-500/25 dark:shadow-blue-500/20"
-                                whileHover={{ scale: 1.05, y: -1 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                Get In Touch
-                            </motion.button>
-                        </nav>
+                                {/* Theme Toggle */}
+                                <motion.button
+                                    onClick={handleThemeToggle}
+                                    aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+                                    aria-pressed={dark}
+                                    type="button"
+                                    className="ml-2 p-2.5 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200/80 dark:border-gray-700/80 shadow-sm cursor-pointer flex items-center justify-center"
+                                    whileHover={{ scale: 1.08, rotate: 15 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    {dark ? (
+                                        <FiSun className="text-amber-400 text-lg" />
+                                    ) : (
+                                        <FiMoon className="text-slate-700 dark:text-slate-200 text-lg" />
+                                    )}
+                                </motion.button>
+                            </nav>
+                        </div>
                     </div>
-
-
-                </div>
-
-                {/* Progress Bar */}
-                <motion.div
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 origin-left"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: scrolled ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                />
-            </motion.header>
+                </motion.header>
+            </div>
 
             {/* Mobile StaggeredMenu - Fixed overlay */}
             <div className="lg:hidden fixed inset-0 pointer-events-none z-[60]">
@@ -236,7 +224,7 @@ export default function Header({ site, dark, setDark }) {
                     siteName={site.name}
                     siteTitle={site.title}
                     dark={dark}
-                    onToggleDark={() => setDark(!dark)}
+                    onToggleDark={handleThemeToggle}
                     navigate={navigate}
                 />
             </div>
