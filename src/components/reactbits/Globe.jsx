@@ -96,7 +96,7 @@ function GlobeMesh({ data = [], globeConfig = {} }) {
         }
     }, [globeConfig, data])
 
-    // Update continents when GeoJSON loads or theme color switches
+    // Initialize continent hex polygons ONCE when GeoJSON loads
     useEffect(() => {
         if (globeInstance && countriesData) {
             globeInstance
@@ -104,6 +104,13 @@ function GlobeMesh({ data = [], globeConfig = {} }) {
                 .hexPolygonResolution(3)
                 .hexPolygonMargin(0.7)
                 .hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,0.7)")
+        }
+    }, [globeInstance, countriesData])
+
+    // Update hex polygon color dynamically without recomputing polygon mesh data
+    useEffect(() => {
+        if (globeInstance && countriesData) {
+            globeInstance.hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,0.7)")
         }
     }, [globeInstance, countriesData, globeConfig.polygonColor])
 

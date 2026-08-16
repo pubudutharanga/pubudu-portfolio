@@ -98,7 +98,7 @@ export async function toggleThemeWithTransition(event, currentDark, setDark) {
     try {
         await transition.ready;
 
-        // Circular wipe reveal animation
+        // Snappy, instantaneous circular wipe reveal animation
         const anim = document.documentElement.animate(
             {
                 clipPath: [
@@ -107,8 +107,8 @@ export async function toggleThemeWithTransition(event, currentDark, setDark) {
                 ]
             },
             {
-                duration: 550,
-                easing: 'cubic-bezier(0.2, 0, 0, 1)',
+                duration: 350,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 pseudoElement: '::view-transition-new(root)'
             }
         );

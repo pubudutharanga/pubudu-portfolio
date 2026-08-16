@@ -19,6 +19,17 @@ export default function Hero({ site, dark }) {
     const [particleCount, setParticleCount] = useState(dark ? 90 : 30)
     const [isMobile, setIsMobile] = useState(false)
 
+    // Defer SplashCursor activation so heavy WebGL shader compilation doesn't block theme transition
+    const [renderSplash, setRenderSplash] = useState(dark)
+    useEffect(() => {
+        if (dark) {
+            const timer = setTimeout(() => setRenderSplash(true), 350)
+            return () => clearTimeout(timer)
+        } else {
+            setRenderSplash(false)
+        }
+    }, [dark])
+
     useEffect(() => {
         const updateResponsive = () => {
             const width = window.innerWidth
@@ -116,8 +127,8 @@ export default function Hero({ site, dark }) {
 
     return (
         <section ref={heroRef} id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-            {/* Splash Cursor - Only in dark mode AND when Hero is visible */}
-            {dark && isHeroVisible && <SplashCursor />}
+            {/* Splash Cursor - Only in dark mode AND when Hero is visible (deferred to avoid switch lag) */}
+            {renderSplash && isHeroVisible && <SplashCursor />}
 
             {/* Particle Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white/80 to-indigo-100/80 dark:from-gray-900/80 dark:via-gray-800/80 dark:to-blue-900/80">
