@@ -182,14 +182,18 @@
     }
 
     /* View Transitions API for industry-standard circular theme switching */
-    ::view-transition-group(root) {
-        animation-duration: 0s;
-    }
-
     ::view-transition-old(root),
     ::view-transition-new(root) {
         animation: none;
         mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(root) {
+        z-index: 1;
+    }
+
+    ::view-transition-new(root) {
+        z-index: 9999;
     }
 
     /* Suppress standard CSS animations and transitions while View Transition is wiping */

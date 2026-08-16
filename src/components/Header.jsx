@@ -189,17 +189,29 @@ export default function Header({ site, dark, setDark, toggleDark }) {
                                 <motion.button
                                     onClick={handleThemeToggle}
                                     aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+                                    title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
                                     aria-pressed={dark}
                                     type="button"
-                                    className="ml-2 p-2.5 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200/80 dark:border-gray-700/80 shadow-sm cursor-pointer flex items-center justify-center"
-                                    whileHover={{ scale: 1.08, rotate: 15 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    className="ml-2 relative p-2.5 bg-gray-100/90 dark:bg-gray-800/90 rounded-full hover:bg-gray-200/90 dark:hover:bg-gray-700/90 transition-all duration-300 border border-gray-200/80 dark:border-gray-700/80 shadow-sm cursor-pointer flex items-center justify-center overflow-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
+                                    whileHover={{ scale: 1.08 }}
+                                    whileTap={{ scale: 0.92 }}
                                 >
-                                    {dark ? (
-                                        <FiSun className="text-amber-400 text-lg" />
-                                    ) : (
-                                        <FiMoon className="text-slate-700 dark:text-slate-200 text-lg" />
-                                    )}
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        <motion.div
+                                            key={dark ? 'dark-sun' : 'light-moon'}
+                                            initial={{ y: -16, opacity: 0, rotate: -90, scale: 0.6 }}
+                                            animate={{ y: 0, opacity: 1, rotate: 0, scale: 1 }}
+                                            exit={{ y: 16, opacity: 0, rotate: 90, scale: 0.6 }}
+                                            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                            className="flex items-center justify-center"
+                                        >
+                                            {dark ? (
+                                                <FiSun className="text-amber-400 text-lg drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                                            ) : (
+                                                <FiMoon className="text-slate-700 text-lg drop-shadow-[0_0_6px_rgba(51,65,85,0.3)]" />
+                                            )}
+                                        </motion.div>
+                                    </AnimatePresence>
                                 </motion.button>
                             </nav>
                         </div>

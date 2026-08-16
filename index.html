@@ -32,11 +32,29 @@
 
     <!-- Fonts are self-hosted via src/styles/fonts.css for better LCP -->
 
+    <!-- Synchronous theme initializer to prevent FOUC (Flash of Unstyled Theme) -->
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('dark');
+                var isDark = saved !== null ? saved === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.colorScheme = 'dark';
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.style.colorScheme = 'light';
+                }
+            } catch (_) {}
+        })();
+    </script>
+
     <!-- Critical inline CSS for instant first paint -->
     <style>
+        :root { color-scheme: light; }
+        :root.dark { color-scheme: dark; }
         body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
         #root { min-height: 100vh; }
-        .dark { color-scheme: dark; }
         .dark body, .dark #root { background-color: #111827; color: #f3f4f6; }
     </style>
 

@@ -523,9 +523,11 @@ export const StaggeredMenu = ({
                             {onToggleDark && (
                                 <div className="sm-theme-toggle">
                                     <button
+                                        type="button"
                                         onClick={(e) => onToggleDark(e)}
-                                        className="group relative flex items-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 border border-gray-200/50 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full"
+                                        className="group relative flex items-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 border border-gray-200/50 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full cursor-pointer"
                                         aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+                                        aria-pressed={dark}
                                     >
                                         {/* Animated Icon Container */}
                                         <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg overflow-hidden">

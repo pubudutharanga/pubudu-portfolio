@@ -6,8 +6,9 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { SITE } from './data'
-import { ClickSpark, GridBackground, Loader } from './components/reactbits'
-import { toggleThemeWithTransition } from './utils/themeTransition'
+import { ClickSpark, Loader } from './components/reactbits'
+import FallBeamBackground from './components/lightswind/fall-beam-background'
+import { toggleThemeWithTransition, syncThemeToDOM } from './utils/themeTransition'
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'))
@@ -31,8 +32,18 @@ export default function App() {
         return false
     })
 
-    // Remove the redundant initial useEffect that was causing the overwrite logic
-
+    // Listen to OS system color scheme changes (when no explicit user override is stored)
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+        const handleChange = (e) => {
+            const saved = localStorage.getItem('dark')
+            if (saved === null) {
+                setDark(e.matches)
+            }
+        }
+        mediaQuery.addEventListener('change', handleChange)
+        return () => mediaQuery.removeEventListener('change', handleChange)
+    }, [])
 
     // Register service worker after page load (deferred to avoid render-blocking)
     useEffect(() => {
@@ -44,10 +55,9 @@ export default function App() {
         }
     }, [])
 
-    // Update document class when dark mode changes
+    // Update document class, color-scheme, and meta tags when dark mode changes
     useEffect(() => {
-        document.documentElement.classList.toggle('dark', dark)
-        localStorage.setItem('dark', dark.toString())
+        syncThemeToDOM(dark)
     }, [dark])
 
     // Scroll to top on route change
@@ -61,7 +71,11 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
-            <GridBackground />
+            <FallBeamBackground 
+                lineCount={30} 
+                beamColorClass="blue-400" 
+                className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" 
+            />
             <SpeedInsights />
             <Analytics />
 
