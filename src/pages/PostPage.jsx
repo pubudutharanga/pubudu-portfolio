@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { BLOG_POSTS } from '../data'
+import { getBlogPostBySlug } from '../services/blogService'
 import { FaCalendar, FaClock, FaArrowLeft, FaShare, FaUser, FaTag, FaBookmark, FaCheck, FaArrowRight } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import SeoMeta from '../components/SeoMeta'
 
 // Helper to safely strip HTML for SEO
 const stripHtml = (html) => {
+    if (!html) return ""
     if (typeof DOMParser !== 'undefined') {
         const doc = new DOMParser().parseFromString(html, 'text/html')
         return doc.body.textContent || ""
@@ -17,12 +19,33 @@ const stripHtml = (html) => {
 export default function PostPage() {
     const { slug } = useParams()
     const navigate = useNavigate()
-    const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug)
+    const [post, setPost] = useState(() => BLOG_POSTS.find(p => p.slug === slug || p.id === slug) || null)
+    const [loading, setLoading] = useState(!post)
     const [progress, setProgress] = useState(0)
     const [isBookmarked, setIsBookmarked] = useState(false)
     const [showShareMenu, setShowShareMenu] = useState(false)
     const [isCopied, setIsCopied] = useState(false)
     const shareMenuRef = useRef(null)
+
+    useEffect(() => {
+        let isMounted = true
+        async function fetchPost() {
+            if (!slug) return
+            try {
+                const fetched = await getBlogPostBySlug(slug)
+                if (isMounted) {
+                    setPost(fetched)
+                    setLoading(false)
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setLoading(false)
+                }
+            }
+        }
+        fetchPost()
+        return () => { isMounted = false }
+    }, [slug])
 
     // Improved scroll progress tracking
     useEffect(() => {
@@ -193,6 +216,24 @@ export default function PostPage() {
         initial: { scale: 1 },
         tapped: { scale: 0.9 },
         bookmarked: { scale: 1.1 }
+    }
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-white dark:bg-gray-900 pt-24 pb-16 px-4">
+                <div className="max-w-4xl mx-auto animate-pulse space-y-6">
+                    <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-lg w-1/4"></div>
+                    <div className="h-12 bg-gray-200 dark:bg-gray-800 rounded-xl w-3/4"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-1/2"></div>
+                    <div className="h-64 bg-gray-200 dark:bg-gray-800 rounded-2xl w-full mt-8"></div>
+                    <div className="space-y-4 pt-8">
+                        <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full"></div>
+                        <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-5/6"></div>
+                        <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-4/6"></div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     if (!post) {

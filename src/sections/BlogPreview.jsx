@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BLOG_POSTS } from '../data'
+import { getBlogPosts } from '../services/blogService'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCalendar, FaClock, FaTags, FaEye } from 'react-icons/fa'
 import { motion } from 'framer-motion'
@@ -7,8 +8,26 @@ import { motion } from 'framer-motion'
 import { ElectricBorder, LampContainer } from '../components/reactbits'
 
 export default function BlogPreview({ dark }) {
+    const [allPosts, setAllPosts] = useState(BLOG_POSTS)
     const [hoveredPost, setHoveredPost] = useState(null)
-    const posts = BLOG_POSTS.slice(0, 3)
+
+    useEffect(() => {
+        let isMounted = true
+        async function fetchPosts() {
+            try {
+                const fetched = await getBlogPosts()
+                if (isMounted && fetched && fetched.length > 0) {
+                    setAllPosts(fetched)
+                }
+            } catch (e) {
+                console.warn('Error fetching dynamic posts in preview:', e)
+            }
+        }
+        fetchPosts()
+        return () => { isMounted = false }
+    }, [])
+
+    const posts = allPosts.slice(0, 3)
 
     // Animation variants
     const containerVariants = {
@@ -343,7 +362,7 @@ export default function BlogPreview({ dark }) {
                 >
                     <div className="text-center">
                         <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                            {BLOG_POSTS.length}+
+                            {allPosts.length}+
                         </div>
                         <div className="text-gray-600 dark:text-gray-400">Articles Published</div>
                     </div>

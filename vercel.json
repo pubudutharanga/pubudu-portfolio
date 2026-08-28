@@ -2,7 +2,7 @@
     "installCommand": "npm ci && npm rebuild",
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/((?!api/).*)",
             "destination": "/index.html"
         }
     ],

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BLOG_POSTS, BLOG_CATEGORIES, SITE } from '../data'
+import { getBlogPosts } from '../services/blogService'
 import { Link } from 'react-router-dom'
 import { FaSearch, FaCalendar, FaClock, FaArrowRight, FaFilter, FaTags, FaUser, FaArrowLeft, FaShare } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -7,18 +8,36 @@ import SeoMeta from '../components/SeoMeta'
 import { ElectricBorder, TracingBeam } from '../components/reactbits'
 
 export default function Blog({ dark }) {
+    const [posts, setPosts] = useState(BLOG_POSTS)
     const [query, setQuery] = useState('')
     const [category, setCategory] = useState('All')
     const [visible, setVisible] = useState(6)
     const [isSearchFocused, setIsSearchFocused] = useState(false)
     const [showShareMenu, setShowShareMenu] = useState(null)
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        let isMounted = true
+        async function fetchPosts() {
+            try {
+                const fetched = await getBlogPosts()
+                if (isMounted && fetched && fetched.length > 0) {
+                    setPosts(fetched)
+                }
+            } catch (e) {
+                console.warn('Error fetching dynamic posts:', e)
+            }
+        }
+        fetchPosts()
+        return () => { isMounted = false }
+    }, [])
 
     // Filter posts based on search and category
-    const filteredPosts = BLOG_POSTS
+    const filteredPosts = posts
         .filter(p => category === 'All' ? true : p.category === category)
         .filter(p =>
-            p.title.toLowerCase().includes(query.toLowerCase()) ||
-            p.excerpt.toLowerCase().includes(query.toLowerCase()) ||
+            p.title?.toLowerCase().includes(query.toLowerCase()) ||
+            p.excerpt?.toLowerCase().includes(query.toLowerCase()) ||
             p.tags?.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
         )
 

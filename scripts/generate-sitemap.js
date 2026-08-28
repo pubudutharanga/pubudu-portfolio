@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { MongoClient } from 'mongodb';
 import { BLOG_POSTS, SITE } from '../src/data.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +15,6 @@ const BASE_URL = SITE.siteUrl.replace(/\/$/, '');
 const STATIC_ROUTES = [
     { url: '/', changefreq: 'weekly', priority: 1.0 },
     { url: '/blog', changefreq: 'weekly', priority: 0.9 },
-    // Add other static pages here if necessary
 ];
 
 function formatDate(dateString) {
@@ -22,8 +22,54 @@ function formatDate(dateString) {
     return new Date(dateString).toISOString().split('T')[0];
 }
 
-function generateSitemap() {
+// Fallback to load .env if not loaded
+if (!process.env.MONGODB_URI) {
+    try {
+        const envPath = path.join(__dirname, '../.env');
+        if (fs.existsSync(envPath)) {
+            const content = fs.readFileSync(envPath, 'utf8');
+            content.split('\n').forEach(line => {
+                const match = line.match(/^\s*([\w_]+)\s*=\s*(.*)?\s*$/);
+                if (match) {
+                    const key = match[1];
+                    const value = match[2] ? match[2].trim().replace(/^['"]|['"]$/g, '') : '';
+                    process.env[key] = value;
+                }
+            });
+        }
+    } catch (e) {
+        // silent
+    }
+}
+
+async function getPosts() {
+    const uri = process.env.MONGODB_URI;
+    const dbName = process.env.MONGODB_DB || 'portfolio';
+
+    if (uri) {
+        try {
+            const client = new MongoClient(uri, { serverSelectionTimeoutMS: 3000 });
+            await client.connect();
+            const db = client.db(dbName);
+            const posts = await db.collection('blogs')
+                .find({ status: { $ne: 'draft' } }, { projection: { slug: 1, id: 1, date: 1 } })
+                .toArray();
+            await client.close();
+            if (posts && posts.length > 0) {
+                console.log(`📡 Loaded ${posts.length} posts from MongoDB for sitemap.`);
+                return posts;
+            }
+        } catch (err) {
+            console.warn('⚠️  Could not connect to MongoDB for sitemap, falling back to data.js:', err.message);
+        }
+    }
+    return BLOG_POSTS;
+}
+
+async function generateSitemap() {
     console.log('🚀 Generating sitemap...');
+
+    const posts = await getPosts();
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
@@ -40,7 +86,7 @@ function generateSitemap() {
     });
 
     // Add Dynamic Blog Posts
-    BLOG_POSTS.forEach(post => {
+    posts.forEach(post => {
         xml += `
   <url>
     <loc>${BASE_URL}/blog/${post.slug || post.id}</loc>
@@ -55,12 +101,10 @@ function generateSitemap() {
 
     fs.writeFileSync(SITEMAP_PATH, xml);
     console.log(`✅ Sitemap generated successfully at ${SITEMAP_PATH}`);
-    console.log(`   Total URLs: ${STATIC_ROUTES.length + BLOG_POSTS.length}`);
+    console.log(`   Total URLs: ${STATIC_ROUTES.length + posts.length}`);
 }
 
-try {
-    generateSitemap();
-} catch (error) {
+generateSitemap().catch(error => {
     console.error('❌ Error generating sitemap:', error);
     process.exit(1);
-}
+});
