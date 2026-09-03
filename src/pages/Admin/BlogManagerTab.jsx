@@ -14,7 +14,8 @@ import {
     FaChevronRight,
     FaSyncAlt,
     FaTimes,
-    FaFileAlt
+    FaFileAlt,
+    FaCloudUploadAlt
 } from 'react-icons/fa';
 
 export default function BlogManagerTab({ onEditPost, onOpenLinkedInStudio }) {
