@@ -6,6 +6,23 @@
             "destination": "/index.html"
         }
     ],
+    "functions": {
+        "api/admin/generate.js": {
+            "maxDuration": 60
+        },
+        "api/admin/posts.js": {
+            "maxDuration": 15
+        },
+        "api/admin/auth.js": {
+            "maxDuration": 10
+        },
+        "api/admin/upload-signature.js": {
+            "maxDuration": 10
+        },
+        "api/posts/index.js": {
+            "maxDuration": 15
+        }
+    },
     "headers": [
         {
             "source": "/(.*)",
@@ -36,7 +53,7 @@
                 },
                 {
                     "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://api.emailjs.com https://va.vercel-scripts.com https://vitals.vercel-insights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: https://res.cloudinary.com; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://api.cloudinary.com https://va.vercel-scripts.com https://vitals.vercel-insights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
                 }
             ]
         },

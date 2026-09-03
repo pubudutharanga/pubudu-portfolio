@@ -14,8 +14,10 @@ import { toggleThemeWithTransition, syncThemeToDOM } from './utils/themeTransiti
 const Home = lazy(() => import('./pages/Home'))
 const Blog = lazy(() => import('./pages/Blog'))
 const PostPage = lazy(() => import('./pages/PostPage'))
+const Admin = lazy(() => import('./pages/Admin'))
 
 // Premium animated multi-step loading experience
+
 const LoadingSpinner = () => <Loader fullScreen={true} />
 
 export default function App() {
@@ -100,8 +102,10 @@ export default function App() {
                         <Route path="/" element={<Home site={SITE} dark={dark} />} />
                         <Route path="/blog" element={<Blog dark={dark} />} />
                         <Route path="/blog/:slug" element={<PostPage />} />
+                        <Route path="/admin" element={<Admin />} />
 
                         {/* 404 Fallback */}
+
                         <Route path="*" element={
                             <div className="min-h-screen flex items-center justify-center">
                                 <div className="text-center">
@@ -120,8 +124,8 @@ export default function App() {
                 </Suspense>
             </main>
 
-            {/* Footer */}
-            <Footer site={SITE} />
+            {/* Footer - Suppressed on admin studio routes for maximum workspace focus */}
+            {!location.pathname.startsWith('/admin') && <Footer site={SITE} />}
         </div>
     )
 }

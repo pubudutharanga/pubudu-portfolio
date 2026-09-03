@@ -33,7 +33,21 @@ export const SKILLS = {
     ]
 }
 
-export const BLOG_CATEGORIES = ['All', 'Tutorials', 'Case Studies', 'Industry Insights', 'Tips & Resources']
+export const BLOG_CATEGORIES = [
+    'All',
+    'AI Automation',
+    'AI Tools',
+    'Cybersecurity',
+    'Web Development',
+    'Productivity',
+    'IT Governance',
+    'Quality Assurance',
+    'Cloud & DevOps',
+    'Industry Insights',
+    'Tutorials',
+    'Case Studies',
+    'Tips & Resources'
+];
 
 export const EDUCATION = [
     {

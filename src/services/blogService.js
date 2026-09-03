@@ -9,7 +9,12 @@ const postCache = new Map();
 export async function getBlogPosts({ category = 'All', search = '' } = {}) {
     try {
         if (!cachedPosts) {
-            const res = await fetch('/api/posts');
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3000);
+            
+            const res = await fetch('/api/posts', { signal: controller.signal });
+            clearTimeout(timeoutId);
+            
             if (res.ok) {
                 const data = await res.json();
                 if (data.success && Array.isArray(data.posts) && data.posts.length > 0) {
@@ -30,7 +35,7 @@ export async function getBlogPosts({ category = 'All', search = '' } = {}) {
             return matchesCategory && matchesSearch;
         });
     } catch (err) {
-        console.warn('Could not fetch from /api/posts, falling back to static data.js:', err);
+        console.warn('Could not fetch from /api/posts, instantly displaying fallback posts:', err);
         return BLOG_POSTS.filter(p => {
             const matchesCategory = category === 'All' ? true : p.category === category;
             const matchesSearch = !search ? true : (
@@ -54,7 +59,12 @@ export async function getBlogPostBySlug(slug) {
     }
 
     try {
-        const res = await fetch(`/api/posts/${encodeURIComponent(slug)}`);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+        const res = await fetch(`/api/posts/${encodeURIComponent(slug)}`, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
         if (res.ok) {
             const data = await res.json();
             if (data.success && data.post) {
@@ -63,7 +73,7 @@ export async function getBlogPostBySlug(slug) {
             }
         }
     } catch (err) {
-        console.warn(`Could not fetch post ${slug} from /api/posts/[slug], falling back to static data.js:`, err);
+        console.warn(`Could not fetch post ${slug} from /api/posts/[slug], fallback to data.js:`, err);
     }
 
     // Fallback to static data.js

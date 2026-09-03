@@ -16,6 +16,21 @@ const stripHtml = (html) => {
     return html.replace(/<[^>]+>/g, "")
 }
 
+// Helper to strip any raw JSON wrapper or unescaped string literal artifacts
+const getSafeContent = (raw) => {
+    if (!raw) return ""
+    let cleaned = raw.trim()
+    if (cleaned.startsWith('{') && (cleaned.includes('"title"') || cleaned.includes('"content"'))) {
+        const firstTag = cleaned.indexOf('<')
+        if (firstTag !== -1) {
+            cleaned = cleaned.substring(firstTag)
+        }
+    }
+    cleaned = cleaned.replace(/^\{[\s\S]*?"content"\s*:\s*"/i, '')
+    cleaned = cleaned.replace(/"\s*\}\s*$/i, '')
+    return cleaned
+}
+
 export default function PostPage() {
     const { slug } = useParams()
     const navigate = useNavigate()
@@ -585,7 +600,7 @@ export default function PostPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h3:text-xl prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:dark:bg-blue-900/20 prose-blockquote:italic prose-blockquote:px-4 prose-blockquote:py-2"
-                                dangerouslySetInnerHTML={{ __html: post.content }}
+                                dangerouslySetInnerHTML={{ __html: getSafeContent(post.content) }}
                             />
 
                             {/* Article Footer */}

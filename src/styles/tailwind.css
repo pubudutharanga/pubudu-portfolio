@@ -383,36 +383,100 @@
 }
 
 .blog-content h2 {
-    @apply text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700;
+    @apply text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-10 mb-4 pb-2 border-b border-gray-200 dark:border-gray-800 flex items-center gap-2;
 }
 
 .blog-content h3 {
-    @apply text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3;
+    @apply text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-8 mb-3;
 }
 
 .blog-content p {
-    @apply text-gray-700 dark:text-gray-300 leading-relaxed mb-4;
+    @apply text-gray-700 dark:text-gray-300 leading-relaxed mb-5 text-base sm:text-lg;
 }
 
 .blog-content ul,
 .blog-content ol {
-    @apply text-gray-700 dark:text-gray-300 mb-4;
+    @apply text-gray-700 dark:text-gray-300 mb-6 space-y-3 pl-5;
 }
 
 .blog-content li {
-    @apply mb-2 leading-relaxed;
+    @apply leading-relaxed;
+}
+
+/* Fix for inline badges & pills: High-contrast in both Light & Dark modes */
+.blog-content span[class*="rounded-full"],
+.blog-content span[class*="rounded-"],
+.blog-content span[class*="badge"],
+.blog-content span[class*="bg-"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    min-width: max-content !important;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1.1rem !important;
+    font-weight: 700 !important;
+    border-radius: 0.5rem !important;
+    margin-right: 0.6rem !important;
+    margin-bottom: 0.25rem !important;
+    vertical-align: middle !important;
+    letter-spacing: 0.025em !important;
+    background-color: #e0f2fe !important;
+    color: #0369a1 !important;
+    border: 1px solid #bae6fd !important;
+}
+
+/* Dark mode high-contrast pill badges */
+.dark .blog-content span[class*="rounded-full"],
+.dark .blog-content span[class*="rounded-"],
+.dark .blog-content span[class*="badge"],
+.dark .blog-content span[class*="bg-"] {
+    background-color: rgba(14, 165, 233, 0.18) !important;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+}
+
+.dark .blog-content span[class*="bg-green"],
+.dark .blog-content span[class*="bg-emerald"] {
+    background-color: rgba(16, 185, 129, 0.18) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(52, 211, 153, 0.4) !important;
+}
+
+.dark .blog-content span[class*="bg-purple"],
+.dark .blog-content span[class*="bg-violet"],
+.dark .blog-content span[class*="bg-fuchsia"] {
+    background-color: rgba(168, 85, 247, 0.18) !important;
+    color: #c084fc !important;
+    border: 1px solid rgba(192, 132, 252, 0.4) !important;
+}
+
+.dark .blog-content span[class*="bg-amber"],
+.dark .blog-content span[class*="bg-yellow"] {
+    background-color: rgba(245, 158, 11, 0.18) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(251, 191, 36, 0.4) !important;
+}
+
+
+/* Fix flex list item layout in blog content */
+.blog-content .flex {
+    @apply items-start gap-3 my-3;
 }
 
 .blog-content blockquote {
-    @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-400 my-6;
+    @apply border-l-4 border-blue-500 bg-blue-50/70 dark:bg-blue-950/40 px-6 py-4 rounded-r-2xl my-6 italic text-gray-800 dark:text-gray-200 text-base sm:text-lg shadow-sm leading-relaxed;
 }
 
 .blog-content pre {
-    @apply bg-gray-900 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-6;
+    @apply bg-gray-900 dark:bg-gray-950 border border-gray-800 rounded-2xl p-5 overflow-x-auto my-6 shadow-md text-sm;
 }
 
 .blog-content code {
-    @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm;
+    @apply bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-mono text-sm;
 }
 
 .blog-content pre code {
@@ -420,15 +484,15 @@
 }
 
 .highlight-box {
-    @apply bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 my-6 rounded-r-lg;
+    @apply bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/80 border-l-4 border-l-blue-500 p-5 my-6 rounded-2xl shadow-sm;
 }
 
 .features-grid {
-    @apply grid grid-cols-2 md:grid-cols-3 gap-3 my-6;
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6;
 }
 
 .feature-item {
-    @apply bg-gray-50 dark:bg-gray-800 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 text-center;
+    @apply bg-gray-50 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 p-4 rounded-2xl text-sm text-gray-700 dark:text-gray-300;
 }
 
 .stats-grid {
@@ -436,23 +500,209 @@
 }
 
 .stat-item {
-    @apply text-center p-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-lg border border-green-100 dark:border-gray-600;
+    @apply text-center p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800/60 rounded-2xl border border-blue-100 dark:border-gray-700;
 }
 
 .stat-number {
-    @apply text-2xl font-bold text-green-600 dark:text-green-400 mb-1;
+    @apply text-3xl font-extrabold text-blue-600 dark:text-blue-400 mb-1;
 }
 
 .stat-label {
-    @apply text-sm text-gray-600 dark:text-gray-400;
+    @apply text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-400;
 }
 
 .conclusion {
-    @apply bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800 my-8;
+    @apply bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-2xl border border-purple-200 dark:border-purple-800 my-8;
 }
 
 .conclusion p {
     @apply text-gray-800 dark:text-gray-200;
 }
 
+/* =========================================================================
+   LIVE RESPONSIVE PREVIEW - STRICT THEME ISOLATION SCOPES
+   ========================================================================= */
+
+/* 1. FORCE LIGHT PREVIEW SCOPE (Overrides parent html.dark) */
+.preview-scope-light {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    color-scheme: light !important;
+}
+
+.preview-scope-light,
+.preview-scope-light .blog-content,
+.preview-scope-light .prose {
+    color: #374151 !important;
+}
+
+.preview-scope-light h1,
+.preview-scope-light h2,
+.preview-scope-light h3,
+.preview-scope-light h4,
+.preview-scope-light .blog-content h1,
+.preview-scope-light .blog-content h2,
+.preview-scope-light .blog-content h3,
+.preview-scope-light .blog-content h4,
+.preview-scope-light .blog-content strong {
+    color: #111827 !important;
+    border-color: #e5e7eb !important;
+}
+
+.preview-scope-light p,
+.preview-scope-light li,
+.preview-scope-light .blog-content p,
+.preview-scope-light .blog-content li {
+    color: #374151 !important;
+}
+
+.preview-scope-light .blog-content .lead {
+    color: #4b5563 !important;
+}
+
+.preview-scope-light .highlight-box {
+    background-color: #eff6ff !important;
+    border-color: #bfdbfe !important;
+    border-left-color: #3b82f6 !important;
+}
+
+.preview-scope-light .highlight-box p,
+.preview-scope-light .highlight-box strong {
+    color: #1e40af !important;
+}
+
+.preview-scope-light .blog-content blockquote {
+    background-color: #f0f9ff !important;
+    color: #334155 !important;
+    border-left-color: #3b82f6 !important;
+}
+
+.preview-scope-light .feature-item,
+.preview-scope-light .blog-content .grid > div,
+.preview-scope-light .features-grid > div,
+.preview-scope-light .blog-content div[class*="rounded"] {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #334155 !important;
+}
+
+.preview-scope-light .stat-item {
+    background: linear-gradient(to bottom right, #eff6ff, #eef2ff) !important;
+    border-color: #dbeafe !important;
+}
+
+.preview-scope-light .stat-number {
+    color: #2563eb !important;
+}
+
+.preview-scope-light .stat-label {
+    color: #4b5563 !important;
+}
+
+.preview-scope-light span[class*="rounded-"],
+.preview-scope-light span[class*="badge"],
+.preview-scope-light span[class*="bg-"] {
+    background-color: #e0f2fe !important;
+    color: #0369a1 !important;
+    border: 1px solid #bae6fd !important;
+}
+
+/* 2. FORCE DARK PREVIEW SCOPE (Overrides parent light mode) */
+.preview-scope-dark {
+    background-color: #090d16 !important;
+    color: #f3f4f6 !important;
+    color-scheme: dark !important;
+}
+
+.preview-scope-dark,
+.preview-scope-dark .blog-content,
+.preview-scope-dark .prose {
+    color: #d1d5db !important;
+}
+
+.preview-scope-dark h1,
+.preview-scope-dark h2,
+.preview-scope-dark h3,
+.preview-scope-dark h4,
+.preview-scope-dark .blog-content h1,
+.preview-scope-dark .blog-content h2,
+.preview-scope-dark .blog-content h3,
+.preview-scope-dark .blog-content h4,
+.preview-scope-dark .blog-content strong {
+    color: #f9fafb !important;
+    border-color: #1f2937 !important;
+}
+
+.preview-scope-dark p,
+.preview-scope-dark li,
+.preview-scope-dark .blog-content p,
+.preview-scope-dark .blog-content li {
+    color: #d1d5db !important;
+}
+
+.preview-scope-dark .blog-content .lead {
+    color: #9ca3af !important;
+}
+
+.preview-scope-dark .highlight-box {
+    background-color: rgba(30, 58, 138, 0.25) !important;
+    border-color: rgba(59, 130, 246, 0.4) !important;
+    border-left-color: #3b82f6 !important;
+}
+
+.preview-scope-dark .highlight-box p,
+.preview-scope-dark .highlight-box strong {
+    color: #93c5fd !important;
+}
+
+.preview-scope-dark .blog-content blockquote {
+    background-color: rgba(30, 58, 138, 0.2) !important;
+    color: #e2e8f0 !important;
+    border-left-color: #3b82f6 !important;
+}
+
+.preview-scope-dark .feature-item,
+.preview-scope-dark .blog-content .grid > div,
+.preview-scope-dark .features-grid > div,
+.preview-scope-dark .blog-content div[class*="rounded"] {
+    background-color: #0f172a !important;
+    border: 1px solid #1e293b !important;
+    color: #cbd5e1 !important;
+}
+
+.preview-scope-dark .stat-item {
+    background: linear-gradient(to bottom right, #111827, #1f2937) !important;
+    border-color: #374151 !important;
+}
+
+.preview-scope-dark .stat-number {
+    color: #60a5fa !important;
+}
+
+.preview-scope-dark .stat-label {
+    color: #9ca3af !important;
+}
+
+.preview-scope-dark span[class*="rounded-"],
+.preview-scope-dark span[class*="badge"],
+.preview-scope-dark span[class*="bg-"] {
+    background-color: rgba(14, 165, 233, 0.18) !important;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+}
+
+/* Global Grid Cards Harmonization */
+.blog-content .grid > div,
+.blog-content .features-grid > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    border-radius: 1rem !important;
+    padding: 1.25rem !important;
+    box-sizing: border-box;
+}
+
 @variant dark (&:where(.dark, .dark *));
+
+
