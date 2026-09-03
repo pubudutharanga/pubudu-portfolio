@@ -108,7 +108,12 @@ export default function BlogManagerTab({ onEditPost, onOpenLinkedInStudio }) {
             });
 
             if (res.ok) {
-                setNotification({ text: 'Post deleted successfully!', type: 'success' });
+                const data = await res.json().catch(() => ({}));
+                const msg = data.cloudinarySummary?.total > 0
+                    ? `Post deleted! ${data.cloudinarySummary.succeeded}/${data.cloudinarySummary.total} Cloudinary asset(s) cleaned up.`
+                    : 'Post deleted successfully!';
+                const type = data.cloudinarySummary?.failed > 0 ? 'warning' : 'success';
+                setNotification({ text: msg, type });
                 setDeleteModalPost(null);
                 fetchPosts(pagination.page);
             } else {

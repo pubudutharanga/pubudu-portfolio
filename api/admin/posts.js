@@ -257,45 +257,75 @@ export default async function handler(req, res) {
                 return res.status(404).json({ success: false, error: 'Post not found' });
             }
 
-            // 2. Identify Cloudinary images associated with this post (thumbnail & inline images)
-            const imagesToDelete = [];
+            // 2. Collect ALL Cloudinary image URLs associated with this post
+            //    Use a Set for automatic deduplication (same image may appear in featured + content)
+            const cloudinaryUrls = new Set();
 
-            // Thumbnail / Featured image
+            // 2a. Thumbnail / Featured image
             if (existingPost.featured && existingPost.featured.includes('cloudinary.com')) {
-                imagesToDelete.push(existingPost.featured);
+                cloudinaryUrls.add(existingPost.featured);
             }
 
-            // SEO OG image if different from featured
-            if (existingPost.seo?.ogImage && existingPost.seo.ogImage.includes('cloudinary.com') && existingPost.seo.ogImage !== existingPost.featured) {
-                imagesToDelete.push(existingPost.seo.ogImage);
+            // 2b. SEO OG image (if different from featured)
+            if (existingPost.seo?.ogImage && existingPost.seo.ogImage.includes('cloudinary.com')) {
+                cloudinaryUrls.add(existingPost.seo.ogImage);
             }
 
-            // Inline uploaded images in article content
+            // 2c. Inline images in HTML content — <img src="..."> tags
             if (existingPost.content) {
-                const imgRegex = /<img[^>]+src=["']([^"']+)["']/gi;
+                const htmlImgRegex = /<img[^>]+src=["']([^"']+)["']/gi;
                 let match;
-                while ((match = imgRegex.exec(existingPost.content)) !== null) {
-                    const src = match[1];
-                    if (src && src.includes('cloudinary.com')) {
-                        imagesToDelete.push(src);
+                while ((match = htmlImgRegex.exec(existingPost.content)) !== null) {
+                    if (match[1] && match[1].includes('cloudinary.com')) {
+                        cloudinaryUrls.add(match[1]);
+                    }
+                }
+
+                // 2d. Markdown images — ![alt](url)
+                const mdImgRegex = /!\[[^\]]*\]\(([^)]+)\)/g;
+                while ((match = mdImgRegex.exec(existingPost.content)) !== null) {
+                    if (match[1] && match[1].includes('cloudinary.com')) {
+                        cloudinaryUrls.add(match[1]);
+                    }
+                }
+
+                // 2e. CSS background-image: url(...)
+                const bgImgRegex = /url\(["']?([^"')]+)["']?\)/gi;
+                while ((match = bgImgRegex.exec(existingPost.content)) !== null) {
+                    if (match[1] && match[1].includes('cloudinary.com')) {
+                        cloudinaryUrls.add(match[1]);
                     }
                 }
             }
 
-            // 3. Delete thumbnail and article images from Cloudinary
+            // 3. Delete all collected Cloudinary assets
             let cloudinaryDeletions = [];
-            if (imagesToDelete.length > 0) {
-                cloudinaryDeletions = await deleteCloudinaryImages(imagesToDelete);
+            if (cloudinaryUrls.size > 0) {
+                console.log(`[DELETE] Post "${existingPost.slug}": found ${cloudinaryUrls.size} Cloudinary asset(s) to clean up`);
+                cloudinaryDeletions = await deleteCloudinaryImages([...cloudinaryUrls]);
+            } else {
+                console.log(`[DELETE] Post "${existingPost.slug}": no Cloudinary assets found`);
             }
 
-            // 4. Delete the article from MongoDB
+            // 4. Delete the article document from MongoDB
             const deleteResult = await collection.deleteOne(query);
+
+            // 5. Build accurate response reflecting partial failures
+            const failedDeletions = cloudinaryDeletions.filter(d => d.status === 'error' || d.status === 'not found');
+            const successfulDeletions = cloudinaryDeletions.filter(d => d.status !== 'error' && d.status !== 'not found' && d.status !== 'skipped');
 
             return res.status(200).json({
                 success: true,
-                message: 'Post and thumbnail deleted successfully from MongoDB and Cloudinary',
+                message: failedDeletions.length > 0
+                    ? `Post deleted from MongoDB. ${successfulDeletions.length}/${cloudinaryUrls.size} Cloudinary assets cleaned up (${failedDeletions.length} failed).`
+                    : 'Post and all associated Cloudinary assets deleted successfully.',
                 deletedCount: deleteResult.deletedCount,
-                cloudinaryDeletions
+                cloudinaryDeletions,
+                cloudinarySummary: {
+                    total: cloudinaryUrls.size,
+                    succeeded: successfulDeletions.length,
+                    failed: failedDeletions.length
+                }
             });
         }
 
