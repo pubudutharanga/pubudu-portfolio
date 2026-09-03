@@ -1,4 +1,4 @@
-# 🚀 Automated Deployment Script for Vercel CI/CD (PowerShell)
+﻿# 🚀 Automated Deployment Script for Vercel CI/CD (PowerShell)
 # Repository: pubudutharanga/pubudu-portfolio
 # Description: Fully automated Git workflow with conflict handling
 

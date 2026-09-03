@@ -21,8 +21,11 @@ export async function getDatabase() {
     if (!global._mongoClientPromise) {
         client = new MongoClient(uri, {
             maxPoolSize: 10,
-            serverSelectionTimeoutMS: 10000,
+            serverSelectionTimeoutMS: 15000,
             socketTimeoutMS: 45000,
+            connectTimeoutMS: 15000,
+            retryReads: true,
+            retryWrites: true,
         });
 
         global._mongoClientPromise = client.connect().catch((err) => {

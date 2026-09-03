@@ -10,7 +10,7 @@ export async function getBlogPosts({ category = 'All', search = '' } = {}) {
     try {
         if (!cachedPosts) {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3000);
+            const timeoutId = setTimeout(() => controller.abort(), 8000);
             
             const res = await fetch('/api/posts', { signal: controller.signal });
             clearTimeout(timeoutId);
@@ -60,7 +60,7 @@ export async function getBlogPostBySlug(slug) {
 
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
 
         const res = await fetch(`/api/posts/${encodeURIComponent(slug)}`, { signal: controller.signal });
         clearTimeout(timeoutId);

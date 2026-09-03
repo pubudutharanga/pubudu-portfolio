@@ -71,7 +71,7 @@ export default function BlogManagerTab({ onEditPost, onOpenLinkedInStudio }) {
     const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'desc' });
 
     // Fetch posts from API
-    const fetchPosts = useCallback(async (page = 1) => {
+    const fetchPosts = useCallback(async (page = 1, retryCount = 0) => {
         setIsLoading(true);
         try {
             const params = new URLSearchParams({
@@ -92,10 +92,34 @@ export default function BlogManagerTab({ onEditPost, onOpenLinkedInStudio }) {
                 const data = await res.json();
                 setPosts(data.posts || []);
                 setPagination(data.pagination || { page, limit: 10, total: 0, totalPages: 1, totalPublished: 0, totalDrafts: 0 });
+                // Clear any previous error notification on success
+                if (notification.type === 'error') {
+                    setNotification({ text: '', type: '' });
+                }
+            } else {
+                // Server returned an error — auto-retry once after 2s
+                const errData = await res.json().catch(() => ({}));
+                const errMsg = errData.error || `Server responded with ${res.status}`;
+                console.warn('Admin posts fetch failed:', errMsg);
+
+                if (retryCount < 1) {
+                    setNotification({ text: `Database slow — retrying...`, type: 'warning' });
+                    setTimeout(() => fetchPosts(page, retryCount + 1), 2000);
+                    return; // Don't clear isLoading yet
+                } else {
+                    setNotification({ text: `Database connection failed: ${errMsg}. Click refresh to retry.`, type: 'error' });
+                }
             }
         } catch (err) {
             console.error('Error fetching admin posts:', err);
-            setNotification({ text: 'Failed to load posts from database', type: 'error' });
+            // Network error — auto-retry once
+            if (retryCount < 1) {
+                setNotification({ text: `Network issue — retrying...`, type: 'warning' });
+                setTimeout(() => fetchPosts(page, retryCount + 1), 2000);
+                return;
+            } else {
+                setNotification({ text: 'Failed to connect to database. Check your network and click refresh.', type: 'error' });
+            }
         } finally {
             setIsLoading(false);
         }
