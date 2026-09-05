@@ -99,7 +99,7 @@ export default function AiPublisherTab({ onEditPostInManualTab, onOpenLinkedInSt
     // Streamlined 3-step publishing pipeline
     const STEPS = [
         { label: 'Upload Thumbnail to Cloudinary CDN', desc: 'Secure signed direct CDN upload' },
-        { label: 'Synthesize Article with Gemini AI 2.0', desc: 'Deep technical content & structure' },
+        { label: 'Synthesize Article with Gemini 3.7 Flash', desc: 'Deep technical content & structure' },
         { label: 'Sanitize & Index into Atlas DB', desc: 'XSS protection & live publishing' }
     ];
 
@@ -157,7 +157,7 @@ export default function AiPublisherTab({ onEditPostInManualTab, onOpenLinkedInSt
 
             // STEP 2: Call Gemini AI for English Blog Content
             setCurrentStep(1);
-            setStepLogs(prev => [...prev, `⚡ Prompting Gemini AI 2.0 with "${topic}" [Category: ${category}]...`]);
+            setStepLogs(prev => [...prev, `⚡ Prompting Gemini 3.7 Flash with "${topic}" [Category: ${category}]...`]);
 
             const blogGenRes = await fetch('/api/admin/generate', {
                 method: 'POST',

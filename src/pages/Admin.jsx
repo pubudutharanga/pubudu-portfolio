@@ -42,7 +42,7 @@ export default function Admin() {
         {
             id: 'ai',
             label: 'AI Auto-Publisher',
-            badge: 'Gemini 2.0',
+            badge: 'Gemini 3.7 Flash',
             badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
             icon: FaRobot,
             key: '1'

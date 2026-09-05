@@ -3,7 +3,7 @@ import { AiBlogResponseSchema, AiLinkedInResponseSchema } from '../lib/schemas.j
 import { sanitizePostHtml } from '../lib/sanitize.js';
 
 // Reads model from env with fallback to latest active Gemini models
-const FALLBACK_MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash-exp'];
+const FALLBACK_MODELS = ['gemini-3.7-flash', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
 
 
 /**
@@ -50,7 +50,7 @@ async function fetchGeminiWithRetry(endpoint, body, maxRetries = 2, timeoutMs = 
  * Call Gemini API across models with strict schema enforcement
  */
 async function callGemini(apiKey, systemPrompt, userPrompt, responseSchema = null) {
-    const primaryModel = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+    const primaryModel = process.env.GEMINI_MODEL || 'gemini-3.7-flash';
     const modelsToTry = [primaryModel, ...FALLBACK_MODELS.filter(m => m !== primaryModel)];
     let lastErr = null;
 
