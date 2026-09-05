@@ -331,8 +331,9 @@ export default async function handler(req, res) {
 
         return res.status(405).json({ success: false, error: 'Method Not Allowed' });
     } catch (error) {
-        console.error('API /api/admin/posts error:', error);
-        return res.status(500).json({
+        console.error('API /api/admin/posts error:', error.message || error);
+        const statusCode = error.statusCode || 500;
+        return res.status(statusCode).json({
             success: false,
             error: error.message || 'Internal Server Error'
         });

@@ -85,10 +85,13 @@ function vercelApiDevPlugin() {
                     const handler = module.default;
                     await handler(req, res);
                 } catch (error) {
-                    console.error('Vite API Dev Server Error:', error);
-                    res.statusCode = 500;
-                    res.setHeader('Content-Type', 'application/json');
-                    res.end(JSON.stringify({ success: false, error: error.message }));
+                    console.error('Vite API Dev Server Error:', error.message || error);
+                    if (!res.writableEnded) {
+                        const statusCode = error.statusCode || 500;
+                        res.statusCode = statusCode;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify({ success: false, error: error.message }));
+                    }
                 }
             });
         }

@@ -97,17 +97,20 @@ export default function BlogManagerTab({ onEditPost, onOpenLinkedInStudio }) {
                     setNotification({ text: '', type: '' });
                 }
             } else {
-                // Server returned an error — auto-retry once after 2s
                 const errData = await res.json().catch(() => ({}));
                 const errMsg = errData.error || `Server responded with ${res.status}`;
-                console.warn('Admin posts fetch failed:', errMsg);
+                console.warn('Admin posts fetch failed:', res.status, errMsg);
 
-                if (retryCount < 1) {
-                    setNotification({ text: `Database slow — retrying...`, type: 'warning' });
-                    setTimeout(() => fetchPosts(page, retryCount + 1), 2000);
+                // 401 = session expired — don't retry, tell user to re-login
+                if (res.status === 401) {
+                    setNotification({ text: 'Session expired. Please log out and log in again.', type: 'error' });
+                } else if (retryCount < 2) {
+                    // 500 or other server errors — auto-retry up to 2 times
+                    setNotification({ text: `Database connecting — retry ${retryCount + 1}/2...`, type: 'warning' });
+                    setTimeout(() => fetchPosts(page, retryCount + 1), 2500);
                     return; // Don't clear isLoading yet
                 } else {
-                    setNotification({ text: `Database connection failed: ${errMsg}. Click refresh to retry.`, type: 'error' });
+                    setNotification({ text: `Database connection failed: ${errMsg}. Click ↻ to retry.`, type: 'error' });
                 }
             }
         } catch (err) {
