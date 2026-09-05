@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "homepage": "https://pubudu-tharanga.vercel.app/",
+  "engines": {
+    "node": ">=20.x"
+  },
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
@@ -39,7 +42,6 @@
     "react-intersection-observer": "^9.15.0",
     "react-router-dom": "^7.13.0",
     "react-router-hash-link": "^2.4.3",
-    "sanitize-html": "^2.17.7",
     "tailwindcss": "^4.2.0",
     "three": "^0.182.0",
     "three-globe": "^2.45.2",
