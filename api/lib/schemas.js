@@ -5,7 +5,7 @@ import { z } from 'zod';
  */
 export const AiBlogResponseSchema = z.object({
     title: z.string().min(5).max(200),
-    slug: z.string().min(3).max(200).regex(/^[a-z0-9-]+$/, 'Slug must only contain lowercase alphanumeric characters and hyphens'),
+    slug: z.string().min(3).max(200).regex(/^[a-z0-9-]+$/, { error: 'Slug must only contain lowercase alphanumeric characters and hyphens' }),
     category: z.string().min(2).max(100),
     excerpt: z.string().min(10).max(500),
     readTime: z.string().min(3).max(30).default('5 min read'),
@@ -27,15 +27,15 @@ export const AiLinkedInResponseSchema = z.object({
  */
 export const PostInputSchema = z.object({
     id: z.string().optional(),
-    title: z.string().min(3, 'Title must be at least 3 characters').max(250),
-    slug: z.string().min(3).max(250).regex(/^[a-z0-9-]+$/, 'Slug must be lowercase alphanumeric with hyphens'),
+    title: z.string().min(3, { error: 'Title must be at least 3 characters' }).max(250),
+    slug: z.string().min(3).max(250).regex(/^[a-z0-9-]+$/, { error: 'Slug must be lowercase alphanumeric with hyphens' }),
     category: z.string().default('Industry Insights'),
     excerpt: z.string().max(600).default(''),
     readTime: z.string().default('5 min read'),
     date: z.string().optional(),
-    featured: z.string().url('Featured image must be a valid URL').or(z.string().startsWith('/')),
+    featured: z.string().url({ error: 'Featured image must be a valid URL' }).or(z.string().startsWith('/')),
     tags: z.array(z.string()).default([]),
-    content: z.string().min(10, 'Content must not be empty'),
+    content: z.string().min(10, { error: 'Content must not be empty' }),
     status: z.enum(['published', 'draft']).default('published'),
     source: z.enum(['ai', 'manual']).default('manual'),
     author: z.object({
@@ -56,5 +56,5 @@ export const PostInputSchema = z.object({
  * Validates Login payload
  */
 export const LoginInputSchema = z.object({
-    password: z.string().min(1, 'Password is required')
+    password: z.string().min(1, { error: 'Password is required' })
 });

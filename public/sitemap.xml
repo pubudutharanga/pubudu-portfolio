@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pubudu-tharanga.vercel.app/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://pubudu-tharanga.vercel.app/blog</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -99,6 +99,12 @@
   <url>
     <loc>https://pubudu-tharanga.vercel.app/blog/what-nobody-tells-you-about-web-security-in-2026</loc>
     <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pubudu-tharanga.vercel.app/blog/why-most-software-projects-fail-and-how-to-win</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

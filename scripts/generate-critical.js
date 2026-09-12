@@ -21,21 +21,36 @@ async function run() {
         root: path.resolve(__dirname, '..'),
     });
     
+    const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Critical CSS generation timed out after 10s')), 10000)
+    );
+
     try {
-        await generate({
-            base: basePath,
-            src: 'http://localhost:4173/',
-            target: 'index.html',
-            inline: true,
-            width: 1300,
-            height: 900,
-        });
+        await Promise.race([
+            generate({
+                base: basePath,
+                src: 'http://localhost:4173/',
+                target: 'index.html',
+                inline: true,
+                width: 1300,
+                height: 900,
+            }),
+            timeoutPromise
+        ]);
         console.log('Critical CSS generated and inlined successfully!');
     } catch (err) {
-        console.error('Error generating critical CSS:', err);
-        process.exitCode = 1;
+        console.warn('Critical CSS generation skipped or timed out (proceeding with preloaded CSS):', err.message || err);
+        // Do not fail build for an optional critical CSS optimization
     } finally {
-        server.httpServer.close();
+        if (server && server.httpServer) {
+            server.httpServer.close(() => {
+                process.exit(0);
+            });
+            // Fallback timeout in case keep-alive sockets remain open
+            setTimeout(() => process.exit(0), 2000);
+        } else {
+            process.exit(0);
+        }
     }
 }
 

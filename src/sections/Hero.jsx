@@ -334,7 +334,7 @@ export default function Hero({ site, dark }) {
                                     className="w-full h-full object-cover rounded-full"
                                     width="400"
                                     height="400"
-                                    fetchpriority="high"
+                                    fetchPriority="high"
                                 />
                             </div>
                         </div>

@@ -126,6 +126,7 @@ export default function BlogManagerTab({ onEditPost, onOpenLinkedInStudio }) {
         } finally {
             setIsLoading(false);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- notification.type is read-only context, not a fetch dependency
     }, [statusFilter, categoryFilter, searchQuery]);
 
     useEffect(() => {

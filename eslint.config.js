@@ -17,7 +17,7 @@ export default [
                 sourceType: 'module',
             },
         },
-        settings: { react: { version: '19.2' } },
+        settings: { react: { version: '19.3' } },
         plugins: {
             react,
             'react-hooks': reactHooks,
@@ -37,6 +37,8 @@ export default [
                 { allowConstantExport: true },
             ],
             'no-unused-vars': 'off',
+            'no-empty': ['error', { allowEmptyCatch: true }],
+            'react/no-unknown-property': ['error', { ignore: ['object', 'intensity', 'position', 'attach', 'args'] }],
             'react/prop-types': 'off',
             'react/no-unescaped-entities': 'off',
         },
@@ -46,5 +48,18 @@ export default [
         languageOptions: {
             globals: globals.node,
         }
+    },
+    {
+        files: ['api/**/*.js'],
+        languageOptions: {
+            globals: globals.node,
+        }
+    },
+    {
+        files: ['vite.config.js', 'verify-schema.js'],
+        languageOptions: {
+            globals: globals.node,
+        }
     }
 ]
+

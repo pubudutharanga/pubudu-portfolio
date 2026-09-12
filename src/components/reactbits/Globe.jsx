@@ -71,6 +71,7 @@ function GlobeMesh({ data = [], globeConfig = {} }) {
         }
 
         return globe
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- globeConfig is a stable config object; only re-create globe when data changes
     }, [data])
 
     // Reactive theme & config updates when switching between Light & Dark modes
@@ -105,6 +106,7 @@ function GlobeMesh({ data = [], globeConfig = {} }) {
                 .hexPolygonMargin(0.7)
                 .hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,0.7)")
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- polygonColor update handled separately below
     }, [globeInstance, countriesData])
 
     // Update hex polygon color dynamically without recomputing polygon mesh data

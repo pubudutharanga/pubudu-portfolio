@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import cookie from 'cookie';
+import { parseCookie, stringifySetCookie } from 'cookie';
 
 const SESSION_SECRET = process.env.SESSION_SECRET || process.env.API_SECRET_KEY || 'pubudu_admin_fallback_secret_key_2026';
 const COOKIE_NAME = 'admin_session';
@@ -11,7 +11,7 @@ const COOKIE_NAME = 'admin_session';
  */
 export function requireAdminSession(req) {
     // 1. Check HTTP-only cookie first
-    const cookies = req.headers.cookie ? cookie.parse(req.headers.cookie) : {};
+    const cookies = req.headers.cookie ? parseCookie(req.headers.cookie) : {};
     const sessionToken = cookies[COOKIE_NAME];
 
     if (sessionToken) {
@@ -64,10 +64,12 @@ export function signAdminToken(payload = { role: 'admin' }) {
  */
 export function setSessionCookie(res, token) {
     const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
-    const cookieHeader = cookie.serialize(COOKIE_NAME, token, {
+    const cookieHeader = stringifySetCookie({
+        name: COOKIE_NAME,
+        value: token,
         httpOnly: true,
         secure: isProd,
-        sameSite: 'strict',
+        sameSite: 'Strict',
         maxAge: 60 * 60 * 24, // 24 hours
         path: '/'
     });
@@ -79,10 +81,12 @@ export function setSessionCookie(res, token) {
  */
 export function clearSessionCookie(res) {
     const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
-    const cookieHeader = cookie.serialize(COOKIE_NAME, '', {
+    const cookieHeader = stringifySetCookie({
+        name: COOKIE_NAME,
+        value: '',
         httpOnly: true,
         secure: isProd,
-        sameSite: 'strict',
+        sameSite: 'Strict',
         expires: new Date(0),
         path: '/'
     });

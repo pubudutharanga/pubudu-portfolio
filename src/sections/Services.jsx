@@ -3,7 +3,7 @@ import { SERVICES } from '../data'
 import { FaCode, FaPalette, FaRocket, FaCheck, FaArrowRight, FaStar, FaClock, FaUsers, FaAward } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { LampContainer } from '../components/reactbits'
-import { HashLink } from 'react-router-hash-link';
+
 
 export default function Services() {
     const [selectedService, setSelectedService] = useState(0)
@@ -226,13 +226,17 @@ export default function Services() {
 
                             {/* CTA */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                                <HashLink
-                                    smooth to="/#contact"
+                                <a
+                                    href="#contact"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
                                     className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-medium transition-colors duration-300 flex items-center justify-center gap-2"
                                 >
                                     Start Your Project
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                                </HashLink>
+                                </a>
                             </div>
                         </div>
 

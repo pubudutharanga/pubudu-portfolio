@@ -172,7 +172,7 @@ function robustJsonParse(raw) {
         cleaned = cleaned.substring(firstBrace, lastBrace + 1);
     }
 
-    let parsed = null;
+    let parsed;
 
     // 3. Try standard parse first
     try {
@@ -181,6 +181,7 @@ function robustJsonParse(raw) {
         // 4. Sanitize unescaped control characters (raw newlines, tabs) and backslashes
         try {
             const sanitized = cleaned
+                // eslint-disable-next-line no-control-regex
                 .replace(/[\u0000-\u001F]+/g, (match) => {
                     if (match.includes('\n')) return '\\n';
                     if (match.includes('\r')) return '\\r';
