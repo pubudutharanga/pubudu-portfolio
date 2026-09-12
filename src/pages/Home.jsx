@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import Hero from '../sections/Hero'
 import SeoMeta from '../components/SeoMeta'
-import { Loader } from '../components/reactbits'
 
 // Lazy load below-the-fold sections to reduce initial JS execution
 const About = lazy(() => import('../sections/About'))
@@ -10,6 +9,22 @@ const Services = lazy(() => import('../sections/Services'))
 const Contact = lazy(() => import('../sections/Contact'))
 const BlogPreview = lazy(() => import('../sections/BlogPreview'))
 const GlobalProjects = lazy(() => import('../sections/GlobalProjects'))
+
+// content-visibility: auto — browser skips rendering work for off-screen sections
+const cvAutoStyle = { contentVisibility: 'auto', containIntrinsicSize: 'auto 500px' }
+
+// Lightweight skeleton fallback (avoids importing heavy Loader for each section)
+const SectionSkeleton = () => (
+  <div className="max-w-6xl mx-auto py-16 px-4">
+    <div className="animate-pulse space-y-4">
+      <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-lg w-48" />
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-96 max-w-full" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        {[1,2,3].map(i => <div key={i} className="h-48 bg-gray-200 dark:bg-gray-700 rounded-2xl" />)}
+      </div>
+    </div>
+  </div>
+)
 
 export default function Home({ site, dark }) {
   return (
@@ -115,17 +130,38 @@ export default function Home({ site, dark }) {
       <section id="home" className="min-h-[70vh]">
         <Hero site={site} dark={dark} />
       </section>
-      <Suspense fallback={<Loader loadingStates={["Loading portfolio sections..."]} fullScreen={false} />}>
-        <section id="about" className="max-w-6xl mx-auto py-16 px-4">
+
+      {/* Per-section Suspense boundaries enable parallel loading — one slow section doesn't block others */}
+      {/* content-visibility: auto skips rendering work for off-screen sections */}
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="about" className="max-w-6xl mx-auto py-16 px-4" style={cvAutoStyle}>
           <About dark={dark} />
         </section>
-        <section id="portfolio" className="bg-gray-50/75 dark:bg-gray-800/50 py-16">
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="portfolio" className="bg-gray-50/75 dark:bg-gray-800/50 py-16" style={cvAutoStyle}>
           <div className="max-w-6xl mx-auto px-4"><Portfolio /></div>
         </section>
-        <section id="services" className="max-w-6xl mx-auto py-16 px-4"><Services /></section>
-        <section id="blog" className="max-w-6xl mx-auto py-16 px-4"><BlogPreview dark={dark} /></section>
-        <section id="global"><GlobalProjects dark={dark} /></section>
-        <section id="contact" className="max-w-6xl mx-auto py-16 px-4"><Contact /></section>
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="services" className="max-w-6xl mx-auto py-16 px-4" style={cvAutoStyle}>
+          <Services />
+        </section>
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="blog" className="max-w-6xl mx-auto py-16 px-4" style={cvAutoStyle}>
+          <BlogPreview dark={dark} />
+        </section>
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="global" style={cvAutoStyle}>
+          <GlobalProjects dark={dark} />
+        </section>
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <section id="contact" className="max-w-6xl mx-auto py-16 px-4" style={cvAutoStyle}>
+          <Contact />
+        </section>
       </Suspense>
     </div>
   )

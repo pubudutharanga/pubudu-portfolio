@@ -116,14 +116,59 @@ export default defineConfig({
             strategies: 'generateSW',
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
-                globIgnores: ['**/blog*.png', '**/blog*.jpg', '**/pro*.png', '**/og-image*'],
-                maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+                // Exclude heavy/infrequently-needed assets from precache
+                globIgnores: [
+                    '**/blog*.png', '**/blog*.jpg', '**/pro*.png', '**/og-image*',
+                    '**/three-ecosystem-*',  // Three.js loaded on-demand via lazy import
+                    '**/gsap-*',             // GSAP loaded on-demand via menu component
+                ],
+                maximumFileSizeToCacheInBytes: 1.5 * 1024 * 1024, // Reduced from 3 MB
                 navigateFallback: 'index.html',
                 navigateFallbackDenylist: [/^\/api/, /^\/robots\.txt/, /^\/sitemap\.xml/],
                 cleanupOutdatedCaches: true,
                 clientsClaim: true,
                 skipWaiting: true,
-                runtimeCaching: []
+                runtimeCaching: [
+                    // Cache Cloudinary images (CacheFirst — images rarely change)
+                    {
+                        urlPattern: /^https:\/\/res\.cloudinary\.com\/.*/i,
+                        handler: 'CacheFirst',
+                        options: {
+                            cacheName: 'cloudinary-images',
+                            expiration: {
+                                maxEntries: 60,
+                                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+                            },
+                            cacheableResponse: { statuses: [0, 200] },
+                        },
+                    },
+                    // Cache API responses (StaleWhileRevalidate — show cached, fetch fresh in background)
+                    {
+                        urlPattern: /^\/api\/.*/i,
+                        handler: 'StaleWhileRevalidate',
+                        options: {
+                            cacheName: 'api-cache',
+                            expiration: {
+                                maxEntries: 30,
+                                maxAgeSeconds: 5 * 60, // 5 minutes
+                            },
+                            cacheableResponse: { statuses: [0, 200] },
+                        },
+                    },
+                    // Cache world.json (CacheFirst — static GeoJSON data)
+                    {
+                        urlPattern: /\/world\.json$/i,
+                        handler: 'CacheFirst',
+                        options: {
+                            cacheName: 'geojson-cache',
+                            expiration: {
+                                maxEntries: 1,
+                                maxAgeSeconds: 90 * 24 * 60 * 60, // 90 days
+                            },
+                            cacheableResponse: { statuses: [0, 200] },
+                        },
+                    },
+                ]
             }
         }),
         {
@@ -173,7 +218,15 @@ export default defineConfig({
             output: {
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
-                        // Split framer-motion into its own chunk (largest dep)
+                        // Three.js ecosystem — isolated chunk, loaded on-demand by Globe section
+                        if (id.includes('three') || id.includes('@react-three') || id.includes('three-globe')) {
+                            return 'three-ecosystem';
+                        }
+                        // GSAP — only used by StaggeredMenu, load on-demand
+                        if (id.includes('gsap')) {
+                            return 'gsap';
+                        }
+                        // Split framer-motion into its own chunk (largest remaining dep)
                         if (id.includes('framer-motion')) {
                             return 'framer-motion';
                         }
@@ -181,7 +234,7 @@ export default defineConfig({
                         if (id.includes('react-icons')) {
                             return 'react-icons';
                         }
-                        // Everything else stays in vendor (including React core)
+                        // Everything else stays in vendor (React core, router, etc.)
                         return 'vendor';
                     }
                 }

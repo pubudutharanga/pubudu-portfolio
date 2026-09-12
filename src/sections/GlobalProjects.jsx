@@ -1,9 +1,44 @@
-import React, { useMemo } from "react"
+import React, { useMemo, lazy, Suspense, useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
-import { World } from "../components/reactbits"
 import { FaGlobe } from "react-icons/fa"
 
+// Lazy-load the entire Globe/Three.js ecosystem (~2.6 MB) only when needed
+const LazyWorld = lazy(() => import("../components/reactbits/Globe").then(m => ({ default: m.World })))
+
 export default function GlobalProjects({ dark }) {
+  // IntersectionObserver gate: only load Three.js when section is near viewport
+  const sectionRef = useRef(null)
+  const [shouldLoadGlobe, setShouldLoadGlobe] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadGlobe(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' } // Start loading 200px before visible
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  // Globe loading skeleton
+  const GlobeSkeleton = () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 animate-pulse" />
+        <div className="absolute inset-4 rounded-full border-2 border-dashed border-blue-300/50 dark:border-blue-600/30 animate-[spin_20s_linear_infinite]" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <FaGlobe className="w-12 h-12 text-blue-400/60 dark:text-blue-500/40 animate-pulse" />
+        </div>
+      </div>
+    </div>
+  )
+
   // Dark mode remains 100% true to original Aceternity spec.
   // Light mode features a tailored, Stripe-inspired pearlescent cerulean sphere with royal indigo continent dots and azure atmosphere.
   const globeConfig = useMemo(() => ({
@@ -81,7 +116,7 @@ export default function GlobalProjects({ dark }) {
   }, [dark])
 
   return (
-    <section id="global" className="relative py-20 overflow-hidden bg-transparent border-t border-gray-200/60 dark:border-gray-800/60 transition-colors duration-300 w-full">
+    <section ref={sectionRef} id="global" className="relative py-20 overflow-hidden bg-transparent border-t border-gray-200/60 dark:border-gray-800/60 transition-colors duration-300 w-full">
       <div className="max-w-7xl mx-auto px-4 relative z-20">
         {/* Top Header Block */}
         <motion.div
@@ -117,7 +152,13 @@ export default function GlobalProjects({ dark }) {
           <div className="absolute w-[18rem] sm:w-[30rem] md:w-[42rem] h-[18rem] sm:h-[30rem] md:h-[42rem] rounded-full bg-gradient-to-tr from-sky-400/15 via-blue-500/10 to-indigo-500/15 dark:from-cyan-500/15 dark:via-blue-600/15 dark:to-purple-500/15 blur-[80px] pointer-events-none -z-10 transition-colors duration-500" />
 
           <div className="w-full h-full relative z-10 flex items-center justify-center">
-            <World data={sampleArcs} globeConfig={globeConfig} />
+            {shouldLoadGlobe ? (
+              <Suspense fallback={<GlobeSkeleton />}>
+                <LazyWorld data={sampleArcs} globeConfig={globeConfig} />
+              </Suspense>
+            ) : (
+              <GlobeSkeleton />
+            )}
           </div>
         </motion.div>
       </div>

@@ -13,4 +13,7 @@ export { default as StaggeredMenu } from './StaggeredMenu'
 export { default as LampContainer, LampContainer as Lamp } from './Lamp'
 export { default as TracingBeam } from './TracingBeam'
 export { default as Loader } from './Loader'
-export { default as Globe, World } from './Globe'
+
+// Globe/World intentionally excluded from barrel export to avoid pulling
+// Three.js + R3F + drei + three-globe (~2.6 MB) into the main bundle.
+// Import directly via: React.lazy(() => import('./components/reactbits/Globe'))
