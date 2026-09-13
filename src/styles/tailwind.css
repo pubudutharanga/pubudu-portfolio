@@ -202,6 +202,15 @@
     html.transitioning-theme *::before,
     html.transitioning-theme *::after {
         transition: none !important;
+        animation-play-state: paused !important;
+        will-change: auto !important;
+    }
+
+    /* Hide heavy GPU layers (canvas, WebGL) during the view-transition snapshot.
+       The ::view-transition pseudo-elements already hold a frozen screenshot,
+       so these live canvases add nothing visual but steal GPU time. */
+    html.transitioning-theme canvas {
+        visibility: hidden !important;
     }
 
     /* Custom scrollbar */

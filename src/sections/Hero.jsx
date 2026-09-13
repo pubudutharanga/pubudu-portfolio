@@ -34,13 +34,20 @@ export default function Hero({ site, dark }) {
         const updateResponsive = () => {
             const width = window.innerWidth
             setIsMobile(width < 640)
-            if (width < 640) {
-                setParticleCount(dark ? 25 : 12)
-            } else if (width < 1024) {
-                setParticleCount(dark ? 50 : 20)
-            } else {
-                setParticleCount(dark ? 90 : 30)
-            }
+            const nextCount = width < 640
+                ? (dark ? 25 : 12)
+                : width < 1024
+                    ? (dark ? 50 : 20)
+                    : (dark ? 90 : 30)
+            setParticleCount(nextCount)
+        }
+
+        // Defer particle count change during theme transition so the heavy
+        // canvas resize doesn't compete with the View Transition animation
+        const isTransitioning = document.documentElement.classList.contains('transitioning-theme')
+        if (isTransitioning) {
+            const timer = setTimeout(updateResponsive, 400)
+            return () => clearTimeout(timer)
         }
 
         updateResponsive()
